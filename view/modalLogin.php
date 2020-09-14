@@ -1,0 +1,36 @@
+<!-- <div id="modalLR">
+  <div class="modalLogin">
+    <div class="fechar">
+      <form action="" method="POST" id="formL">
+        <h1>Bem-Vindo</h1>
+
+        <span>E-MAIL</span>
+        <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+
+        <span>PASSWORD</span>
+        <input type="password" name="password" required>
+
+        <button type="submit" name="logar">Enviar</button>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+<div id="modalLR">
+  <div class="modalLogin">
+    <div class="box-contentM">
+      <form action="" method="POST" id="formL">
+        <h1>Bem-Vindo</h1>
+
+        <span>E-mail</span>
+        <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+
+        <span>Password</span>
+        <input type="password" name="password" pattern=".{8,}" title="Mínimo 8 caracteres" required>
+
+        <button type="submit" name="logar">Enviar</button>
+      </form>
+    </div>
+    <div class="fechar">x</div>
+  </div>
+</div>
