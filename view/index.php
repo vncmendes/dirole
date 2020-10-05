@@ -2,9 +2,13 @@
 <html lang="en">
 
 <head>
-  <?php
-  require_once 'head.php';
-  ?>
+<?php 
+  require_once "head.php";
+  require_once "../model/Evento.php";
+  require_once "../model/EventoDAO.php";
+  require_once '../controler/evento.php';
+  $eventos = $eventoDAO->getAll();
+?>
 </head>
 
 <body>
@@ -86,6 +90,10 @@
 <section class="eventcards">
   <span class="indexontherise">Em Alta</span>
   <div class="eventcardscontent">
+  <?php foreach ($eventos as $evento) :
+    $registra_eventocategoria = $eventoDAO->listaEventoCategoria($evento->id);
+    $registra_eventoestrutura = $eventoDAO->listaEventoEstrutura($evento->id);
+  ?>
     <div class="cards">
       <a href="#">
         <ul>
@@ -95,82 +103,19 @@
 
           <div class="cardinfo">
             <li>
-              <span class="eventname">Nome: </span>
+              <span class="eventname">Nome: <?= $evento->nome ?> </span>
             </li>
             <li>
-              <span class="eventdate">Data: </span>
+              <span class="eventdate">Data: <?= $evento->data ?> </span>
             </li>
             <li>
-              <span class="eventlocation">Local: </span>
+              <span class="eventlocation">Local: <?= $evento->localizacao ?> </span>
             </li>
           </div>
         </ul>
       </a>
     </div>
-    <div class="cards">
-      <a href="#">
-        <ul>
-          <div class="cardimage">
-            <li><img src="../images/02.jpg" alt=""></li>
-          </div>
-
-          <div class="cardinfo">
-            <li>
-              <span class="eventname">Nome: </span>
-            </li>
-            <li>
-              <span class="eventdate">Data: </span>
-            </li>
-            <li>
-              <span class="eventlocation">Local: </span>
-            </li>
-          </div>
-        </ul>
-      </a>
-    </div>
-    <div class="cards">
-      <a href="#">
-        <ul>
-          <div class="cardimage">
-            <li><img src="../images/03.jpg" alt=""></li>
-          </div>
-
-          <div class="cardinfo">
-            <li>
-              <span class="eventname">Nome: </span>
-            </li>
-            <li>
-              <span class="eventdate">Data: </span>
-            </li>
-            <li>
-              <span class="eventlocation">Local: </span>
-            </li>
-          </div>
-        </ul>
-      </a>
-    </div>
-    <div class="cards">
-      <a href="#">
-        <ul>
-          <div class="cardimage">
-            <li><img src="../images/04.jpg" alt=""></li>
-          </div>
-
-          <div class="cardinfo">
-            <li>
-              <span class="eventname">Nome: </span>
-            </li>
-            <li>
-              <span class="eventdate">Data: </span>
-            </li>
-            <li>
-              <span class="eventlocation">Local: </span>
-            </li>
-          </div>
-        </ul>
-      </a>
-    </div>
-  </div>
+    <?php endforeach ?>
 </section>
 <!-- CARDS EVENTS FIM -->
 

@@ -1,8 +1,8 @@
 <?php
-if (!isset($_SESSION)) {
-	session_start();
-	session_status();
-}
+// if (!isset($_SESSION)) {
+// 	session_start();
+// 	session_status();
+// }
 
 require_once "../model/Usuario.php";
 require_once "../model/UsuarioDAO.php";

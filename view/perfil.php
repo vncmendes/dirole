@@ -2,8 +2,8 @@
 
 <head>
 	<?php
-	session_start();
-	session_status();
+	// session_start();
+	// session_status();
 	require_once 'head.php';
 	require_once "../model/Usuario.php";
 	require_once "../model/UsuarioDAO.php";
