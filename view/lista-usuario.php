@@ -2,10 +2,10 @@
 
 <head>
 	<?php
-	require_once '../view/header.php';
+	require_once 'head.php';
 	require_once "../model/Usuario.php";
-	require_once "../model/UsuarioDAO.php";
-	require_once '../controler/usuario.php';
+	// require_once "../model/UsuarioDAO.php";
+	require_once '../controller/usuario.php';
 	?>
 </head>
 
@@ -13,7 +13,7 @@
 	<div class="container py-4 border">
 		<table class="table" style="text">
 			<?php
-			$usuarios = $usuarioDAO->getAll(); //  para montar o vetor do listar_usuario 
+			$usuarios = $usuario->selectAll(); //  para montar o vetor do listar_usuario 
 			?>
 			<h1>Lista Usuários</h1>
 			<td style="border-top: none">
@@ -40,7 +40,7 @@
 					</td>
 
 					<td>
-						<form action="../controler/usuario.php" method="post">
+						<form action="../controller/usuario.php" method="post">
 							<input type="hidden" name="idR" value="<?= $usuario->id ?>">
 							<button class="btn btn-danger" type="submit" name="remover">Remover</button>
 						</form>

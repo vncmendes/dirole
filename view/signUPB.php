@@ -107,21 +107,21 @@
         <h1>Bem-Vindo (a)</h1>
 
         <span>Nome</span>
-        <input type="text" name="nameB" pattern=".{3,}" title="Mínimo 3 caracteres" required>
+        <input type="text" name="nome" pattern=".{3,}" title="Mínimo 3 caracteres" required>
 
         <span>Sobrenome</span>
-        <input type="text" name="snameB" pattern=".{3,}" title="Mínimo 3 caracteres" required>
+        <input type="text" name="sobrenome" pattern=".{3,}" title="Mínimo 3 caracteres" required>
 
         <span>E-mail</span>
-        <input type="email" name="emailB" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+        <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
 
         <span>Senha</span>
-        <input type="password" name="passwordB" pattern=".{8,}" title="Mínimo 8 caracteres" required>
+        <input type="password" name="senha" pattern=".{8,}" title="Mínimo 8 caracteres" required>
 
         <span>Digite a senha novamente</span>
-        <input type="password" name="password2B" pattern=".{8,}" title="Mínimo 8 caracteres" required>
+        <input type="password" name="confirmaSenha" pattern=".{8,}" title="Mínimo 8 caracteres" required>
 
-        <button type="submit" name="cadastrarB">Enviar</button>
+        <button type="submit" name="cadastrar">Enviar</button>
       </form>
     </div>
     <div class="fecharSUB">x</div>

@@ -2,20 +2,20 @@
 
 <head>
 	<?php
-	require_once 'header.php';
+	require_once 'head.php';
 	require_once "../model/Evento.php";
-	require_once "../model/EventoDAO.php";
-	require_once '../controler/evento.php';
+	// require_once "../model/EventoDAO.php";
+	require_once '../controller/evento.php';
 
-	$eventos = $eventoDAO->getAll();
+	$eventos = $evento->selectAll();
 	?>
 </head>
 
 <body>
 	<div class="principal">
 		<?php foreach ($eventos as $evento) :
-			$registra_eventocategoria = $eventoDAO->listaEventoCategoria($evento->id);
-			$registra_eventoestrutura = $eventoDAO->listaEventoEstrutura($evento->id);
+			$registra_eventocategoria = $evento->listaEventoCategoria($evento->id);
+			$registra_eventoestrutura = $evento->listaEventoEstrutura($evento->id);
 			?>
 
 			<div class="flex-container">

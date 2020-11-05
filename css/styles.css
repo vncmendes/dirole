@@ -546,7 +546,7 @@ footer.footer {
 .fifth-content {
   background: rgba(56, 6, 105, 0.7);
   width: 100%;
-  height: 100%;
+  /* height: auto; */
   box-shadow: 2px 2px 8px 2px black;
 }
 footer.footer .fifth-content ul {
@@ -624,9 +624,11 @@ header#main1-header .content2 a:hover {
 header#main1-header .content2 a:hover {
   color: #4fa444;
 }
-div h1 a.dirole1 {
+
+/* div h1 a.dirole1 {
   display: flex;
-}
+} */
+
 .dirole1 {
   font-family: "Pacifico", cursive !important;
   font-size: 1.2em !important;

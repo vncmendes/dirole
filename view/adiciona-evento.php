@@ -2,24 +2,28 @@
 
 <head>
 	<?php
-	require_once 'header.php';
+	require_once 'head.php';
 	require_once "../model/Evento.php";
-	require_once "../model/EventoDAO.php";
 	require_once "../model/Categoria.php";
-	require_once "../model/CategoriaDAO.php";
 	require_once "../model/Estrutura.php";
-	require_once "../model/EstruturaDAO.php";
+	// require_once "../model/EventoDAO.php";
+	// require_once "../model/CategoriaDAO.php";
+	// require_once "../model/EstruturaDAO.php";
 	?>
 
 </head>
+<body>
+<?php
+  require_once 'navbar2.php'
+  ?>
 
 <?php
-$categoriaDAO = new CategoriaDAO();
+// $categoriaDAO = new CategoriaDAO();
 $categoria = new Categoria();
-$estruturaDAO = new EstruturaDAO();
 $estrutura = new Estrutura();
-$categorias = $categoriaDAO->getAll();
-$estruturas = $estruturaDAO->getAll();
+$categorias = $categoria->selectAll();
+$estruturas = $estrutura->selectAll();
+// $estruturaDAO = new EstruturaDAO();
 ?>
 
 <div class="principal">
@@ -103,7 +107,7 @@ $estruturas = $estruturaDAO->getAll();
 </div>
 
 </body>
-<?php require_once '../controler/evento.php';
+<?php require_once '../controller/evento.php';
 require_once 'footer.php'; ?>
 
 </html>

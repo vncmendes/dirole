@@ -4,10 +4,11 @@
 <head>
 <?php 
   require_once "head.php";
-  require_once "../model/Evento.php";
-  require_once "../model/EventoDAO.php";
-  require_once '../controler/evento.php';
-  $eventos = $eventoDAO->getAll();
+  require_once '../controller/usuario.php';
+  // require_once "../model/Evento.php";
+  // require_once "../model/EventoDAO.php";
+  // require_once '../controler/evento.php';
+  // $eventos = $eventoDAO->getAll();
 ?>
 </head>
 
@@ -87,10 +88,10 @@
 <!-- FIM SLIDER -->
 
 <!-- CARDS EVENTS -->
-<section class="eventcards">
+<!-- <section class="eventcards">
   <span class="indexontherise">Em Alta</span>
   <div class="eventcardscontent">
-  <?php foreach ($eventos as $evento) :
+  < ?php foreach ($eventos as $evento) :
     $registra_eventocategoria = $eventoDAO->listaEventoCategoria($evento->id);
     $registra_eventoestrutura = $eventoDAO->listaEventoEstrutura($evento->id);
   ?>
@@ -103,20 +104,20 @@
 
           <div class="cardinfo">
             <li>
-              <span class="eventname">Nome: <?= $evento->nome ?> </span>
+              <span class="eventname">Nome: < ?= $evento->nome ?> </span>
             </li>
             <li>
-              <span class="eventdate">Data: <?= $evento->data ?> </span>
+              <span class="eventdate">Data: < ?= $evento->data ?> </span>
             </li>
             <li>
-              <span class="eventlocation">Local: <?= $evento->localizacao ?> </span>
+              <span class="eventlocation">Local: < ?= $evento->localizacao ?> </span>
             </li>
           </div>
         </ul>
       </a>
     </div>
-    <?php endforeach ?>
-</section>
+    < ?php endforeach ?>
+</section> -->
 <!-- CARDS EVENTS FIM -->
 
 <section class="second-content">
@@ -258,8 +259,65 @@
 </section>
 <!-- RANK CONTENT FIM -->
 
-  <?php require_once  '../controler/usuario.php' ?>
-  <?php require_once  '../controler/provider.php' ?>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.5/sweetalert2.all.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+	<?php
+//   	session_start();
+    if (isset($_SESSION['emailErroMsg']) && $_SESSION['emailErroMsg'] == 1) {
+    ?>
+    	<script type="text/javascript">
+            swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Este email já está em uso!',
+                footer: 'Insira um email válido'
+            });
+        </script>
+    <?php
+    }
+    if (isset($_SESSION['cadastroSucesso']) && $_SESSION['cadastroSucesso'] == 1) {
+    ?>
+       <script type="text/javascript">
+            swal({
+                type: 'sucess',
+                title: 'Sucesso no cadastro.',
+                text: 'Agora só falta iniciar a sessão!',
+                footer: ''
+            });
+        </script> 
+    <?php
+    }
+    if (isset($_SESSION['loginErroMsg']) && $_SESSION['loginErroMsg'] == 1) {
+    ?>
+    	<script type="text/javascript">
+            swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Login ou senha errados!',
+                footer: 'Tente outra vez'
+            });
+        </script>
+    <?php
+    }
+    if (isset($_SESSION['cadastroErroMsg']) && $_SESSION['cadastroErroMsg'] == 1) {
+    ?>
+    	<script type="text/javascript">
+            swal({
+                type: 'error',
+                title: 'Oops...',
+                text: 'As senhas não correspondem!',
+                footer: 'Tente outra vez'
+            });
+        </script>
+    <?php
+    }
+    ?>
+    </script>
+
+  <!-- < ?php require_once  '../controller/usuario.php' ?>
+  < ?php require_once  '../controller/provider.php' ?> -->
 
   <?php require_once 'footer.php' ?>
 

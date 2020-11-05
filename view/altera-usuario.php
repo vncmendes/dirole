@@ -1,17 +1,17 @@
 <html>
   <head>
     <?php
-    require_once 'header.php';
+    require_once 'head.php';
     require_once "../model/Usuario.php";
-    require_once "../model/UsuarioDAO.php";
-    require_once '../controler/usuario.php';
+    // require_once "../model/UsuarioDAO.php";
+    require_once '../controller/usuario.php';
     ?>
   </head>
 <?php 
 
 $id = $_POST['id'];
 //$usuarioDAO = new UsuarioDAO(); está em usuario.php
-$usuario = $usuarioDAO->find($id);
+$usuario = $usuario->find($id);
 
 ?>
 <div class="principal">

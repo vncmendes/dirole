@@ -1,20 +1,18 @@
 <?php
 
-require_once "../model/Evento.php";
-require_once "../model/EventoDAO.php";
 require_once '../view/head.php';
+require_once "../model/Evento.php";
 require_once "../model/Categoria.php";
-require_once "../model/CategoriaDAO.php";
 require_once "../model/Estrutura.php";
-require_once "../model/EstruturaDAO.php";
-$eventoDAO = new EventoDAO();
+// require_once "../model/EventoDAO.php";
+// require_once "../model/CategoriaDAO.php";
+// require_once "../model/EstruturaDAO.php";
+// $eventoDAO = new EventoDAO();
 $evento = new Evento();
-$categoriaDAO = new CategoriaDAO();
 $categoria = new Categoria();
-$estruturaDAO = new EstruturaDAO();
 $estrutura = new Estrutura();
-
-
+// $categoriaDAO = new CategoriaDAO();
+// $estruturaDAO = new EstruturaDAO();
 //<-- CONTROADOR ONDE É RECEBIDOA AS INFORMAÇÕES DE CADASTRO -->
 
 if (array_key_exists("cadastrar", $_POST)) {
@@ -57,7 +55,7 @@ if (array_key_exists("cadastrar", $_POST)) {
 	$evento->setArquivo($arquivo);
 
 
-	$eventoDAO->insert($evento);
+	$evento->insertEvento($evento);
 
 
 	if ($validate == true) {
@@ -74,7 +72,7 @@ if (array_key_exists("remover", $_POST)) {
 
 	$id = $_POST['idE'];
 
-	$eventoDAO->delete($id);
+	$evento->delete($id);
 	header("Location: ../view/lista-evento.php");
 	die();
 }

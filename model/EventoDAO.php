@@ -1,4 +1,4 @@
-<?php 
+ <!-- < ?php
 
 @session_start();
 
@@ -60,7 +60,7 @@ class EventoDAO extends Crud {
 			$result4->bindParam(':idestrutura', $codigo);
 			$result4->bindParam(':idevento', $idevento);
 			$result4->execute();
-	 }
+	}
 	 
 	}
 }
@@ -91,4 +91,4 @@ class EventoDAO extends Crud {
 	return $stmt->fetchAll();
 }
 
-}
+} -->
