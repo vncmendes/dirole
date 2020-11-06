@@ -36,10 +36,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../css/bootstrap.css" />
-    <script src="../js/bootstrap.js"></script>
-    <link rel="stylesheet" href="../css/styles.css" />
-    <script src="../js/functions.js">
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/functions.js">
 
         /* Máscaras ER */
         function mascara(o,f){
@@ -79,7 +79,7 @@
           <a href="#" class="nodecore1 navlinks1">Tickets e Pontos</a>
         </li>
         <li>
-          <a href="../view/perfil.php" class="nodecore1 navlinks1">Perfil</a>
+          <a href="perfil.php" class="nodecore1 navlinks1">Perfil</a>
         </li>
       </ul>
     </nav>
@@ -91,8 +91,8 @@
 
     <div class="side1">
       <input type="text" placeholder="Procurar evento" />
-      <img class="avatarlogo1" src="../images/avatar.png" alt="" />
-      <a href="../view/logout.php" class="nodecore1 navlinks1">Sair</a>
+      <img class="avatarlogo1" src="images/avatar.png" alt="" />
+      <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
     </div>
   </div>
 </header>

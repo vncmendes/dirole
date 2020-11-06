@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
   div.eventcardscontent {
     display: flex;
     padding: 3%;
@@ -53,7 +53,7 @@
     font-family: "Lora", serif;
     color: #777;
   }
-</style>
+</style> -->
 
 <section class="eventcards">
 
@@ -69,7 +69,7 @@
       <a href="#">
         <ul>
           <div class="cardimage">
-            <li><img src="../images/01.jpg" alt=""></li>
+            <li><img src="images/01.jpg" alt=""></li>
           </div>
 
           <div class="cardinfo">

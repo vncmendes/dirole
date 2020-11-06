@@ -13,6 +13,7 @@ $categoria = new Categoria();
 $estrutura = new Estrutura();
 // $categoriaDAO = new CategoriaDAO();
 // $estruturaDAO = new EstruturaDAO();
+
 //<-- CONTROADOR ONDE É RECEBIDOA AS INFORMAÇÕES DE CADASTRO -->
 
 if (array_key_exists("cadastrar", $_POST)) {
@@ -54,8 +55,7 @@ if (array_key_exists("cadastrar", $_POST)) {
 	$evento->setEstrutura($estrutura);
 	$evento->setArquivo($arquivo);
 
-
-	$evento->insertEvento($evento);
+	$evento->insertEvent($evento);
 
 
 	if ($validate == true) {
@@ -72,7 +72,7 @@ if (array_key_exists("remover", $_POST)) {
 
 	$id = $_POST['idE'];
 
-	$evento->delete($id);
+	$evento->deleteG($id);
 	header("Location: ../view/lista-evento.php");
 	die();
 }

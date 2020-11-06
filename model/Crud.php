@@ -25,6 +25,16 @@ abstract class Crud extends Banco{
 		return $stmt->fetch();
 	}
 
+	public function findG($id)
+	{
+
+		$sql = "SELECT * FROM $this->table WHERE id = :id";
+		$stmt = Conexao::prepare($sql);
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
+
 	public function select($id_usuario){
 		$sql  = "SELECT * FROM $this->table WHERE id_usuario = :id_usuario";
 		$stmt = Banco::prepare($sql);
@@ -57,6 +67,14 @@ abstract class Crud extends Banco{
 		$stmt = Banco::prepare($sql);
 		$stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
 		return $stmt->execute(); 
+	}
+
+	public function deleteG($id)
+	{
+		$sql = "DELETE FROM $this->table WHERE id = :id";
+		$stmt = Banco::prepare($sql);
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->execute();
 	}
 
 }

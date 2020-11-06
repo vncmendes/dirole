@@ -17,10 +17,13 @@ class Evento extends Crud {
     private $estrutura;
     private $arquivo;
     
-    public function update($id_usuario) {
-    }
+    public function update($id_usuario) {}
 
-    public function insert() {
+    public function insert() {}
+
+    public function insertEvent(Evento $evento) {
+
+    try {
 
     $nome = $evento->getNome();
     $data = $evento->getData();
@@ -49,7 +52,7 @@ class Evento extends Crud {
     $stmt->bindParam(':ingresso', $ingresso);
     $stmt->bindParam(':arquivo', $arquivo);
 
-    if($stmt->execute()) { 
+    if($stmt->execute()) {
 
         $sqlId = "select * from eventos order by id desc";
         $stmt12 = Banco::prepare($sqlId);
@@ -64,21 +67,26 @@ class Evento extends Crud {
             $result2->bindParam(':idevento', $idevento);
             $result2->execute();
 
-    }
+     }
 
-    foreach ($estrutura as $codigo) {
-    $sql3= "insert into registra_eventoestrutura (idestrutura, idevento) values (:idestrutura, :idevento)";
-        $result4 = Banco::prepare($sql3);
-        $result4->bindParam(':idestrutura', $codigo);
-        $result4->bindParam(':idevento', $idevento);
-        $result4->execute();
-    }
+     foreach ($estrutura as $codigo) {
+     $sql3= "insert into registra_eventoestrutura (idestrutura, idevento) values (:idestrutura, :idevento)";
+         $result4 = Banco::prepare($sql3);
+         $result4->bindParam(':idestrutura', $codigo);
+         $result4->bindParam(':idevento', $idevento);
+         $result4->execute();
+     }
 
     }
-}
+ }
+        catch (Exception $e) {
+            print $e->getMessage();	
+            }
+
+        }
 
     public function listaEventoCategoria($idevento) {
-
+        
     $registra_eventocategorias = array();
     $sql = "select * from registra_eventocategoria join categoria on registra_eventocategoria.idcategoria = categoria.id where idevento = :idevento";
         $stmt = Banco::prepare($sql);
@@ -86,7 +94,7 @@ class Evento extends Crud {
         $stmt->execute();
         return $stmt->fetchAll();
 
-}
+ }
 
     public function listaEventoEstrutura($idevento) {
         
@@ -96,9 +104,9 @@ class Evento extends Crud {
     $stmt->bindParam(':idevento', $idevento, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetchAll();
-}
+    }
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+ //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
 
     public function getId() {
         return $this->id;

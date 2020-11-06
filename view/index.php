@@ -1,14 +1,18 @@
+<?php 
+  require_once '../controller/usuario.php';
+  require_once "../model/Evento.php";
+  require_once '../controller/evento.php';
+  $eventos = $evento->selectAll();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <?php 
+
   require_once "head.php";
-  require_once '../controller/usuario.php';
-  // require_once "../model/Evento.php";
-  // require_once "../model/EventoDAO.php";
-  // require_once '../controler/evento.php';
-  // $eventos = $eventoDAO->getAll();
+
 ?>
 </head>
 
@@ -58,7 +62,7 @@
   <?php require_once 'modalLogin.php' ?>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="../js/functions.js"></script>
+  <script src="js/functions.js"></script>
 
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -67,13 +71,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="../images/01.jpg" alt="First slide">
+      <img class="d-block w-100" src="images/01.jpg" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="../images/03.jpg" alt="Second slide">
+      <img class="d-block w-100" src="images/03.jpg" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="../images/04.jpg" alt="Third slide">
+      <img class="d-block w-100" src="images/04.jpg" alt="Third slide">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -88,36 +92,36 @@
 <!-- FIM SLIDER -->
 
 <!-- CARDS EVENTS -->
-<!-- <section class="eventcards">
+<section class="eventcards">
   <span class="indexontherise">Em Alta</span>
   <div class="eventcardscontent">
-  < ?php foreach ($eventos as $evento) :
-    $registra_eventocategoria = $eventoDAO->listaEventoCategoria($evento->id);
-    $registra_eventoestrutura = $eventoDAO->listaEventoEstrutura($evento->id);
+  <?php foreach ($eventos as $evento) :
+    // $registra_eventocategoria = $evento->listaEventoCategoria($evento->id);
+    // $registra_eventoestrutura = $evento->listaEventoEstrutura($evento->id);
   ?>
     <div class="cards">
       <a href="#">
         <ul>
           <div class="cardimage">
-            <li><img src="../images/01.jpg" alt=""></li>
+            <li><img src="images/01.jpg" alt=""></li>
           </div>
 
           <div class="cardinfo">
             <li>
-              <span class="eventname">Nome: < ?= $evento->nome ?> </span>
+              <span class="eventname">Nome: <?= $evento->nome ?> </span>
             </li>
             <li>
-              <span class="eventdate">Data: < ?= $evento->data ?> </span>
+              <span class="eventdate">Data: <?= $evento->data ?> </span>
             </li>
             <li>
-              <span class="eventlocation">Local: < ?= $evento->localizacao ?> </span>
+              <span class="eventlocation">Local: <?= $evento->localizacao ?> </span>
             </li>
           </div>
         </ul>
       </a>
     </div>
-    < ?php endforeach ?>
-</section> -->
+    <?php endforeach ?>
+</section>
 <!-- CARDS EVENTS FIM -->
 
 <section class="second-content">
@@ -144,7 +148,7 @@
 <div class="divsecond-content">
   <div class="d3">
     <ul>
-      <li><img src="../images/felicidades.svg" alt="icon"></li>
+      <li><img src="images/felicidades.svg" alt="icon"></li>
       <li>
         <span>Cervejeiro</span>
       </li>
@@ -152,7 +156,7 @@
   </div>
   <div class="d3">
     <ul>
-      <li><img src="../images/fogos-de-artificio.svg" alt="icon"></li>
+      <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
       <li>
         <span>Shows</span>
       </li>
@@ -160,7 +164,7 @@
   </div>
   <div class="d3">
     <ul>
-      <li><img src="../images/garfo.svg" alt="icon"></li>
+      <li><img src="images/garfo.svg" alt="icon"></li>
       <li>
         <span>Gastronômico</span>
       </li>
@@ -168,7 +172,7 @@
   </div>
   <div class="d3">
     <ul>
-      <li><img src="../images/danca.svg" alt="dance"></li>
+      <li><img src="images/danca.svg" alt="dance"></li>
       <li>
         <span>Pubs e Baladas</span>
       </li>
@@ -177,7 +181,7 @@
 </div>
 <div class="d3">
   <ul>
-    <li><img class="clientpresent" src="../images/presente.svg" alt="present"></li>
+    <li><img class="clientpresent" src="images/presente.svg" alt="present"></li>
     <li>
       <span>Bônus Clientes Ativos</span>
     </li>
@@ -195,11 +199,11 @@
       <form class="form1" action="#" name="form">
         <fieldset>
           <label for="name"></label>
-          <input type="text" name="name" pattern="" placeholder="DIGITE SEU NOME" required>
+          <input type="text" name="name" pattern=".{3,}" placeholder="DIGITE SEU NOME" required>
           <label for="email"></label>
-          <input type="text" name="email" placeholder="DIGITE SEU E-MAIL" pattern="" required>
+          <input type="text" name="email" placeholder="DIGITE SEU E-MAIL" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
           <label for="name"></label>
-          <textarea name="mesage" id="mesage" placeholder="ESCREVE UMA MENSAGEM" required></textarea>
+          <textarea name="mesage" id="mesage" placeholder="ESCREVA UMA MENSAGEM" required></textarea>
           <label for="button"></label>
           <button name="btn" type="submit">Enviar</button>
         </fieldset>
@@ -217,7 +221,7 @@
     <div class="divrank-content">
       <div class="d3rank">
         <ul>
-          <li><img src="../images/avatar.png" alt="icon"></li>
+          <li><img src="images/avatar.png" alt="icon"></li>
           <li>
             <span>Garça</span>
           </li>
@@ -225,7 +229,7 @@
       </div>
       <div class="d3rank">
         <ul>
-          <li><img src="../images/avatar.png" alt="icon"></li>
+          <li><img src="images/avatar.png" alt="icon"></li>
           <li>
             <span>Manoel</span>
           </li>
@@ -233,7 +237,7 @@
       </div>
       <div class="d3rank">
         <ul>
-          <li><img src="../images/avatar.png" alt="icon"></li>
+          <li><img src="images/avatar.png" alt="icon"></li>
           <li>
             <span>João</span>
           </li>
@@ -241,7 +245,7 @@
       </div>
       <div class="d3rank">
         <ul>
-          <li><img src="../images/avatar.png" alt="icon"></li>
+          <li><img src="images/avatar.png" alt="icon"></li>
           <li>
             <span>Deadpool</span>
           </li>
@@ -249,7 +253,7 @@
       </div>
       <div class="d3rank">
         <ul>
-          <li><img src="../images/avatar.png" alt="icon"></li>
+          <li><img src="images/avatar.png" alt="icon"></li>
           <li>
             <span>Usuário1</span>
           </li>

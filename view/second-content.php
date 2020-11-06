@@ -22,7 +22,7 @@
   <div class="divsecond-content">
     <div class="d3">
       <ul>
-        <li><img src="../images/felicidades.svg" alt="icon"></li>
+        <li><img src="images/felicidades.svg" alt="icon"></li>
         <li>
           <span>Cervejeiro</span>
         </li>
@@ -30,7 +30,7 @@
     </div>
     <div class="d3">
       <ul>
-        <li><img src="../images/fogos-de-artificio.svg" alt="icon"></li>
+        <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
         <li>
           <span>Shows</span>
         </li>
@@ -38,7 +38,7 @@
     </div>
     <div class="d3">
       <ul>
-        <li><img src="../images/garfo.svg" alt="icon"></li>
+        <li><img src="images/garfo.svg" alt="icon"></li>
         <li>
           <span>Gastronômico</span>
         </li>
@@ -46,7 +46,7 @@
     </div>
     <div class="d3">
       <ul>
-        <li><img src="../images/danca.svg" alt="dance"></li>
+        <li><img src="images/danca.svg" alt="dance"></li>
         <li>
           <span>Pubs e Baladas</span>
         </li>
@@ -55,7 +55,7 @@
   </div>
   <div class="d3">
     <ul>
-      <li><img class="clientpresent" src="../images/presente.svg" alt="present"></li>
+      <li><img class="clientpresent" src="images/presente.svg" alt="present"></li>
       <li>
         <span>Bônus Clientes Ativos</span>
       </li>

@@ -70,7 +70,7 @@
           $senha = trim($_POST['senha']);
           $confirmaSenha = trim($_POST['confirmaSenha']);
           $sobrenome = $_POST['sobrenome'];
-          $foto = "imagens/user.jpg";
+          $foto = "images/user.jpg";
           $nivel = 0;
           if ($confirmaSenha == $senha) {
               
@@ -192,7 +192,7 @@
           // var_dump($_FILES['foto']['name']);die;
           if ($extensao == ".jpg" || $extensao == ".png" || $extensao == ".jpeg") {
              $novo_nome = md5(time()) . $extensao;
-             $diretorio = "../view/imagens/";
+             $diretorio = "../view/images/";
              move_uploaded_file($_FILES['foto']['tmp_name'], $diretorio.$novo_nome);
              $foto = $diretorio.$novo_nome;
              $usuario->setFoto($foto);

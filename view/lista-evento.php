@@ -1,21 +1,30 @@
+<?php
+
+	require_once "../model/Evento.php";
+	require_once '../controller/evento.php';
+	$eventos = $evento->selectAll();
+
+	?>
+
 <html>
 
 <head>
 	<?php
-	require_once 'head.php';
-	require_once "../model/Evento.php";
-	// require_once "../model/EventoDAO.php";
-	require_once '../controller/evento.php';
 
-	$eventos = $evento->selectAll();
+	require_once 'head.php';
+
+
 	?>
 </head>
 
 <body>
-	<div class="principal">
+
+	<?php require_once 'navbar2.php' ?>
+
+	<div class="principal" style="padding: 3%">
 		<?php foreach ($eventos as $evento) :
-			$registra_eventocategoria = $evento->listaEventoCategoria($evento->id);
-			$registra_eventoestrutura = $evento->listaEventoEstrutura($evento->id);
+			// $registra_eventocategoria = $evento->listaEventoCategoria($evento->id);
+			// $registra_eventoestrutura = $evento->listaEventoEstrutura($evento->id);
 			?>
 
 			<div class="flex-container">
@@ -39,18 +48,18 @@
 																echo $estrutura->nome ?>
 							<?php endforeach; ?>
 						</td>
-						<td>Arquivo: <img src="../imagens/<?= $evento->arquivo ?>"></img></td>
+						<td>Arquivo: <img src="/images/<?= $evento->arquivo ?>"></img></td>
 
 						<td>
 							<form action="altera-evento.php" method="post">
 								<input type="hidden" name="id" value="<?= $evento->id ?>">
 								<button class="btn btn-primary" type="submit" name="alterar">Alterar</button>
 							</form>
-							<form action="../controler/evento.php" method="post">
+							<form action="../controller/evento.php" method="post">
 								<input type="hidden" name="idE" value="<?= $evento->id ?>">
 								<button class="btn btn-warning" type="submit" name="remover">Remover</button>
 							</form>
-							<a href="../view/index.php" class="btn btn-dark">Voltar</a>
+							<a href="index.php" class="btn btn-dark">Voltar</a>
 						</td>
 
 					</tr>
@@ -58,9 +67,8 @@
 			</div>
 		<?php
 		endforeach;
-		require_once 'footer.php';
 		?>
 
-
+	<?php include_once 'footer.php' ?>	
 
 </body>

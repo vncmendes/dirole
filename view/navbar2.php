@@ -3,13 +3,16 @@
     <nav>
       <ul>
         <li>
-          <a href="#" class="nodecore1 navlinks1">Eventos</a>
+          <a href="eventos.php" class="nodecore1 navlinks1">Eventos</a>
         </li>
         <li>
-          <a href="#" class="nodecore1 navlinks1">Tickets e Pontos</a>
+          <a href="adiciona-evento.php" class="nodecore1 navlinks1">Add Evento</a>
         </li>
         <li>
-          <a href="../view/perfil.php" class="nodecore1 navlinks1">Perfil</a>
+          <a href="lista-evento.php" class="nodecore1 navlinks1">Lista Evento</a>
+        </li>
+        <li>
+          <a href="perfil.php" class="nodecore1 navlinks1">Perfil</a>
         </li>
       </ul>
     </nav>
@@ -21,8 +24,8 @@
 
     <div class="side1">
       <input type="text" placeholder="Procurar evento" />
-      <img class="avatarlogo1" src="../images/avatar.png" alt="" />
-      <a href="../view/logout.php" class="nodecore1 navlinks1">Sair</a>
+      <img class="avatarlogo1" src="images/avatar.png" alt="" />
+      <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
     </div>
   </div>
 </header>

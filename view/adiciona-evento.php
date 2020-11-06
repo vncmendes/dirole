@@ -30,7 +30,7 @@ $estruturas = $estrutura->selectAll();
 	<div class="container py-5">
 		<div class="row">
 			<div class="col-12 border bg-light">
-				<font face="DancingScript" class="py-5 display-4">Adicionando Evento</font>
+				<font face="DancingScript" class="py-2 display-4">Adicionando Evento</font>
 				<div class="conteudo flex-container bg-light" class="col-12">
 
 					<form action="" method="POST" name="formReg" id="formId" enctype="multipart/form-data">
