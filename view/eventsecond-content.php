@@ -7,7 +7,7 @@
 </style>
 
 <section class="eventcategories">
-  <span>Categorias</span>
+  <span style="padding: 2% 0 2% 2%">Categorias</span>
   <div class="eventcategories-content">
     <div class="eventcard-categories">
       <ul>

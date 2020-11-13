@@ -6,25 +6,21 @@ class Estrutura extends Crud {
 	private $id;
 	private $nome;
 
-	public function insert() {
-
-	}
+	public function insert() {}
 	
 	public function insertEvento(Evento $evento) {}
 	
-	public function update($id_usuario) {
-		
-	}
+	public function update($id_usuario) {}
 
-function listaEstrutura(Estrutura $estrutura) {
-	$estruturas = array();
-	$sql = "select * from estrutura";
-	$resultado = Conexao::prepare($sql);
-	while($estrutura = mysqli_fetch_assoc($resultado)) {
-		array_push($estruturas, $estrutura);
-	}
-	return $estruturas;
-} 
+	function listaEstrutura(Estrutura $estrutura) {
+		$estruturas = array();
+		$sql = "select * from estrutura";
+		$resultado = Conexao::prepare($sql);
+		while($estrutura = mysqli_fetch_assoc($resultado)) {
+			array_push($estruturas, $estrutura);
+		}
+		return $estruturas;
+	} 
 
 	public function getEstrutura() {
 		return $this->nome;

@@ -6,9 +6,9 @@ class Usuario extends Crud {
     protected $table = 'usuarios';
 	private $id_usuario;
     private $nome;
+    private $sobrenome;
     private $email;
     private $senha;
-    private $sobrenome;
     private $foto;
     private $nivel;
     private $rank;

@@ -109,22 +109,22 @@
         <h1>Olá, Produtora (o)</h1>
 
         <span>Nome</span>
-        <input type="text" name="nameP" required>
+        <input type="text" name="nome" pattern=".{3,}" title="Mínimo 3 caracteres" required>
 
         <span>Sobrenome</span>
-        <input type="text" name="snameP" required>
+        <input type="text" name="sobrenome" pattern=".{3,}" title="Mínimo 3 caracteres" required>
 
         <span>E-mail</span>
-        <input type="email" name="emailP" required>
+        <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
 
-        <span>Cpf</span>
-        <input type="text" name="cpf" required>
+        <span>CPF</span>
+        <input type="text" name="cpf" pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})" title="Digite o CPF no formato 000.000.000-00" maxlength="14" required>
 
         <span>Senha</span>
-        <input type="password" name="passwordP" required>
+        <input type="password" name="senha" pattern=".{8,}" title="Mínimo 8 caracteres" required>
 
         <span>Digite a senha novamente</span>
-        <input type="password" name="password2P" required>
+        <input type="password" name="confirmaSenha" pattern=".{8,}" title="Mínimo 8 caracteres" required>
 
         <button type="submit" name="cadastrarP">Enviar</button>
       </form>

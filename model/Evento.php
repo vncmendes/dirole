@@ -61,40 +61,38 @@ class Evento extends Crud {
         $idevento=$linhas[0]->id;
 
         foreach ($categoria as $codigo) {
-        $sql2= "insert into registra_eventocategoria (idcategoria, idevento) values (:idcategoria, :idevento)";
+            $sql2= "insert into registra_eventocategoria (idcategoria, idevento) values (:idcategoria, :idevento)";
             $result2 = Banco::prepare($sql2);
             $result2->bindParam(':idcategoria', $codigo);
             $result2->bindParam(':idevento', $idevento);
             $result2->execute();
 
-     }
+        }
 
-     foreach ($estrutura as $codigo) {
-     $sql3= "insert into registra_eventoestrutura (idestrutura, idevento) values (:idestrutura, :idevento)";
-         $result4 = Banco::prepare($sql3);
-         $result4->bindParam(':idestrutura', $codigo);
-         $result4->bindParam(':idevento', $idevento);
-         $result4->execute();
-     }
+        foreach ($estrutura as $codigo) {
+            $sql3= "insert into registra_eventoestrutura (idestrutura, idevento) values (:idestrutura, :idevento)";
+            $result4 = Banco::prepare($sql3);
+            $result4->bindParam(':idestrutura', $codigo);
+            $result4->bindParam(':idevento', $idevento);
+            $result4->execute();
+        }
 
     }
  }
         catch (Exception $e) {
             print $e->getMessage();	
             }
-
         }
 
     public function listaEventoCategoria($idevento) {
-        
+
     $registra_eventocategorias = array();
     $sql = "select * from registra_eventocategoria join categoria on registra_eventocategoria.idcategoria = categoria.id where idevento = :idevento";
-        $stmt = Banco::prepare($sql);
-        $stmt->bindParam(':idevento', $idevento, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll();
-
- }
+    $stmt = Banco::prepare($sql);
+    $stmt->bindParam(':idevento', $idevento, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll();
+    }
 
     public function listaEventoEstrutura($idevento) {
         
@@ -106,7 +104,7 @@ class Evento extends Crud {
     return $stmt->fetchAll();
     }
 
- //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+ //% ~~ GETTER AND SETTERS ~~ %//
 
     public function getId() {
         return $this->id;

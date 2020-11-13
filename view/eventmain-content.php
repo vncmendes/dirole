@@ -61,8 +61,8 @@
 
 
   <?php foreach ($eventos as $evento) :
-    $registra_eventocategoria = $evento->listaEventoCategoria($evento->id);
-    $registra_eventoestrutura = $evento->listaEventoEstrutura($evento->id);
+    $registra_eventocategoria = $todosEventos->listaEventoCategoria($evento->id);
+    $registra_eventoestrutura = $todosEventos->listaEventoEstrutura($evento->id);
   ?>
   
     <div class="cards">

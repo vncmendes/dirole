@@ -14,6 +14,15 @@
 //   }
 // }
 
+function modalLoginP() {
+  document.getElementById("modalLP").style.display = "block";
+}
+
+$("#carouselExampleIndicators .fechar, #modalLP").click(function(e) {
+  if (e.target !== this) return;
+  $("#modalLP").fadeOut(500);
+});
+
 function modalLogin() {
   document.getElementById("modalLR").style.display = "block";
 }

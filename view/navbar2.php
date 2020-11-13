@@ -6,14 +6,21 @@
           <a href="eventos.php" class="nodecore1 navlinks1">Eventos</a>
         </li>
         <li>
-          <a href="adiciona-evento.php" class="nodecore1 navlinks1">Add Evento</a>
+            <a href="adiciona-evento.php" class="nodecore1 navlinks1">Add Evento</a>
         </li>
         <li>
-          <a href="lista-evento.php" class="nodecore1 navlinks1">Lista Evento</a>
+            <a href="lista-evento.php" class="nodecore1 navlinks1">Meus Evento</a>
         </li>
-        <li>
-          <a href="perfil.php" class="nodecore1 navlinks1">Perfil</a>
-        </li>
+        <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 0) { ?>
+          <li>
+            <a href="perfil.php" class="nodecore1 navlinks1">Perfil</a>
+          </li>
+        <?php } 
+              else { ?>
+                <li>
+                  <a href="perfilP.php" class="nodecore1 navlinks1">Perfil</a>
+                </li>
+        <?php } ?>
       </ul>
     </nav>
 
@@ -23,9 +30,22 @@
     </div>
 
     <div class="side1">
+      
+      <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 0) { ?>
+        <a href="perfil.php">
+          <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
+        </a>
+      <?php } ?>
+        
+      <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1) { ?>
+        <a href="perfilP.php">
+          <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
+        </a>
+      <?php } ?>
       <input type="text" placeholder="Procurar evento" />
-      <img class="avatarlogo1" src="images/avatar.png" alt="" />
-      <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
+      <?php if(isset($_SESSION['logado'])) { ?>
+        <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
+      <?php } ?>
     </div>
   </div>
 </header>

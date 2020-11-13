@@ -1,11 +1,14 @@
-<html>
+<?php
+	require_once "../model/Usuario.php";
+	require_once '../controller/usuario.php';
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
 	<?php
-	require_once 'head.php';
-	require_once "../model/Usuario.php";
-	// require_once "../model/UsuarioDAO.php";
-	require_once '../controller/usuario.php';
+		require_once 'head.php';
 	?>
 </head>
 

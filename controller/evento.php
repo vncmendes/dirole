@@ -8,7 +8,8 @@ require_once "../model/Estrutura.php";
 // require_once "../model/CategoriaDAO.php";
 // require_once "../model/EstruturaDAO.php";
 // $eventoDAO = new EventoDAO();
-$evento = new Evento();
+$eventos = new Evento();
+$evento = new Evento(); //objeto para uso exclusivo da alteração - não sei se tá certo.
 $categoria = new Categoria();
 $estrutura = new Estrutura();
 // $categoriaDAO = new CategoriaDAO();
@@ -16,7 +17,7 @@ $estrutura = new Estrutura();
 
 //<-- CONTROADOR ONDE É RECEBIDOA AS INFORMAÇÕES DE CADASTRO -->
 
-if (array_key_exists("cadastrar", $_POST)) {
+if (array_key_exists("cadastrarEvento", $_POST)) {
 
 	$validate = false;
 
@@ -55,7 +56,7 @@ if (array_key_exists("cadastrar", $_POST)) {
 	$evento->setEstrutura($estrutura);
 	$evento->setArquivo($arquivo);
 
-	$evento->insertEvent($evento);
+	$eventos->insertEvent($evento);
 
 
 	if ($validate == true) {

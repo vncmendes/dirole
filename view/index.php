@@ -1,18 +1,17 @@
 <?php 
-  require_once '../controller/usuario.php';
   require_once "../model/Evento.php";
   require_once '../controller/evento.php';
-  $eventos = $evento->selectAll();
+  require_once '../controller/usuario.php';
+  require_once '../controller/provider.php';
+  $todosEventos = $eventos->selectAll();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 <?php 
-
-  require_once "head.php";
-
+  require_once "head.php"; //tirei deu ruim em alguns lugares
 ?>
 </head>
 
@@ -43,13 +42,26 @@
           Criar Conta
         </button>
         <div class="dropdown-menu mydropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item mydrop-item" href="#" onclick="signUPB()">Baladeiro</a>
-          <a class="dropdown-item mydrop-item" href="#" onclick="signUPP()">Produtor</a>
+          <a class="dropdown-item mydrop-item" href="#" onclick="signUPB()">Baladeiro (a)</a>
+          <a class="dropdown-item mydrop-item" href="#" onclick="signUPP()">Produtora (o)</a>
         </div>
       </div>
       <input type="text" placeholder="Procurar evento" />
       <!-- <img class="avatarlogo" src="/images/avatar.png" alt=""/> -->
-      <a href="#" class="nodecore navlinks" id="btnlogin" onclick="modalLogin()">Entrar</a>
+      <!-- <a href="#" class="nodecore navlinks" id="btnlogin" onclick="modalLogin()">Entrar</a> -->
+      <div class="dropdown">
+        <button class="btn dropdown-toggle dropbtnmod" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Entrar
+        </button>
+        <div class="dropdown-menu mydropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item mydrop-item" href="#" onclick="modalLogin()">Baladeiro (a)</a>
+          <a class="dropdown-item mydrop-item" href="#" onclick="modalLoginP()">Produtora (o)</a>
+        </div>
+      </div>
+        <!-- < ?php if(isset($_SESSION['id_usuario']) || isset($_SESSION['id_provider'])) { ?>
+          <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
+        < ?php } ?> -->
+
     </div>
   </div>
 </header>
@@ -60,6 +72,7 @@
   <?php require_once 'signUPB.php' ?>
   <?php require_once 'signUPP.php' ?>
   <?php require_once 'modalLogin.php' ?>
+  <?php require_once 'modalLoginP.php' ?>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="js/functions.js"></script>
@@ -68,6 +81,7 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to=""></li>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -79,6 +93,9 @@
     <div class="carousel-item">
       <img class="d-block w-100" src="images/04.jpg" alt="Third slide">
     </div>
+    <!-- <div class="carousel-item">
+      <img class="d-block w-100" src="images/dentedepelao.jpg" alt="Forth slide">
+    </div> -->
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -95,30 +112,35 @@
 <section class="eventcards">
   <span class="indexontherise">Em Alta</span>
   <div class="eventcardscontent">
-  <?php foreach ($eventos as $evento) :
+  <?php foreach ($todosEventos as $evento) :
     // $registra_eventocategoria = $evento->listaEventoCategoria($evento->id);
     // $registra_eventoestrutura = $evento->listaEventoEstrutura($evento->id);
   ?>
-    <div class="cards">
-      <a href="#">
-        <ul>
-          <div class="cardimage">
-            <li><img src="images/01.jpg" alt=""></li>
-          </div>
-
-          <div class="cardinfo">
-            <li>
-              <span class="eventname">Nome: <?= $evento->nome ?> </span>
-            </li>
-            <li>
-              <span class="eventdate">Data: <?= $evento->data ?> </span>
-            </li>
-            <li>
-              <span class="eventlocation">Local: <?= $evento->localizacao ?> </span>
-            </li>
-          </div>
-        </ul>
-      </a>
+     <div class="cards">
+      <form action="evento.php" method="post">
+        <input type="hidden" name="id" value="<?= $evento->id ?>">
+        <button class="" type="hidden" name="ver">
+          <a href="#">
+            <ul>
+              <div class="cardimage">
+                <!-- <li><img src="/images/< ?= $evento->arquivo ?>"></li> // mais ou menos certo -->
+                <li><img src="images/01.jpg" alt=""></li>
+              </div>
+              <div class="cardinfo">
+                <li>
+                  <span class="eventname"> <?= $evento->nome ?> </span>
+                </li>
+                <li>
+                  <span class="eventdate"> <?= $evento->data ?> </span>
+                </li>
+                <li>
+                  <span class="eventlocation"> <?= $evento->localizacao ?> </span>
+                </li>
+              </div>
+            </ul>
+          </a>
+      </button>
+      </form>
     </div>
     <?php endforeach ?>
 </section>
@@ -263,10 +285,9 @@
 </section>
 <!-- RANK CONTENT FIM -->
 
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.5/sweetalert2.all.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+    
 	<?php
 //   	session_start();
     if (isset($_SESSION['emailErroMsg']) && $_SESSION['emailErroMsg'] == 1) {

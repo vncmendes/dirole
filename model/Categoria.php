@@ -6,15 +6,11 @@ class Categoria extends Crud {
 	private $id;
 	private $nome;
 	
-	public function insert() {
-
-	}
+	public function insert() {}
 
 	public function insertEvento(Evento $evento) {}
 	
-	public function update($id_usuario) {
-		
-	}
+	public function update($id_usuario) {}
 	
 	function listaCategoria(Categoria $categoria) {
 		$categoria = array();

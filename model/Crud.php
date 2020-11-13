@@ -42,6 +42,14 @@ abstract class Crud extends Banco{
 		$stmt->execute();
 		return $stmt->fetch();
 	}
+	public function selectP($id_provider){
+		$sql  = "SELECT * FROM $this->table WHERE id_provider = :id_provider";
+		$stmt = Banco::prepare($sql);
+		$stmt->bindParam(':id_provider', $id_provider, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
+
 	public function verificaEmail($email){
 		$sql  = "SELECT * FROM $this->table WHERE email = :email";
 		$stmt = Banco::prepare($sql);
@@ -55,6 +63,7 @@ abstract class Crud extends Banco{
             return false;
         }
 	}
+
 	public function selectAll(){
 		$sql  = "SELECT * FROM $this->table";
 		$stmt = Banco::prepare($sql);

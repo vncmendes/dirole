@@ -273,7 +273,6 @@ section.second-content .divsecond-content ul li img {
 }
 .box-content1 {
   padding: 2%;
-  box-shadow: 10px -2px 10px -5px black;
 }
 /* -------- rank content --------- */
 .d3rank {
@@ -415,6 +414,20 @@ section.rank-content .d3rank ul li span:hover {
   border: 1px solid #fff;
 }
 /* start modal de login */
+
+/* //////////////////////////////////////////// */
+
+div#modalLP {
+  background: rgba(0, 0, 0, 0.6);
+  left: 0;
+  top: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  z-index: 100;
+}
 
 div#modalLR {
   background: rgba(0, 0, 0, 0.6);
@@ -618,10 +631,6 @@ header#main1-header .content2 a {
 }
 
 header#main1-header .content2 a:hover {
-  padding: 6px 7px 6px 9px;
-  border: 1px solid rgba(255, 255, 255, 1);
-}
-header#main1-header .content2 a:hover {
   color: #4fa444;
 }
 
@@ -652,6 +661,8 @@ header#main1-header .content2 a:hover {
 header#main1-header div.side1 a {
   display: flex;
   align-items: center;
+  border: none !important;
+  border-radius: none !important;
   justify-content: center;
 }
 
@@ -677,7 +688,7 @@ header#main1-header div.side1 {
 header#main1-header div.side1 input {
   width: 220px;
   height: 34px;
-  margin: 0 25px;
+  margin: 10px 25px;
   font-size: 12px;
   color: #667580;
   border: 1px solid #e6ecf0;
@@ -719,22 +730,17 @@ div.side1 img {
 }
 
 .eventcategories {
-  /* background-image: url(/images/bgblack8.jpg); */
-  /* background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed; */
   position: relative;
-
   display: flex;
   flex-direction: column;
 }
+
 .eventcategories-content {
   border-top: #000;
   display: flex;
   width: 100%;
   height: 100%;
-  padding: 5% 5% 2% 4% !important;
+  padding: 1% !important;
 }
 .eventcategories-content h2 {
   font-family: "Lora", serif;
@@ -792,30 +798,46 @@ div img.eventphoro {
 
 /* end maineventcontent */
 
-  section.eventcards {
-    padding-top: 1%;
-  }
-
   div.eventcardscontent {
     display: flex;
-    padding: 3%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 5%;
     box-shadow: 6px 6px 15px 1px black;
+    background-image: url(../images/fundo10.jpg);
+  }
+
+  .break {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
   }
 
   div.cards {
     position: relative;
-    display: flex;
-    width: 25%;
-    margin: 0 1%;
+    width: 20%;
+    margin: 1% 1%;
+    border: none;
+    border-radius: 8px;
+    background-image: url(../images/tabuabg.png);
+    /* box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.8); */
+  }
+
+  div.cards img {
+    opacity: 0.7;
+  }
+
+  div.cards form button {
+    height: 100%;
+    background: none;
     border: none;
     border-radius: 8px;
     box-shadow: 2px 2px 15px 2px rgba(0, 0, 0, 0.8);
-
   }
 
   div.cards img {
     width: 100%;
-    border-radius: 8px 8px 0px 0px;
+    border-radius: 8px;
   }
 
   div.cards ul {
@@ -833,6 +855,8 @@ div img.eventphoro {
   }
 
   div.cardinfo {
+    display: flex;
+    flex-direction: column;
     padding: 3%;
   }
 
@@ -855,57 +879,136 @@ div img.eventphoro {
 
   /* estilos eventmain-content */
 
-  div.eventcardscontent {
-    display: flex;
-    padding: 3%;
-  }
-
-  div.cards {
-    position: relative;
-    display: flex;
-    width: 50%;
-    margin: 0 1%;
-    padding: ;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 2px 2px 15px 2px rgba(0, 0, 0, 0.8);
-
-  }
-
-  div.cards img {
-    width: 100%;
-    border-radius: 8px 8px 0px 0px;
-  }
-
-  div.cards ul {
-    padding-inline-start: 0;
-    margin-block-end: 0;
-  }
-
-  div.cards ul li {
-    list-style: none;
-  }
-
-  div.cards a {
-    text-decoration: none;
-    color: #000000;
-  }
-
-  div.cardinfo {
-    padding: 3%;
-  }
-
-  div.cardinfo span.eventname {
-    font-family: "Lora", serif;
-    font-size: 1.5em;
-  }
-
-  div.cardinfo span.eventdate {
-    font-family: "Lora", serif;
-    color: #00f;
-  }
-
   div.cardinfo span.eventlocation {
     font-family: "Lora", serif;
     color: #777;
   }
+
+  /* // cardSinglesEvent */
+
+  div.cardsMy {
+    position: relative;
+    width: 20%;
+    margin: 1% 1%;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 2px 2px 15px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  div.cardsMy button {
+    border: none;
+    border-radius: 8px;
+  }
+
+  div.cardsMy img {
+    width: 100%;
+    border-radius: 8px 8px 0px 0px;
+  }
+
+  div.cardsMy ul {
+    padding-inline-start: 0;
+    margin-block-end: 0;
+  }
+
+  div.cardsMy ul li {
+    list-style: none;
+  }
+
+  div.cardsMy a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  div.cardinfoMy {
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+  }
+
+  div.cardinfoMy span.eventname {
+    font-family: "Lora", serif;
+    font-size: 1.5em;
+  }
+
+  div.cardinfoMy span.eventdate {
+    font-family: "Lora", serif;
+    color: #00f;
+  }
+
+  /* // single evento  */
+
+  div.secondSingleEvent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 3%;
+    box-shadow: 6px 6px 15px 1px black;
+  }
+
+  div.singleImg {
+    width: 100%;
+  }
+
+  div.singleCard {
+    position: relative;
+    padding: 5%;
+    border: none;
+    border-radius: 0 0px 8px 8px;
+    box-shadow: 2px 2px 15px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  div.singleCard button {
+    border: none;
+    border-radius: 8px;
+  }
+
+  div.singleMainBox img {
+    width: 100%;
+    border-radius: 8px 8px 0px 0px;
+  }
+
+  div.singleCard ul {
+    padding-inline-start: 0;
+    margin-block-end: 0;
+  }
+
+  div.singleCard ul li {
+    list-style: none;
+  }
+
+  div.singleCard a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  div.singleInfos span.eventname {
+    font-family: "Lora", serif;
+    font-size: 1.5em;
+  }
+/* 
+  div.singleInfos {
+    
+  } */
+
+  div.singleInfos span.eventdate {
+    font-family: "Lora", serif;
+    color: #00f;
+  }
+
+  div.singleMainBox {
+    position: relative;
+    width: 25%;
+    margin: 1% 1%;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 2px 2px 15px 2px rgba(0, 0, 0, 0.8);
+  }
+  div.singleEstCat {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  div.singleEstCat li {
+    list-style: none;
+  }
+ 

@@ -1,30 +1,31 @@
-<html>
-
-<head>
-	<?php
-	require_once 'head.php';
+<?php
 	require_once "../model/Evento.php";
 	require_once "../model/Categoria.php";
 	require_once "../model/Estrutura.php";
-	// require_once "../model/EventoDAO.php";
-	// require_once "../model/CategoriaDAO.php";
-	// require_once "../model/EstruturaDAO.php";
+	?>
+<?php
+session_start();
+$categoria = new Categoria();
+$estrutura = new Estrutura();
+$categorias = $categoria->selectAll();
+$estruturas = $estrutura->selectAll();
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<?php
+		require_once 'head.php';
 	?>
 
 </head>
 <body>
 <?php
   require_once 'navbar2.php'
-  ?>
-
-<?php
-// $categoriaDAO = new CategoriaDAO();
-$categoria = new Categoria();
-$estrutura = new Estrutura();
-$categorias = $categoria->selectAll();
-$estruturas = $estrutura->selectAll();
-// $estruturaDAO = new EstruturaDAO();
 ?>
+
+
 
 <div class="principal">
 	<div class="container py-5">
@@ -93,7 +94,7 @@ $estruturas = $estrutura->selectAll();
 							<td class="byeBorder"><input type="file" name="arquivo"></td>
 
 							<input type="hidden" name="max_file_size" value="200000">
-							<td class="byeBorder"><input class="btn btn-success" type="submit" name="cadastrar" value="Submeter"></td>
+							<td class="byeBorder"><input class="btn btn-success" type="submit" name="cadastrarEvento" value="Submeter"></td>
 							<td class="byeBorder"><a class="btn btn-primary" href="index.php">Voltar</a></td>
 
 

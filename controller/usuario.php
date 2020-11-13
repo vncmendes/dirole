@@ -1,10 +1,12 @@
 <?php
       include_once '../model/Usuario.php';
+      include_once '../model/Provider.php';
       require'../PHPMailer-master/src/PHPMailer.php';
       require'../PHPMailer-master/src/SMTP.php';
       require'../PHPMailer-master/src/Exception.php';
      //require'../controller/recaptchalib.php';
       $usuario = new Usuario();
+      $provider = new Provider();
     
       ###################################################################################     
       ########################################################################################
@@ -78,9 +80,9 @@
             if (!$obj_retorno) { 
       
               $usuario->setNome($nome);
+              $usuario->setSobrenome($sobrenome);
               $usuario->setEmail($email);
               $usuario->setSenha($senha);
-              $usuario->setSobrenome($sobrenome);
               $usuario->setFoto($foto);
               $usuario->setNivel($nivel);
               $usuario->insert();
@@ -97,6 +99,7 @@
             $_SESSION['cadastroErroMsg'] = $cadastroErroMsg;
           }         
         }
+
         //######################################################################################
         // editar usuario ===================================================================
         //######################################################################################
@@ -147,7 +150,7 @@
         //######################################################################################
         // logar usuario ======================================================================
         //######################################################################################
-        if(isset($_POST['logar'])){
+        if(isset($_POST['logar'])) {
             $email = $_POST['email'];
             $senha = $_POST['senha'];
             $obj_retorno = $usuario->logar($email, $senha);

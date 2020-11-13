@@ -1,27 +1,35 @@
 
 <?php
     session_start();
-    require_once'../controller/usuario.php';
     require_once'../controller/provider.php';
     // require_once'../controller/controlador5.php';
       if(!isset ($_SESSION['logado']))
       {
         session_destroy();
         header("location: index.php");
-      }
-      if(isset ($_SESSION['logado']) && isset($_SESSION['id_provider'])) {
+      } 
+      if(isset ($_SESSION['logado']) && isset($_SESSION['id_usuario'])) {
         session_destroy();
         header("location: index.php");
       }
-      if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 0){
-        $nav = "<li>
-                    <a href='#' class='nodecore1 navlinks1'>Tickets e Pontos</a>
+      if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1){
+        $nav = "<li> 
+                    <a href='adiciona-evento.php' class='nodecore1 navlinks1'>Add Evento</a>
+                </li>
+                <li> 
+                    <a href='lista-evento.php' class='nodecore1 navlinks1'>Meus Eventos</a>
                 </li>
                 ";
       }
+      
+    //   if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 0){
+    //     $nav = "<li class='nav-item'>
+    //                     <a class='text-white mx-1' href='dashboard1.php'><button class='btn btn-danger'>Dashboard</button></a>
+    //             </li>";
+    //   }
 
-    $id_usuario = $_SESSION['id_usuario'];
-    $usuario_retorno = $usuario->select($id_usuario);
+    $id_provider = $_SESSION['id_provider'];
+    $provider_retorno = $provider->selectP($id_provider);
   
 ?>
 <!DOCTYPE html>
@@ -43,35 +51,37 @@
 	<title>Perfil</title>
 </head>
 <body>
+    
 <header id="main1-header">
-  <div class="content2">
-    <nav>
-      <ul>
-        <li>
-          <a href="eventos.php" class="nodecore1 navlinks1">Eventos</a>
-        </li>
-        <?php if (isset($nav)) { echo $nav; }; ?>
-      </ul>
-    </nav>
+    <div class="content2">
+        <nav>
+            <ul>
+                <li><a href="eventos.php" class="nodecore1 navlinks1">Eventos</a></li>
+                <?php if (isset($nav)) { echo $nav; }; ?>
+                <!-- <li><a href="#" class="nodecore1 navlinks1">Tickets e Pontos</a></li> -->
+                <!-- <li><a href="perfilP.php" class="nodecore1 navlinks1">Perfil</a> se já estou no perfil não precisa.</li> -->
+            </ul>
+        </nav>
 
-    <!-- <img class="navicons" src="images/logo.svg" alt="" /> -->
-    <div>
-      <h1><a class="dirole1" href="index.php">DiRolê</a></h1>
-    </div>
+        <!-- <img class="navicons" src="images/logo.svg" alt="" /> -->
+        <div>
+            <h1><a class="dirole1" href="index.php">DiRolê</a></h1>
+        </div>
 
-    <div class="side1">
-      <input type="text" placeholder="Procurar evento" />
-      <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 0) { ?>
-        <a href="perfil.php">
-          <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
-        </a>
-      <?php } ?>
-      <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
+        <div class="side1">
+            <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1) { ?>
+                <a href="perfilP.php">
+                    <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
+                </a>
+                <?php } ?>
+            <input type="text" placeholder="Procurar evento" />
+            <?php if(isset($_SESSION['logado'])) { ?>
+                <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
+                <?php } ?>
+        </div>
     </div>
-  </div>
 </header>
-       
-    <section class="containerMaster py-5">
+    <section class="containerMaster py-3">
         <main class="heightFixo">
            <div class="container-fluid">
                <div class="row my-2">
@@ -83,7 +93,7 @@
                                         <h4 class="mx-5 text-center">Altere sua foto de perfil.</h4>
                                         <p><img src="<?php echo $_SESSION['foto']; ?>" alt="imagem de perfil"  class="img-fluid imagem-responsiva rounded-circle border border-dark mx-3 my-2" width="80%"></p>
                                         <br><br>
-                                        <form class="formularioUpload form-group my-2 my-lg-0 ml-auto" enctype="multipart/form-data" method="POST" id="formularioUpload" name="formulario" action="perfil.php">
+                                        <form class="formularioUpload form-group my-2 my-lg-0 ml-auto" enctype="multipart/form-data" method="POST" id="formularioUploadP" name="formulario" action="perfilP.php">
                                             <input class="form-control my-2" type="file" name="foto" required="required">
                                             <button id="upload" class="btn btn-secondary form-control btn-sm my-2 my-sm-0" name="upload" type="submit">Enviar</button>
                                         </form>
@@ -98,32 +108,32 @@
                                         </div>
                                        <!-- <div class="row">
                                             <div class="col">
-                                                <p>Nivel de usuário: <?php //echo $_SESSION['nivel']; ?> </p>
+                                                <p>Nivel de provider: < ?php //echo $_SESSION['nivel']; ?> </p>
                                             </div>
                                         </div>-->
                                         <div class="row">
                                             <div class="col">
-                                        <?php //foreach ($usuario->select($id_usuario) as $key => $value) {  ?>
-                                              <form class="form-group" method="POST" name="editarNomePerfil" action="perfil.php">
-                                                <input class="form-control my-2" type="text" name="nome" value="<?php echo $usuario_retorno->nome; ?>">
-                                                <input class="form-control my-2" type="text" name="sobrenome" id="sobrenome" maxlength="15" value="<?php echo $usuario_retorno->sobrenome; ?>">
-                                                <input class="form-control mr-sm-2 my-1" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>" />
-                                                <button type="submit" class="btn btn-danger" name="alterarPerfil">Alterar</button>
+                                        <?php //foreach ($provider->select($id_provider) as $key => $value) {  ?>
+                                              <form class="form-group" method="POST" name="editarNomePerfil" action="perfilP.php">
+                                                <input class="form-control my-2" type="text" name="nome" value="<?php echo $provider_retorno->nome; ?>">
+                                                <input class="form-control my-2" type="text" name="sobrenome" id="sobrenome" maxlength="15" value="<?php echo $provider_retorno->sobrenome; ?>">
+                                                <input class="form-control mr-sm-2 my-1" type="hidden" name="id_provider" value="<?php echo $id_provider; ?>" />
+                                                <button type="submit" class="btn btn-danger" name="alterarPerfilP">Alterar</button>
                                                 
-                                             <!--   <button class="btn btn-danger open-modal  " data-target="#modalExcluir" data-toggle="modal" data-id="<?php echo $value->id_usuario; ?>" type="button" name="excluir">Excluir</button> -->
+                                             <!--   <button class="btn btn-danger open-modal  " data-target="#modalExcluir" data-toggle="modal" data-id="<?php echo $value->id_provider; ?>" type="button" name="excluir">Excluir</button> -->
                                               </form>
                                               <hr>
                                               <button id="editarSenha" class="btn btn-warning">Editar Senha</button>
-                                              <div id="formAlterarSenha" style="display: none;">
-                                                <form class="form-group" method="POST" name="alterarSenha" action="perfil.php">
+                                              <div id="formAlterarSenhaP" style="display: none;">
+                                                <form class="form-group" method="POST" name="alterarSenhaP" action="perfilP.php">
                                                 <input class="form-control my-2" type="password" name="senhaAntiga" placeholder="Digite a senha antiga" required="required" autocomplete="current-password">
                                                 <input class="form-control my-2" type="password" name="novaSenha" id="senha" placeholder="Digite a nova senha" required="required" minlength="6" onkeypress="validarTamanhoSenha()" autocomplete="new-password">
                                                 <div id="divx"></div>
                                                 <input class="form-control my-2" type="password" 
                                                 name="confirmaNovaSenha" id="confirmaSenha" placeholder="Confirme a nova senha" required="required" minlength="6" oninput="validarSenha('senha','confirmaSenha')" autocomplete="new-password">
                                                 <div id="divy"></div>
-                                                <input class="form-control mr-sm-2 my-1" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>" />
-                                                <button type="submit" class="btn btn-danger" name="alterarSenha">Concluir Alteração da Senha</button>
+                                                <input class="form-control mr-sm-2 my-1" type="hidden" name="id_provider" value="<?php echo $id_provider; ?>" />
+                                                <button type="submit" class="btn btn-danger" name="alterarSenhaP">Concluir Alteração da Senha</button>
                                                 </form>
                                                </div> 
                                             </div>
@@ -131,32 +141,16 @@
                                         <hr>
                                         <div class="row py-2">
                                             <div class="col">
-                                                <form method="POST" action="perfil.php" class="form-group" name="emailRespo">
+                                                <form method="POST" action="perfilP.php" class="form-group" name="emailRespo">
                                                     <p class="py-0"> Email do Responsável:</p>
-                                                    <input type="email" name="emailResponsavel" class="form-control py-2" value="<?php echo $usuario_retorno->email_responsavel; ?>" >
-                                                    <input type="hidden" name="id_usuario" class="form-control" value="<?php echo $id_usuario; ?>">
+                                                    <input type="email" name="emailResponsavel" class="form-control py-2" value="<?php echo $provider_retorno->email_responsavel; ?>" >
+                                                    <input type="hidden" name="id_provider" class="form-control" value="<?php echo $id_provider; ?>">
                                                     <button type="submit" class="btn btn-warning my-2" name="emailRespo">Alterar</button>
                                                 </form>
                                             </div>
                                         </div>      
                                     </div>
                                 </div>
-                                <!-- <div class="col-sm-4 px-2 py-2">
-                                    <div class="container">
-                                        <h4 class="mx-5 text-center">Dados Gerais</h4>
-                                        <canvas id="myChart" class="my-4" width="70%" height="60%"></canvas>
-                                        < ?php
-                                        $erros = [];
-                                        $erros[] = (int) $objDados->selectTotalErros($id_usuario);
-                                        $acertos = [];
-                                        $acertos[] = $objDados->selectTotalAcertos($id_usuario);
-                                       // echo json_encode($erros); 
-                                        //  $id_area = 1;
-                                 // $errosMat = $objDados->selectErrosArea($id_usuario, $id_area);
-                                          
-                                        ?> 
-                                    </div>  
-                                </div>  -->
                             </div>
                        </div>
                    </div>
@@ -168,13 +162,13 @@
     <script>
         $(document).ready(function(){
           $("#editarSenha").click(function(){
-            $("#formAlterarSenha").fadeToggle("slow");
+            $("#formAlterarSenhaP").fadeToggle("slow");
             $("#editarSenha").fadeToggle("slow");
         
           });
         });
     </script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -206,16 +200,16 @@
                 }
             }
         });
-    </script>
+    </script> -->
     <script type="text/javascript">
         /*########################################################*/
-    $('#formularioUpload').submit(function(event){
+    $('#formularioUploadP').submit(function(event){
         event.preventDefault();   
         var formData = new FormData(this);
-        //formData = $(this).serialize();   
+        //formData = $(this).serialize();
         $.ajax({
             method: 'post',
-            url : '../controller/usuario.php?flag=upload',
+            url : '../controller/provider.php?flag=upload',
             data : formData,
             cache: false,
             enctype: 'multipart/form-data',

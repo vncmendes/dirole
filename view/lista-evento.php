@@ -1,74 +1,86 @@
 <?php
-
+	session_start();
 	require_once "../model/Evento.php";
 	require_once '../controller/evento.php';
-	$eventos = $evento->selectAll();
+	$todosEventos = $eventos->selectAll();
+?>
 
-	?>
-
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
 	<?php
-
-	require_once 'head.php';
-
-
+		require_once 'head.php';
 	?>
 </head>
 
 <body>
 
-	<?php require_once 'navbar2.php' ?>
+<?php require_once 'navbar2.php' ?>
 
-	<div class="principal" style="padding: 3%">
-		<?php foreach ($eventos as $evento) :
-			// $registra_eventocategoria = $evento->listaEventoCategoria($evento->id);
-			// $registra_eventoestrutura = $evento->listaEventoEstrutura($evento->id);
-			?>
-
-			<div class="flex-container">
-				<table class="table table-striped table-bordered">
-					<tr>
-						<td>Nome: <?= $evento->nome ?></td>
-						<td>Data: <?= $evento->data ?></td>
-						<td>Hora Inicial: <?= $evento->horainicial ?></td>
-						<td>Hora Final: <?= $evento->horafinal ?></td>
-						<td>Localizacão: <?= $evento->localizacao ?></td>
-						<td>Descrição: <?= $evento->descricao ?></td>
-						<td>Guarda-Volumes: <?= $evento->gv ?></td>
-						<td>Ingresso: <?= $evento->ingresso ?></td>
-						<td>Categoria: <?php
-															foreach ($registra_eventocategoria as $categoria) :
-																echo $categoria->nome ?>
-							<?php endforeach; ?>
-						</td>
-						<td>Estrutura: <?php
-															foreach ($registra_eventoestrutura as $estrutura) :
-																echo $estrutura->nome ?>
-							<?php endforeach; ?>
-						</td>
-						<td>Arquivo: <img src="/images/<?= $evento->arquivo ?>"></img></td>
-
-						<td>
-							<form action="altera-evento.php" method="post">
-								<input type="hidden" name="id" value="<?= $evento->id ?>">
-								<button class="btn btn-primary" type="submit" name="alterar">Alterar</button>
-							</form>
-							<form action="../controller/evento.php" method="post">
-								<input type="hidden" name="idE" value="<?= $evento->id ?>">
-								<button class="btn btn-warning" type="submit" name="remover">Remover</button>
-							</form>
-							<a href="index.php" class="btn btn-dark">Voltar</a>
-						</td>
-
-					</tr>
-				</table>
-			</div>
-		<?php
-		endforeach;
+<section class="eventcards">
+	<div class="eventcardscontent">
+		<?php foreach ($todosEventos as $evento) :
+		$registra_eventocategoria = $eventos->listaEventoCategoria($evento->id);
+		$registra_eventoestrutura = $eventos->listaEventoEstrutura($evento->id);
 		?>
 
-	<?php include_once 'footer.php' ?>	
+		<div class="cardsMy">
+			<a href="#">
+				<ul>
+					<div class="cardimage">
+						<!-- <li><img src="/images/< ?= $evento->arquivo ?>"></li> // mais ou menos certo -->
+						<li><img src="images/01.jpg" alt=""></li>
+					</div>
+
+					<div class="cardinfoMy">
+							<li>Nome: <?= $evento->nome ?></li>
+							<li>Data: <?= $evento->data ?></li>
+							<li>Hora Inicial: <?= $evento->horainicial ?></li>
+							<li>Hora Final: <?= $evento->horafinal ?></li>
+							<li>Localizacão: <?= $evento->localizacao ?></li>
+							<li>Descrição: <?= $evento->descricao ?></li>
+							<li>Guarda-Volumes: <?= $evento->gv ?></li>
+							<li>Ingresso: <?= $evento->ingresso ?></li>
+							<li>Categoria: 
+								<?php
+									foreach ($registra_eventocategoria as $categoria) :
+										echo $categoria->nome ?>
+								<?php endforeach; ?>
+							</li>
+							<li>Estrutura: 
+								<?php
+									foreach ($registra_eventoestrutura as $estrutura) :
+										echo $estrutura->nome ?>
+								<?php endforeach; ?>
+							</li>
+
+							<!-- <li>Arquivo:<img src="/images/< ?= $evento->arquivo ?>"></img></li> -->
+
+							<div class="break">
+								<li style="padding: 3% 5% 0 0">
+									<form action="altera-evento.php" method="post">
+										<input type="hidden" name="id" value="<?= $evento->id ?>">
+										<button class="btn btn-primary" type="submit" name="alterar">Alterar</button>
+									</form>
+								</li>
+								<li style="padding: 3% 5% 0 0">
+									<form action="../controller/evento.php" method="post">
+										<input type="hidden" name="idE" value="<?= $evento->id ?>">
+										<button class="btn btn-warning" type="submit" name="remover">Remover</button>
+									</form>
+								</li>
+								<li style="padding: 3% 5% 0 0">
+									<span href="index.php" class="btn btn-dark">Voltar</span>
+								</li>
+							</div>
+					</div>
+				</ul>
+			</a>
+	</div>
+    <?php endforeach ?>
+</section>
+
+<?php require_once 'footer.php' ?>	
 
 </body>
