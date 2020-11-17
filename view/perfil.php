@@ -60,12 +60,14 @@
     </div>
 
     <div class="side1">
-      <input type="text" placeholder="Procurar evento" />
-      <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 0) { ?>
-        <a href="perfil.php">
-          <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
-        </a>
-      <?php } ?>
+        <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 0) { ?>
+            <a href="perfil.php">
+                <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
+            </a>
+        <?php } ?>
+        <form style="margin: 0"; method="POST" action="pesquisa.php">
+            <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
+        </form>
       <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
     </div>
   </div>

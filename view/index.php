@@ -1,9 +1,12 @@
 <?php 
+  if(!isset($_SESSION['logado'])) {
+    session_start();
+  }
   require_once "../model/Evento.php";
   require_once '../controller/evento.php';
   require_once '../controller/usuario.php';
   require_once '../controller/provider.php';
-  $todosEventos = $eventos->selectAll();
+  $todosEventos = $eventos->selectAllLimited();
 ?>
 
 <!DOCTYPE html>
@@ -18,52 +21,74 @@
 <body>
 
 <!-- HEADER -->
-<header id="main-header">
-  <div class="content1">
-    <nav>
-      <ul>
-        <li>
-          <a href="eventos.php" class="nodecore navlinks">Eventos</a>
-        </li>
-        <li>
-          <a href="#" class="nodecore navlinks">Quem Somos</a>
-        </li>
-        <li>
-          <a href="#" class="nodecore navlinks">O que fazemos?</a>
-        </li>
-      </ul>
-    </nav>
+  <header id="main-header">
+    <div class="content1">
+      <nav>
+        <ul>
+          <li>
+            <a href="eventos.php" class="nodecore navlinks">Eventos</a>
+          </li>
+          <li>
+            <a href="#" class="nodecore navlinks">Quem Somos</a>
+          </li>
+          <li>
+            <a href="#" class="nodecore navlinks">O que fazemos?</a>
+          </li>
+        </ul>
+      </nav>
 
-    <!-- <img class="navicons" src="images/logo.svg" alt="" /> -->
-    <h1><a class="dirole" href="index.php">DiRolê</a></h1>
-    <div class="side">
-      <div class="dropdown">
-        <button class="btn dropdown-toggle dropbtnmod" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Criar Conta
-        </button>
-        <div class="dropdown-menu mydropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item mydrop-item" href="#" onclick="signUPB()">Baladeiro (a)</a>
-          <a class="dropdown-item mydrop-item" href="#" onclick="signUPP()">Produtora (o)</a>
+      <!-- <img class="navicons" src="images/logo.svg" alt="" /> -->
+      <h1><a class="dirole" href="index.php">DiRolê</a></h1>
+      <div class="side">
+        <div class="dropdown">
+          <button class="btn dropdown-toggle dropbtnmod" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Criar Conta
+          </button>
+          <div class="dropdown-menu mydropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item mydrop-item" href="#" onclick="signUPB()">Baladeiro</a>
+            <a class="dropdown-item mydrop-item" href="#" onclick="signUPP()">Produtora</a>
+          </div>
         </div>
-      </div>
-      <input type="text" placeholder="Procurar evento" />
-      <!-- <img class="avatarlogo" src="/images/avatar.png" alt=""/> -->
-      <!-- <a href="#" class="nodecore navlinks" id="btnlogin" onclick="modalLogin()">Entrar</a> -->
-      <div class="dropdown">
-        <button class="btn dropdown-toggle dropbtnmod" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Entrar
-        </button>
-        <div class="dropdown-menu mydropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item mydrop-item" href="#" onclick="modalLogin()">Baladeiro (a)</a>
-          <a class="dropdown-item mydrop-item" href="#" onclick="modalLoginP()">Produtora (o)</a>
-        </div>
-      </div>
-        <!-- < ?php if(isset($_SESSION['id_usuario']) || isset($_SESSION['id_provider'])) { ?>
-          <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
-        < ?php } ?> -->
 
+
+        <!-- @@@@@@@@@@@@@@@@@ FUNCIONANDO A PESQUISA PELA SEMANA @@@@@@@@@@@@@ -->
+        <!-- SÓ PRECISA VERIFICAR COMO FAZER PRA CONSEGUIR ENVIAR A PESQUISA E OS GETS OU FAZER COM POST -->
+
+        <!-- <div class="dropdown"> -->
+          <!-- <form> -->
+            <!-- <input autocomplete="off" class="btn dropdown-toggle dropbtnmod" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="categorias" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" /> -->
+            <!-- <input type="hidden" name="categorias"> -->
+          
+            <!-- <div class="dropdown-menu mydropdown-menu" aria-labelledby="dropdownMenuButton"> -->
+              <!-- <a class="dropdown-item mydrop-item" name="estaSemana" href="pesquisa.php?estaSemana=semana" onclick="">Esta Semana</a> -->
+              <!-- <a class="dropdown-item mydrop-item" name="categorias" href="pesquisa.php?categorias=1" onclick="">Por Categoria</a> -->
+            <!-- </div> -->
+          <!-- </form> -->
+        <!-- </div> -->
+
+        <!-- @@@@@@@@@@@@@@@@@ FUNCIONANDO A PESQUISA PELA SEMANA @@@@@@@@@@@@@ -->
+        <!-- SÓ PRECISA VERIFICAR COMO FAZER PRA CONSEGUIR ENVIAR A PESQUISA E OS GETS OU FAZER COM POST -->
+
+        <form method="POST" action="pesquisa.php">
+          <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
+          <input type="hidden" name="id">
+        </form>
+
+        <div class="dropdown">
+          <button class="btn dropdown-toggle dropbtnmod" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Entrar
+          </button>
+          <div class="dropdown-menu mydropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item mydrop-item" href="#" onclick="modalLogin()">Baladeira</a>
+            <a class="dropdown-item mydrop-item" href="#" onclick="modalLoginP()">Produtor</a>
+            <a class="dropdown-item mydrop-item" href="#" onclick="modalLoginAdm()">Adm</a>
+          </div>
+        </div>
+        <?php if(isset($_SESSION['id_usuario']) || isset($_SESSION['id_provider'])) { ?>
+            <a href="logout.php" class="nodecore1 navlinks1" id="sair" style="display: inline">Sair</a>
+        <?php } ?>
+      </div>
     </div>
-  </div>
 </header>
 <!-- HEADER FIM -->
 
@@ -73,6 +98,7 @@
   <?php require_once 'signUPP.php' ?>
   <?php require_once 'modalLogin.php' ?>
   <?php require_once 'modalLoginP.php' ?>
+  <?php require_once 'modalLoginAdm.php' ?>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="js/functions.js"></script>
@@ -81,11 +107,11 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to=""></li>
+    <!-- <li data-target="#carouselExampleIndicators" data-slide-to=""></li> -->
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="images/01.jpg" alt="First slide">
+      <img class="d-block w-100" src="images/bgblack6.png" alt="First slide">
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="images/03.jpg" alt="Second slide">
@@ -170,43 +196,45 @@
 <div class="divsecond-content">
   <div class="d3">
     <ul>
-      <li><img src="images/felicidades.svg" alt="icon"></li>
-      <li>
-        <span>Cervejeiro</span>
-      </li>
+        <a href="pesquisa.php">
+          <input type="hidden" name="cervejeiro">
+          <li><img src="images/felicidades.svg" alt="icon"></li>
+          <li><a>Cervejeiro</span></a>
+        </a>
     </ul>
   </div>
   <div class="d3">
     <ul>
-      <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
-      <li>
-        <span>Shows</span>
-      </li>
+      <a href="#">
+        <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
+        <li><a>Shows</a></li>
+      </a>
     </ul>
   </div>
   <div class="d3">
     <ul>
-      <li><img src="images/garfo.svg" alt="icon"></li>
-      <li>
-        <span>Gastronômico</span>
-      </li>
+      <a href="#">
+        <li><img src="images/garfo.svg" alt="icon"></li>
+        <li><a>Gastronômico</a></li>
+      </a>
     </ul>
   </div>
   <div class="d3">
     <ul>
-      <li><img src="images/danca.svg" alt="dance"></li>
-      <li>
-        <span>Pubs e Baladas</span>
-      </li>
+      <a href="#">
+        <li><img src="images/danca.svg" alt="dance"></li>
+        <li><a>Pubs e Baladas</a>
+        </li>
+      </a>
     </ul>
   </div>
 </div>
 <div class="d3">
   <ul>
-    <li><img class="clientpresent" src="images/presente.svg" alt="present"></li>
-    <li>
-      <span>Bônus Clientes Ativos</span>
-    </li>
+    <a href="#">
+      <li><img class="clientpresent" src="images/presente.svg" alt="present"></li>
+      <li><a>Bônus Clientes Ativos</a></li>
+    </a>
   </ul>
 </div>
 </section>

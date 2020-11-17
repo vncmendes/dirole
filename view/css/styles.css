@@ -65,6 +65,7 @@ header#main-header .content1 a:hover {
   padding: 5px 6px 5px 8px;
   border: 2px solid rgba(78, 14, 141, 0.7);
 }
+
 .dirole {
   font-family: "Pacifico", cursive !important;
   font-size: 1.5em !important;
@@ -86,6 +87,16 @@ header#main-header div.side a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+a#sair {
+  display: inline;
+  padding: 0;
+}
+
+a#sair a:hover {
+  padding: 0 !important;
+
 }
 
 header#main-header nav ul li img {
@@ -430,6 +441,18 @@ div#modalLP {
 }
 
 div#modalLR {
+  background: rgba(0, 0, 0, 0.6);
+  left: 0;
+  top: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  z-index: 100;
+}
+
+div#modalLA {
   background: rgba(0, 0, 0, 0.6);
   left: 0;
   top: 0;
@@ -804,7 +827,7 @@ div img.eventphoro {
     justify-content: space-around;
     padding: 5%;
     box-shadow: 6px 6px 15px 1px black;
-    background-image: url(../images/fundo10.jpg);
+    /* background-image: url(../images/fundo10.jpg); */
   }
 
   .break {
@@ -956,6 +979,9 @@ div img.eventphoro {
     border-radius: 0 0px 8px 8px;
     box-shadow: 2px 2px 15px 2px rgba(0, 0, 0, 0.8);
   }
+  div.singleCardSearch {
+    display: flex;
+  }
 
   div.singleCard button {
     border: none;
@@ -1010,5 +1036,13 @@ div img.eventphoro {
 
   div.singleEstCat li {
     list-style: none;
+  }
+
+  div.noPadding {
+    padding: 3%;
+  }
+
+  div.cardsSearch {
+    display: flex;
   }
  

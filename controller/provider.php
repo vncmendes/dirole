@@ -10,7 +10,8 @@
         // cadastrar provider ==================================================================
         //######################################################################################
 
-        if (isset($_POST['emailRespoP'])) {
+        // if (isset($_POST['emailRespoP'])) {
+        if(array_key_exists("emailRespoP", $_POST)) {
           $email_responsavel = $_POST['emailResponsavel'];
           $id_provider = $_POST['id_provider'];
           $provider->setId_Provider($id_provider);
@@ -20,7 +21,8 @@
       //######################################################################################
       // Alterar Senha Provider ===============================================================
       //######################################################################################
-      if (isset($_POST['alterarSenhaP'])) {
+      // if (isset($_POST['alterarSenhaP'])) {
+      if(array_key_exists("alterarSenhaP", $_POST)) {
         if (!empty($_POST['senhaAntiga']) && !empty($_POST['novaSenha']) && !empty($_POST['confirmaNovaSenha'])) {
           if (isset($_POST['novaSenha']) >= 6 && isset($_POST['confirmaNovaSenha']) >= 6) {
  
@@ -64,7 +66,8 @@
         // cadastrar provider ===============================================================
         //######################################################################################
 
-        if (isset($_POST['cadastrarP'])) {
+        // if (isset($_POST['cadastrarP'])) {
+        if(array_key_exists("cadastrarP", $_POST)) {
           $nome = trim(strtoupper($_POST['nome']));
           $email = trim($_POST['email']);
           $senha = trim($_POST['senha']);
@@ -128,7 +131,8 @@
         //######################################################################################
         // alterar perfil Provider
         //######################################################################################
-        if (isset($_POST['alterarPerfilP'])) {
+        // if (isset($_POST['alterarPerfilP'])) {
+        if(array_key_exists("alterarPerfilP", $_POST)) {
            $nome = trim(strtoupper($_POST['nome']));
            $sobrenome = $_POST['sobrenome'];
            $id_provider = $_POST['id_provider'];
@@ -152,7 +156,8 @@
         //######################################################################################
         // logar provider ======================================================================
         //######################################################################################
-        if(isset($_POST['logarP'])){
+        // if(isset($_POST['logarP'])){
+        if(array_key_exists("logarP", $_POST)) {
             $email = $_POST['email'];
             $senha = $_POST['senha'];
             $obj_retorno = $provider->logar($email, $senha);
@@ -182,7 +187,8 @@
         //######################################################################################
         // sair provider ========================================================================
         //######################################################################################
-        if (isset($_POST['sair'])) {
+        // if (isset($_POST['sair'])) {
+        if(array_key_exists("sair", $_POST)) {
            
             header("location: logout.php");
         } 
@@ -214,7 +220,8 @@
         //######################################################################################
         // Recuperar senha Provider ============================================
         //######################################################################################
-        if (isset($_POST['recuperarsenhaP'])) {
+        // if (isset($_POST['recuperarsenhaP'])) {
+        if(array_key_exists("recuperarsenhaP", $_POST)) {
     
           $email = $_POST['email'];
           $obj_retorno = $provider->verificaEmail($email);
@@ -298,7 +305,8 @@
           }
         }
 
-        if (isset($_POST['cadastrarP'])) {
+        // if (isset($_POST['cadastrarP'])) {
+        if(array_key_exists("cadastrarP", $_POST)) {
           $nome = trim(strtoupper($_POST['nome']));
           $sobrenome = $_POST['sobrenome'];
           $email = trim($_POST['email']);

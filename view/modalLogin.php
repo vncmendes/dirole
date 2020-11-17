@@ -2,8 +2,7 @@
   <div class="modalLogin">
     <div class="box-contentM">
       <form action="" method="POST" id="formL">
-        <h1>Bem-Vindo (a)</h1>
-        <h1>Usuário (a)</h1>
+        <h1>Bem-Vinda (o)</h1>
 
         <span>E-mail</span>
         <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>

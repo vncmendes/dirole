@@ -1,18 +1,19 @@
 <?php
       include_once '../model/Usuario.php';
-      include_once '../model/Provider.php';
+      include_once '../model/Adm.php';
       require'../PHPMailer-master/src/PHPMailer.php';
       require'../PHPMailer-master/src/SMTP.php';
       require'../PHPMailer-master/src/Exception.php';
      //require'../controller/recaptchalib.php';
       $usuario = new Usuario();
-      $provider = new Provider();
+      $adm = new Adm();
     
       ###################################################################################     
       ########################################################################################
       ######### inserir email responsável  ###################################################
       ########################################################################################
-        if (isset($_POST['emailRespo'])) {
+        // if (isset($_POST['emailRespo'])) {
+      if (array_key_exists("emailRespo", $_POST)) {
           $email_responsavel = $_POST['emailResponsavel'];
           $id_usuario = $_POST['id_usuario'];
           $usuario->setId_Usuario($id_usuario);
@@ -22,7 +23,8 @@
       //######################################################################################
       // Alterar Senha ===============================================================
       //######################################################################################
-      if (isset($_POST['alterarSenha'])) {
+      // if (isset($_POST['alterarSenha'])) {
+      if (array_key_exists("alterarSenha", $_POST)) {
         if (!empty($_POST['senhaAntiga']) && !empty($_POST['novaSenha']) && !empty($_POST['confirmaNovaSenha'])) {
           if (isset($_POST['novaSenha']) >= 6 && isset($_POST['confirmaNovaSenha']) >= 6) {
  
@@ -65,8 +67,8 @@
         //######################################################################################
         // cadastrar usuario ===============================================================
         //######################################################################################
-
-        if (isset($_POST['cadastrar'])) {
+        // if (isset($_POST['cadastrar'])) {
+      if (array_key_exists("cadastrar", $_POST)) {
           $nome = trim(strtoupper($_POST['nome']));
           $email = trim($_POST['email']);
           $senha = trim($_POST['senha']);
@@ -126,7 +128,8 @@
         //######################################################################################
         // alterar perfil usuário
         //######################################################################################
-        if (isset($_POST['alterarPerfil'])) {
+        // antes era assim: if(isset($_POST['alterarPerfil'])) {}
+        if (array_key_exists("alterarPerfil", $_POST)) {
            $nome = trim(strtoupper($_POST['nome']));
            $sobrenome = $_POST['sobrenome'];
            $id_usuario = $_POST['id_usuario'];
@@ -150,7 +153,7 @@
         //######################################################################################
         // logar usuario ======================================================================
         //######################################################################################
-        if(isset($_POST['logar'])) {
+        if(array_key_exists("logar", $_POST)) {
             $email = $_POST['email'];
             $senha = $_POST['senha'];
             $obj_retorno = $usuario->logar($email, $senha);
@@ -180,7 +183,8 @@
         //######################################################################################
         // sair usuario ========================================================================
         //######################################################################################
-        if (isset($_POST['sair'])) {
+        // if (isset($_POST['sair'])) {
+        if(array_key_exists("sair", $_POST)) {
            
             header("location: logout.php");
         } 
@@ -212,7 +216,8 @@
         //######################################################################################
         // Recuperar senha usuário ============================================
         //######################################################################################
-        if (isset($_POST['recuperarsenha'])) {
+        // if (isset($_POST['recuperarsenha'])) {
+          if(array_key_exists("recuperarsenha", $_POST)) {
     
           $email = $_POST['email'];
           $obj_retorno = $usuario->verificaEmail($email);

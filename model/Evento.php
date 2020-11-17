@@ -84,6 +84,20 @@ class Evento extends Crud {
             }
         }
 
+    public function selectAllLimited(){
+        $sql  = "SELECT * FROM $this->table limit 8";
+        $stmt = Banco::prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function selectAllWithIdProv(){
+        $sql  = "SELECT * FROM EVENTOS, PROVIDER WHERE eventos.id_provider = provider.id_provider";
+        $stmt = Banco::prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     public function listaEventoCategoria($idevento) {
 
     $registra_eventocategorias = array();

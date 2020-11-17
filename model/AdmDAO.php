@@ -1,42 +1,42 @@
-// < ?php 
+ <?php 
 
-// require_once 'Crud.php';
+ require_once 'Crud.php';
 	
-// 	class AdmDAO extends Crud {
+ 	class AdmDAO extends Crud {
 
-// 		protected $table = "adm";
+ 		protected $table = "adm";
 
-// 		public function getLogin (Adm $adm) {
+ 		public function getLogin (Adm $adm) {
 
-// 			try {
+ 			try {
 
-// 			$email = $admDAO->getEmail();
-// 			$senha = $admDAO->getSenha();
+ 			$email = $admDAO->getEmail();
+ 			$senha = $admDAO->getSenha();
 
-// 			$sql = "SELECT nome, senha from "
+ 			$sql = "SELECT nome, senha from "
 
-// 			}
+ 			}
 		
 
-// 		public function insert(Adm $adm) {
+ 		public function insert(Adm $adm) {
 
-// 		try { 
-// 		// recebe os valores em uma variável usando os métodos antes.
-// 		$email = $usuario->getEmail();
-// 		$senha = $usuario->getSenha();
+ 		try { 
+ 		 recebe os valores em uma variável usando os métodos antes.
+ 		$email = $usuario->getEmail();
+ 		$senha = $usuario->getSenha();
 
-// 		$sql = "INSERT INTO $this->table (email, senha) VALUES (:email, :senha)";
-// 		$stmt = Conexao::prepare($sql);
-// 		$stmt->bindParam(':email', $email);
-// 		$stmt->bindParam(':senha', $senha);
+ 		$sql = "INSERT INTO $this->table (email, senha) VALUES (:email, :senha)";
+ 		$stmt = Conexao::prepare($sql);
+ 		$stmt->bindParam(':email', $email);
+ 		$stmt->bindParam(':senha', $senha);
 
-// 		return $stmt->execute();
-// 	}
-// 	catch (Exception $e) {
-// 		print $e->getMessage();	
-// 		}
-// 	}
-// 	}
+ 		return $stmt->execute();
+ 	}
+ 	catch (Exception $e) {
+ 		print $e->getMessage();	
+ 		}
+ 	}
+ 	}
 
 
-//  ?>
+  ?>

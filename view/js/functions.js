@@ -32,6 +32,15 @@ $("#carouselExampleIndicators .fechar, #modalLR").click(function(e) {
   $("#modalLR").fadeOut(500);
 });
 
+function modalLoginAdm() {
+  document.getElementById("modalLA").style.display = "block";
+}
+
+$("#carouselExampleIndicators .fechar, #modalLA").click(function(e) {
+  if (e.target !== this) return;
+  $("#modalLA").fadeOut(500);
+});
+
 function signUPB() {
   document.getElementById("modalSignUPB").style.display = "block";
 }
@@ -49,3 +58,21 @@ $("#carouselExampleIndicators .fecharSUP, #modalSignUPP").click(function(e) {
   if (e.target !== this) return;
   $("#modalSignUPP").fadeOut(500);
 });
+
+
+
+function goSearch(myfield, e)
+{
+var keycode;
+if (window.event) keycode = window.event.keyCode;
+else if (e) keycode = e.which;
+else return true;
+
+if (keycode == 13)
+{
+myfield.form.submit();
+return false;
+}
+else
+return true;
+}

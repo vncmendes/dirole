@@ -42,7 +42,9 @@
           <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
         </a>
       <?php } ?>
-      <input type="text" placeholder="Procurar evento" />
+      <form style="margin: 0"; method="POST" action="pesquisa.php">
+        <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
+      </form>
       <?php if(isset($_SESSION['logado'])) { ?>
         <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
       <?php } ?>

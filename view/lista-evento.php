@@ -2,7 +2,7 @@
 	session_start();
 	require_once "../model/Evento.php";
 	require_once '../controller/evento.php';
-	$todosEventos = $eventos->selectAll();
+	$todosEventos = $eventos->selectAllWithIdProv();
 ?>
 
 <!DOCTYPE html>
