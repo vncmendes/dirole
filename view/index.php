@@ -6,6 +6,8 @@
   require_once '../controller/evento.php';
   require_once '../controller/usuario.php';
   require_once '../controller/provider.php';
+  require_once '../controller/adm.php';
+  
   $todosEventos = $eventos->selectAllLimited();
 ?>
 
@@ -84,7 +86,7 @@
             <a class="dropdown-item mydrop-item" href="#" onclick="modalLoginAdm()">Adm</a>
           </div>
         </div>
-        <?php if(isset($_SESSION['id_usuario']) || isset($_SESSION['id_provider'])) { ?>
+        <?php if(isset($_SESSION['id_usuario']) || isset($_SESSION['id_provider']) || isset($_SESSION['id_adm'])) { ?>
             <a href="logout.php" class="nodecore1 navlinks1" id="sair" style="display: inline">Sair</a>
         <?php } ?>
       </div>

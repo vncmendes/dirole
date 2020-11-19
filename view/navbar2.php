@@ -8,14 +8,26 @@
         <li>
             <a href="adiciona-evento.php" class="nodecore1 navlinks1">Add Evento</a>
         </li>
-        <li>
-            <a href="lista-evento.php" class="nodecore1 navlinks1">Meus Evento</a>
-        </li>
+        <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1000) { ?>
+          <li>
+              <a href="lista-evento.php" class="nodecore1 navlinks1">Todos Eventos</a>
+          </li>
+          <li> 
+              <a href='lista-usuario.php' class='nodecore1 navlinks1'>Lista Usuários</a>
+          </li>
+        <?php } ?>
         <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 0) { ?>
           <li>
             <a href="perfil.php" class="nodecore1 navlinks1">Perfil</a>
           </li>
+        <?php } ?>
+
+        <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1000) { ?>
+          <li>
+            <a href="perfilAdm.php" class="nodecore1 navlinks1">Perfil</a>
+          </li>
         <?php } 
+
               else { ?>
                 <li>
                   <a href="perfilP.php" class="nodecore1 navlinks1">Perfil</a>
@@ -42,6 +54,13 @@
           <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
         </a>
       <?php } ?>
+
+      <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1000) { ?>
+        <a href="perfilAdm.php">
+          <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
+        </a>
+      <?php } ?>
+
       <form style="margin: 0"; method="POST" action="pesquisa.php">
         <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
       </form>

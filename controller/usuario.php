@@ -141,6 +141,15 @@
            $_SESSION['nome'] = $nome;
 
         }
+
+        if (array_key_exists("remover", $_POST)) {
+
+          $id = $_POST['id'];
+        
+          $adm->deleteUser($id);
+          header("Location: ../view/lista-usuario.php");
+          die();
+        }
        
         //######################################################################################
         // excluir usuario ====================================================================

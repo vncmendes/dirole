@@ -139,6 +139,14 @@ class Usuario extends Crud {
         return $stmt->execute();
     }
 
+    public function find($id_usuario) {
+		$sql = "SELECT * FROM $this->table WHERE id_usuario = :id_usuario";
+		$stmt = Banco::prepare($sql);
+		$stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
+
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     /**
     * @return mixed

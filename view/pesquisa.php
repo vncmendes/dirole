@@ -23,12 +23,7 @@
     <body>
         <?php
             require_once 'navbar2.php';
-            $servidor = "localhost";
-            $usuario = "root";
-            $senha = "";
-            $dbname = "crudao";
-
-            $conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
+            require_once '../model/Conexao.php';
 
             if(isset($_POST['pesquisar'])) {
                 $search = $_POST['pesquisar'];

@@ -25,8 +25,7 @@ abstract class Crud extends Banco{
 		return $stmt->fetch();
 	}
 
-	public function findG($id)
-	{
+	public function findG($id) {
 
 		$sql = "SELECT * FROM $this->table WHERE id = :id";
 		$stmt = Conexao::prepare($sql);
@@ -35,14 +34,14 @@ abstract class Crud extends Banco{
 		return $stmt->fetch();
 	}
 
-	public function select($id_usuario){
+	public function select($id_usuario) {
 		$sql  = "SELECT * FROM $this->table WHERE id_usuario = :id_usuario";
 		$stmt = Banco::prepare($sql);
 		$stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
 		$stmt->execute();
 		return $stmt->fetch();
 	}
-	public function selectP($id_provider){
+	public function selectP($id_provider) {
 		$sql  = "SELECT * FROM $this->table WHERE id_provider = :id_provider";
 		$stmt = Banco::prepare($sql);
 		$stmt->bindParam(':id_provider', $id_provider, PDO::PARAM_INT);
@@ -50,7 +49,15 @@ abstract class Crud extends Banco{
 		return $stmt->fetch();
 	}
 
-	public function verificaEmail($email){
+	public function selectAdm($id_adm) {
+		$sql  = "SELECT * FROM $this->table WHERE id_adm = :id_adm";
+		$stmt = Banco::prepare($sql);
+		$stmt->bindParam(':id_adm', $id_adm, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
+
+	public function verificaEmail($email) {
 		$sql  = "SELECT * FROM $this->table WHERE email = :email";
 		$stmt = Banco::prepare($sql);
 		$stmt->bindParam(':email', $email);

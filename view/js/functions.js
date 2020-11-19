@@ -23,6 +23,8 @@ $("#carouselExampleIndicators .fechar, #modalLP").click(function(e) {
   $("#modalLP").fadeOut(500);
 });
 
+//////////////////////////////////////
+
 function modalLogin() {
   document.getElementById("modalLR").style.display = "block";
 }
@@ -32,6 +34,8 @@ $("#carouselExampleIndicators .fechar, #modalLR").click(function(e) {
   $("#modalLR").fadeOut(500);
 });
 
+//////////////////////////////
+
 function modalLoginAdm() {
   document.getElementById("modalLA").style.display = "block";
 }
@@ -40,6 +44,8 @@ $("#carouselExampleIndicators .fechar, #modalLA").click(function(e) {
   if (e.target !== this) return;
   $("#modalLA").fadeOut(500);
 });
+
+//////////////////////////////////////////
 
 function signUPB() {
   document.getElementById("modalSignUPB").style.display = "block";

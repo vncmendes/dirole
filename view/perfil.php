@@ -19,59 +19,80 @@
                 </li>
                 ";
       }
+      if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1000) {
+        $nav = "<li> 
+                    <a href='adiciona-evento.php' class='nodecore1 navlinks1'>Add Evento</a>
+                </li>
+                <li> 
+                    <a href='lista-evento.php' class='nodecore1 navlinks1'>Todos Eventos</a>
+                </li>
+                <li> 
+                    <a href='lista-usuario.php' class='nodecore1 navlinks1'>Lista Usuários</a>
+                </li>
+                <li> 
+                    <a href='perfilAdm.php' class='nodecore1 navlinks1'>Perfil</a>
+                </li>
+                ";
+      }
 
-    $id_usuario = $_SESSION['id_usuario'];
+    @$id_usuario = $_SESSION['id_usuario'];
+    $id_usuario = $_POST['id_usuario'];
     $usuario_retorno = $usuario->select($id_usuario);
   
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <script src="js/bootstrap.js"></script>
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/functions.js"></script>
-	<title>Perfil</title>
-</head>
-<body>
-<header id="main1-header">
-  <div class="content2">
-    <nav>
-      <ul>
-        <li>
-          <a href="eventos.php" class="nodecore1 navlinks1">Eventos</a>
-        </li>
-        <?php if (isset($nav)) { echo $nav; }; ?>
-      </ul>
-    </nav>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <script src="js/bootstrap.js"></script>
+        <link rel="stylesheet" href="css/styles.css" />
+        <script src="js/functions.js"></script>
+        <title>Perfil</title>
+    </head>
+    <body>
+    <header id="main1-header">
+    <div class="content2">
+        <nav>
+        <ul>
+            <li>
+            <a href="eventos.php" class="nodecore1 navlinks1">Eventos</a>
+            </li>
+            <?php if (isset($nav)) { echo $nav; }; ?>
+        </ul>
+        </nav>
 
-    <!-- <img class="navicons" src="images/logo.svg" alt="" /> -->
-    <div>
-      <h1><a class="dirole1" href="index.php">DiRolê</a></h1>
-    </div>
+        <!-- <img class="navicons" src="images/logo.svg" alt="" /> -->
+        <div>
+        <h1><a class="dirole1" href="index.php">DiRolê</a></h1>
+        </div>
 
-    <div class="side1">
-        <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 0) { ?>
-            <a href="perfil.php">
-                <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
-            </a>
-        <?php } ?>
-        <form style="margin: 0"; method="POST" action="pesquisa.php">
-            <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
-        </form>
-      <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
+        <div class="side1">
+            <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 0) { ?>
+                <a href="perfil.php">
+                    <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
+                </a>
+            <?php } ?>
+            <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1000) { ?>
+                <a href="perfilAdm.php">
+                    <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
+                </a>
+            <?php } ?>
+            <form style="margin: 0"; method="POST" action="pesquisa.php">
+                <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
+            </form>
+        <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
+        </div>
     </div>
-  </div>
-</header>
+    </header>
        
     <section class="containerMaster py-5">
         <main class="heightFixo">
@@ -143,22 +164,6 @@
                                         </div>      
                                     </div>
                                 </div>
-                                <!-- <div class="col-sm-4 px-2 py-2">
-                                    <div class="container">
-                                        <h4 class="mx-5 text-center">Dados Gerais</h4>
-                                        <canvas id="myChart" class="my-4" width="70%" height="60%"></canvas>
-                                        < ?php
-                                        $erros = [];
-                                        $erros[] = (int) $objDados->selectTotalErros($id_usuario);
-                                        $acertos = [];
-                                        $acertos[] = $objDados->selectTotalAcertos($id_usuario);
-                                       // echo json_encode($erros); 
-                                        //  $id_area = 1;
-                                 // $errosMat = $objDados->selectErrosArea($id_usuario, $id_area);
-                                          
-                                        ?> 
-                                    </div>  
-                                </div>  -->
                             </div>
                        </div>
                    </div>
@@ -253,7 +258,7 @@
             }
         });
     });
-/* ####################### */
+    /* ####################### */
     </script>
 
     <?php
@@ -299,4 +304,6 @@
         ?>
     
 <!-- |||||||||||||||||||||  fooooooooooter   ||||||||||||||||||||||||       -->
-<?php include"footer.php"; ?>
+
+    <?php include"footer.php"; ?>
+</html>

@@ -4,7 +4,7 @@
 class Adm extends Crud {
 
     protected $table = 'adm';
-	private $id;
+	private $id_adm;
     private $nome;
     private $sobrenome;
     private $email;
@@ -28,26 +28,33 @@ class Adm extends Crud {
 		return $stmt->fetchAll();
     }
 
-	public function delete($id){
-		$sql  = "DELETE FROM $this->table WHERE id = :id";
+	public function delete($id_adm){
+		$sql  = "DELETE FROM $this->table WHERE id_adm = :id_adm";
 		$stmt = Banco::prepare($sql);
-		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->bindParam(':id_adm', $id_adm, PDO::PARAM_INT);
+		return $stmt->execute(); 
+    }
+    
+    public function deleteUser($id){
+		$sql  = "DELETE FROM usuarios WHERE id_usuario = :id_usuario";
+		$stmt = Banco::prepare($sql);
+		$stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
 		return $stmt->execute(); 
 	}
 
-    public function alteraSenha($id) {
+    public function alteraSenha($id_adm) {
         $sql = "UPDATE $this->table 
         SET senha=:senha 
-        WHERE id = :id";
+        WHERE id_adm = :id_adm";
         $stmt = Banco::prepare($sql);
         $stmt->bindParam(':senha', $this->senha);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id_adm', $id_adm);
         return $stmt->execute();
     }
 
-    public function update($id) {
+    public function update($id_adm) {
 
-        $sql = "UPDATE $this->table SET nome=:nome, sobrenome=:sobrenome, email=:email, senha=:senha, nivel=:nivel  WHERE id = :id";
+        $sql = "UPDATE $this->table SET nome=:nome, sobrenome=:sobrenome, email=:email, senha=:senha, nivel=:nivel  WHERE id_adm = :id_adm";
         $stmt = Banco::prepare($sql);
         
         $stmt->bindParam(':nome', $this->nome);
@@ -55,31 +62,31 @@ class Adm extends Crud {
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':senha', $this->senha);
         $stmt->bindParam(':nivel', $this->nivel);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id_adm', $id_adm);
         return $stmt->execute();
     }
 
-    public function updatePerfil($id) {
+    public function updatePerfil($id_adm) {
 
-        $sql = "UPDATE $this->table SET nome=:nome, sobrenome=:sobrenome WHERE id = :id";
+        $sql = "UPDATE $this->table SET nome=:nome, sobrenome=:sobrenome WHERE id_adm = :id_adm";
         $stmt = Banco::prepare($sql);
  
         $stmt->bindParam(':nome', $this->nome);
         $stmt->bindParam(':sobrenome', $this->sobrenome);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id_adm', $id_adm);
         return $stmt->execute();
     }
 
-    public function uploadImagem($id) {
+    public function uploadImagem($id_adm) {
 
-        $sql = "UPDATE $this->table SET  foto=:foto WHERE id = :id";
+        $sql = "UPDATE $this->table SET  foto=:foto WHERE id_adm = :id_adm";
         $stmt = Banco::prepare($sql);
         $stmt->bindParam(':foto', $this->foto);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id_adm', $id_adm);
         return $stmt->execute();
     }
 
-    public function logar($email, $senha){
+    public function logar($email, $senha) {
         // monta o sql
         $sql= "SELECT * FROM $this->table WHERE email = :email AND senha = :senha ";
         $stmt = Banco::prepare($sql);
@@ -95,17 +102,17 @@ class Adm extends Crud {
             return false;
         }
     }
-    public function buscaFoto($id){
-        $sql= "SELECT * FROM $this->table WHERE id = :id";
+    public function buscaFoto($id_adm){
+        $sql= "SELECT * FROM $this->table WHERE id_adm = :id_adm";
         $stmt = Banco::prepare($sql);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id_adm', $id_adm);
         $stmt->execute();
         return $stmt->fetch();
     }
-    public function verificaSenha($id){
-        $sql= "SELECT * FROM $this->table WHERE id = :id";
+    public function verificaSenha($id_adm){
+        $sql= "SELECT * FROM $this->table WHERE id_adm = :id_adm";
         $stmt = Banco::prepare($sql);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id_adm', $id_adm);
         $stmt->execute();
         return $stmt->fetch();
     }
@@ -120,12 +127,12 @@ class Adm extends Crud {
         return $stmt->execute();
     }
 
-    public function setId($id) {
-        $this->id = $id;
+    public function setid_adm($id_adm) {
+        $this->id_adm = $id_adm;
     }
 
-    public function getId() {
-        return $this->id;
+    public function getid_adm() {
+        return $this->id_adm;
     }
 
     public function setNome($nome) {

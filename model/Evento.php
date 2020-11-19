@@ -91,8 +91,15 @@ class Evento extends Crud {
         return $stmt->fetchAll();
     }
 
-    public function selectAllWithIdProv(){
-        $sql  = "SELECT * FROM EVENTOS, PROVIDER WHERE eventos.id_provider = provider.id_provider";
+    public function selectAllPagination($inicio, $quantidade_pages){
+        $sql  = "SELECT * FROM $this->table limit $inicio, $quantidade_pages";
+        $stmt = Banco::prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function selectAllWithIdProv() {
+        $sql  = "SELECT EVENTOS.nome, id, localizacao, ingresso, horainicial, horafinal, gv, estacionamento, descricao, data, arquivo FROM eventos, provider WHERE eventos.id_provider = provider.id_provider";
         $stmt = Banco::prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

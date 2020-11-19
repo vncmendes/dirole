@@ -1,9 +1,5 @@
 <?php 
       include_once '../model/Provider.php';
-      // require'../PHPMailer-master/src/PHPMailer.php';
-      // require'../PHPMailer-master/src/SMTP.php';
-      // require'../PHPMailer-master/src/Exception.php';
-     //require'../controller/recaptchalib.php';
       $provider = new Provider();
 
         //######################################################################################

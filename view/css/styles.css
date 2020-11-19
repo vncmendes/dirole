@@ -91,7 +91,7 @@ header#main-header div.side a {
 
 a#sair {
   display: inline;
-  padding: 0;
+  margin-left: 5% !important;
 }
 
 a#sair a:hover {
@@ -1046,3 +1046,54 @@ div img.eventphoro {
     display: flex;
   }
  
+  div.box-user {
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+    border: whitesmoke solid;
+  }
+  
+  div.box-user ul li {
+    text-decoration: none;
+    list-style: none;
+  }
+  
+  div.box-user li {
+    display: inline;
+  }
+
+  div.box-user-buttons li {
+    display: inline;
+  }
+
+  div.box-infos  {
+    display: flex;
+    justify-content: space-around;
+    font-size: 30px;
+    align-items: ce;
+  }
+  div.box-infos ul li {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  div.user-button {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  div.box-user-conteudo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  div.box-second {
+    width: 75%;
+    border: 5px whitesmoke solid;
+  }
+
+  div.box-user-infos {
+    display: flex;
+    justify-content: space-around;
+  }
