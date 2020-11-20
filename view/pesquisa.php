@@ -63,6 +63,45 @@
                 </section> 
         <?php } ?>
 
+    <?php
+        if(isset($_POST['cervejeiro'])) {
+                $search = '3';
+                $sqlEvento = "SELECT * FROM EVENTOS E, REGISTRA_EVENTOCATEGORIA REC WHERE E.ID = REC.IDEVENTO AND REC.IDCATEGORIA = '$search'";
+                $result = mysqli_query($conn, $sqlEvento); ?>
+            
+                <section class="eventcards">
+                    <div class="eventcardscontent">
+                   <?php while($resultEventos = mysqli_fetch_array($result)) { ?>
+                        <div class="cards">
+                            <form action="evento.php" method="post">
+                                <input type="hidden" name="id" value="<?= $resultEventos['id'] ?>">
+                                <button class="" type="hidden" name="ver">
+                                <a href="#">
+                                    <ul>
+                                        <div class="cardimage">
+                                            <!-- <li><img src="/images/< ?= $evento->arquivo ?>"></li> // mais ou menos certo -->
+                                            <li><img src="images/01.jpg" alt=""></li>
+                                        </div>
+                                        <div class="cardinfo">
+                                            <li>
+                                                <span class="eventname"> <?= $resultEventos['nome'] ?> </span>
+                                            </li>
+                                            <li>
+                                                <span class="eventdate"> <?= $resultEventos['data'] ?> </span>
+                                            </li>
+                                            <li>
+                                                <span class="eventlocation"> <?= $resultEventos['localizacao'] ?> </span>
+                                            </li>
+                                        </div>
+                                    </ul>
+                                </a>
+                            </button>
+                            </form>
+                        </div>
+                    <?php } ?>
+                </section> 
+        <?php } ?>
+
         <?php if(array_key_exists("estaSemana", $_GET)) {
             $searchS = $_GET['estaSemana'];
             if($searchS == 'semana') {

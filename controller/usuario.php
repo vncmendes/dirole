@@ -1,9 +1,9 @@
 <?php
       include_once '../model/Usuario.php';
       include_once '../model/Adm.php';
-      require'../PHPMailer-master/src/PHPMailer.php';
-      require'../PHPMailer-master/src/SMTP.php';
-      require'../PHPMailer-master/src/Exception.php';
+      require_once '../PHPMailer-master/src/PHPMailer.php';
+      require_once '../PHPMailer-master/src/SMTP.php';
+      require_once '../PHPMailer-master/src/Exception.php';
      //require'../controller/recaptchalib.php';
       $usuario = new Usuario();
       $adm = new Adm();
@@ -225,9 +225,7 @@
         //######################################################################################
         // Recuperar senha usuário ============================================
         //######################################################################################
-        // if (isset($_POST['recuperarsenha'])) {
-          if(array_key_exists("recuperarsenha", $_POST)) {
-    
+          if (array_key_exists("recuperarsenha", $_POST)) {
           $email = $_POST['email'];
           $obj_retorno = $usuario->verificaEmail($email);
           $senha = substr(md5(time()), 0, 6);
@@ -246,7 +244,7 @@
             $mail->Port = 465; // or 587
             $mail->IsHTML(true);
             $mail->Username = "viniciussmendes@gmail.com";
-            $mail->Password = "caganeiraespacial1993";
+            $mail->Password = "";
             $mail->SetFrom($para);
             $mail->Subject = "Recuperação de Senha";
             $mail->Body = "A sua nova senha é ". $senha;
@@ -265,7 +263,6 @@
             header("location: recuperarsenha.php");
           }
         }
-
 
         //######################################################################################
         // Email Responsável  para enviar desempenho ===========================================

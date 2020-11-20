@@ -11,6 +11,7 @@
         <input type="password" name="senha" pattern=".{8,}" title="Mínimo 8 caracteres" required>
 
         <button type="submit" name="logar">Enviar</button>
+        <a target="_blank" href="recuperarsenha.php">Esqueceu a senha?</a>
       </form>
     </div>
     <div class="fechar">x</div>

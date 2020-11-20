@@ -40,7 +40,7 @@
       </nav>
 
       <!-- <img class="navicons" src="images/logo.svg" alt="" /> -->
-      <h1><a class="dirole" href="index.php">DiRolê</a></h1>
+      <h1><a class="dirole" href="index.php">DiRolê<br><h5 style="float: right;">Na Galaxya     <img src="images/irmao.png" alt=""></h5></a></h1>
       <div class="side">
         <div class="dropdown">
           <button class="btn dropdown-toggle dropbtnmod" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,7 +51,6 @@
             <a class="dropdown-item mydrop-item" href="#" onclick="signUPP()">Produtora</a>
           </div>
         </div>
-
 
         <!-- @@@@@@@@@@@@@@@@@ FUNCIONANDO A PESQUISA PELA SEMANA @@@@@@@@@@@@@ -->
         <!-- SÓ PRECISA VERIFICAR COMO FAZER PRA CONSEGUIR ENVIAR A PESQUISA E OS GETS OU FAZER COM POST -->
@@ -75,16 +74,17 @@
           <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
           <input type="hidden" name="id">
         </form>
-
-        <div class="dropdown">
-          <button class="btn dropdown-toggle dropbtnmod" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Entrar
-          </button>
-          <div class="dropdown-menu mydropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item mydrop-item" href="#" onclick="modalLogin()">Baladeira</a>
-            <a class="dropdown-item mydrop-item" href="#" onclick="modalLoginP()">Produtor</a>
-            <a class="dropdown-item mydrop-item" href="#" onclick="modalLoginAdm()">Adm</a>
+        <?php if(!isset($_SESSION['logado'])) { ?>
+          <div class="dropdown">
+            <button class="btn dropdown-toggle dropbtnmod" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Entrar
+            </button>
+            <div class="dropdown-menu mydropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item mydrop-item" href="#" onclick="modalLogin()">Baladeira</a>
+              <a class="dropdown-item mydrop-item" href="#" onclick="modalLoginP()">Produtor</a>
+              <a class="dropdown-item mydrop-item" href="#" onclick="modalLoginAdm()">Adm</a>
           </div>
+         <?php } ?>
         </div>
         <?php if(isset($_SESSION['id_usuario']) || isset($_SESSION['id_provider']) || isset($_SESSION['id_adm'])) { ?>
             <a href="logout.php" class="nodecore1 navlinks1" id="sair" style="display: inline">Sair</a>
@@ -198,39 +198,62 @@
 <div class="divsecond-content">
   <div class="d3">
     <ul>
-        <a href="pesquisa.php">
-          <input type="hidden" name="cervejeiro">
-          <li><img src="images/felicidades.svg" alt="icon"></li>
-          <li><a>Cervejeiro</span></a>
-        </a>
+      <form action="pesquisa.php" method="post">
+        <button>
+          <a href="#">
+            <input type="hidden" name="cervejeiro">
+            <li><img src="images/felicidades.svg" alt="icon"></li>
+            <li><a>Cervejeiro</a></li>
+          </a>
+        </button>
+      </form>
     </ul>
   </div>
+
   <div class="d3">
     <ul>
-      <a href="#">
-        <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
-        <li><a>Shows</a></li>
-      </a>
+      <form action="pesquisa.php" method="post">
+        <button>
+          <a href="#">
+            <input type="hidden" name="shows">
+            <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
+            <li><a>Shows</a></li>
+          </a>
+        </button>
+      </form>
     </ul>
   </div>
+
   <div class="d3">
     <ul>
-      <a href="#">
-        <li><img src="images/garfo.svg" alt="icon"></li>
-        <li><a>Gastronômico</a></li>
-      </a>
+      <form action="pesquisa.php" method="post">
+        <button>
+          <a href="#">
+            <input type="hidden" name="gastro">
+            <li><img src="images/garfo.svg" alt="icon"></li>
+            <li><a>Gastronômico</a></li>
+          </a>
+        </button>
+      </form>
     </ul>
   </div>
+
   <div class="d3">
     <ul>
-      <a href="#">
-        <li><img src="images/danca.svg" alt="dance"></li>
-        <li><a>Pubs e Baladas</a>
-        </li>
+      <form action="pesquisa.php" method="post">
+        <button>
+          <a href="#">
+            <input type="hidden" name="peb">
+            <li><img src="images/danca.svg" alt="dance"></li>
+            <li><a>Pubs e Baladas</a></li>
+          </a>
+        </button>
+      </form>
       </a>
     </ul>
   </div>
 </div>
+
 <div class="d3">
   <ul>
     <a href="#">

@@ -118,7 +118,7 @@
                                               <form class="form-group" method="POST" name="editarNomePerfil" action="perfil.php">
                                                 <input class="form-control my-2" type="text" name="nome" value="<?php echo $usuario_retorno->nome; ?>">
                                                 <input class="form-control my-2" type="text" name="sobrenome" id="sobrenome" maxlength="15" value="<?php echo $usuario_retorno->sobrenome; ?>">
-                                                <input class="form-control mr-sm-2 my-1" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>" />
+                                                <input class="form-control mr-sm-2 my-1" type="hidden" name="id_usuario_adm" value="<?php echo $id_usuario; ?>" />
                                                 <button type="submit" class="btn btn-danger" name="alterarPerfil">Alterar</button>
                                                 
                                              <!--   <button class="btn btn-danger open-modal  " data-target="#modalExcluir" data-toggle="modal" data-id="<?php echo $value->id_usuario; ?>" type="button" name="excluir">Excluir</button> -->

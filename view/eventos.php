@@ -72,7 +72,7 @@
   <link rel="stylesheet" href="css/styles.css" />
   <script src="js/functions.js"></script>
 
-  <title>DiRolÊ, New Slider</title>
+  <title>DiRolê Eventos</title>
 </head>
 
 <body>

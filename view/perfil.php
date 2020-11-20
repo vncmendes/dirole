@@ -36,7 +36,7 @@
       }
 
     @$id_usuario = $_SESSION['id_usuario'];
-    $id_usuario = $_POST['id_usuario'];
+    // @$id_usuario = $_POST['id_usuario_adm'];
     $usuario_retorno = $usuario->select($id_usuario);
   
 ?>
@@ -126,13 +126,12 @@
                                         </div>-->
                                         <div class="row">
                                             <div class="col">
-                                        <?php //foreach ($usuario->select($id_usuario) as $key => $value) {  ?>
+                                        <!-- < ?php //foreach ($usuario->select($id_usuario) as $key => $value) {  ?> -->
                                               <form class="form-group" method="POST" name="editarNomePerfil" action="perfil.php">
                                                 <input class="form-control my-2" type="text" name="nome" value="<?php echo $usuario_retorno->nome; ?>">
                                                 <input class="form-control my-2" type="text" name="sobrenome" id="sobrenome" maxlength="15" value="<?php echo $usuario_retorno->sobrenome; ?>">
                                                 <input class="form-control mr-sm-2 my-1" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>" />
                                                 <button type="submit" class="btn btn-danger" name="alterarPerfil">Alterar</button>
-                                                
                                              <!--   <button class="btn btn-danger open-modal  " data-target="#modalExcluir" data-toggle="modal" data-id="<?php echo $value->id_usuario; ?>" type="button" name="excluir">Excluir</button> -->
                                               </form>
                                               <hr>
@@ -148,9 +147,9 @@
                                                 <input class="form-control mr-sm-2 my-1" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>" />
                                                 <button type="submit" class="btn btn-danger" name="alterarSenha">Concluir Alteração da Senha</button>
                                                 </form>
-                                               </div> 
+                                               </div>
                                             </div>
-                                        </div> 
+                                        </div>
                                         <hr>
                                         <div class="row py-2">
                                             <div class="col">

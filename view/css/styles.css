@@ -23,7 +23,7 @@ body {
 
 .content1 {
   margin: 15px auto;
-  padding: 0 30px;
+  /* padding: 0 30px; */
 }
 
 header#main-header {
@@ -38,7 +38,7 @@ header#main-header .content1 {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 100%;
+  /* height: 100%; */
 }
 header#main-header .content nav {
   z-index: 100 !important;
@@ -480,6 +480,16 @@ div.box-contentM {
   margin-top: 5%;
   width: 100%;
   height: 100%;
+}
+
+div#modalLR a {
+  padding-top: 10%;
+  color: whitesmoke !important;
+}
+
+div#modalLP a {
+  padding-top: 10%;
+  color: whitesmoke !important;
 }
 
 div.modalLogin form {
@@ -1096,4 +1106,11 @@ div img.eventphoro {
   div.box-user-infos {
     display: flex;
     justify-content: space-around;
+  }
+
+  /* // estilo da recuperação de senha */
+  .containerMaster{ 
+    background-color: rgb(244, 244, 244);
+    padding: 1rem;
+    min-height: 80vh;
   }

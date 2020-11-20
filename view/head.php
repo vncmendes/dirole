@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="css/styles.css" />
 <script src="js/functions.js"></script>
 
-<title>DiRolÊ, New Slider</title>
+<title>DiRolê Eventos</title>
 
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.5/sweetalert2.all.min.js"></script>

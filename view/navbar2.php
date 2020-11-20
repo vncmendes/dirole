@@ -5,9 +5,11 @@
         <li>
           <a href="eventos.php" class="nodecore1 navlinks1">Eventos</a>
         </li>
-        <li>
+        <?php if(isset($_SESSION['logado'])) { ?>
+          <li>
             <a href="adiciona-evento.php" class="nodecore1 navlinks1">Add Evento</a>
-        </li>
+          </li>
+        <?php } ?>
         <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1000) { ?>
           <li>
               <a href="lista-evento.php" class="nodecore1 navlinks1">Todos Eventos</a>
