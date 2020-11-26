@@ -117,7 +117,7 @@
                       <td class="byeBorder">Foto:</td>
                       <td class="byeBorder"><input type="file" name="arquivo"></td>
                       <input type="hidden" name="max_file_size" value="200000">
-                      <td class="byeBorder"><input class="btn btn-success" type="submit" name="cadastrarEvento" onsubmit="return validate();" value="Alterar"></td>
+                      <td class="byeBorder"><input class="btn btn-success" type="submit" name="alterarEvento" onsubmit="return validate();" value="Alterar"></td>
                       <td class="byeBorder"><a class="btn btn-primary" href="lista-evento.php">Voltar</a></td>
                     </table>
                   </form>

@@ -25,8 +25,8 @@
             require_once 'navbar2.php';
             require_once '../model/Conexao.php';
 
-            if(isset($_POST['pesquisar'])) {
-                $search = $_POST['pesquisar'];
+            if(isset($_GET['pesquisar'])) {
+                $search = $_GET['pesquisar'];
                 $sqlEvento = "SELECT * FROM eventos WHERE nome LIKE '%$search%' LIMIT 6";
                 $result = mysqli_query($conn, $sqlEvento); ?>
             
@@ -67,6 +67,45 @@
         if(isset($_GET['categoria'])) {
                 $search = $_GET['categoria'];
                 $sqlEvento = "select * from eventos e, registra_eventocategoria rec where e.id = rec.idevento and rec.idcategoria = '$search'";
+                $result = mysqli_query($conn, $sqlEvento); ?>
+            
+                <section class="eventcards">
+                    <div class="eventcardscontent">
+                   <?php while($resultEventos = mysqli_fetch_array($result)) { ?>
+                        <div class="cards">
+                            <form action="evento.php" method="post">
+                                <input type="hidden" name="id" value="<?= $resultEventos['id'] ?>">
+                                <button class="" type="hidden" name="ver">
+                                <a href="#">
+                                    <ul>
+                                        <div class="cardimage">
+                                            <!-- <li><img src="/images/< ?= $evento->arquivo ?>"></li> // mais ou menos certo -->
+                                            <li><img src="images/01.jpg" alt=""></li>
+                                        </div>
+                                        <div class="cardinfo">
+                                            <li>
+                                                <span class="eventname"> <?= $resultEventos['nome'] ?> </span>
+                                            </li>
+                                            <li>
+                                                <span class="eventdate"> <?= $resultEventos['data'] ?> </span>
+                                            </li>
+                                            <li>
+                                                <span class="eventlocation"> <?= $resultEventos['localizacao'] ?> </span>
+                                            </li>
+                                        </div>
+                                    </ul>
+                                </a>
+                            </button>
+                            </form>
+                        </div>
+                    <?php } ?>
+                </section> 
+        <?php } ?>
+
+        <?php
+        if(isset($_GET['estrutura'])) {
+                $search = $_GET['estrutura'];
+                $sqlEvento = "select * from eventos e, registra_eventoestrutura ree where e.id = ree.idevento and ree.idestrutura = '$search'";
                 $result = mysqli_query($conn, $sqlEvento); ?>
             
                 <section class="eventcards">

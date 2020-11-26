@@ -156,14 +156,13 @@
       </form>
     </div>
     <?php endforeach ?>
-</section>
-
+  </section>
 
   <?php
-  require_once 'eventsecond-content.php'
+    require_once 'eventsecond-content.php'
   ?>
 
-  <script src="js/functions.js"></script>
+<script src="js/functions.js"></script>
 
   <?php
   require_once '../controller/usuario.php' ?>

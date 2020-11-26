@@ -70,7 +70,7 @@
         <!-- @@@@@@@@@@@@@@@@@ FUNCIONANDO A PESQUISA PELA SEMANA @@@@@@@@@@@@@ -->
         <!-- SÓ PRECISA VERIFICAR COMO FAZER PRA CONSEGUIR ENVIAR A PESQUISA E OS GETS OU FAZER COM POST -->
 
-        <form method="POST" action="pesquisa.php">
+        <form method="GET" action="pesquisa.php?pesquisa">
           <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
           <input type="hidden" name="id">
         </form>
@@ -209,7 +209,7 @@
   <div class="d3">
     <ul>
           <a href="pesquisa.php?categoria=11">
-            <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
+            <li><img src="images/garfo.svg" alt="icon"></li>
             <li><a>Gastronômico</a></li>
           </a>
     </ul>
@@ -217,30 +217,19 @@
 
   <div class="d3">
     <ul>
-      <form action="pesquisa.php?categoria" method="post">
-        <button>
-          <a href="#">
-            <input type="hidden" name="gastro">
-            <li><img src="images/garfo.svg" alt="icon"></li>
-            <li><a>Shows</a></li>
-          </a>
-        </button>
-      </form>
+        <a href="pesquisa.php?estrutura=10">
+          <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
+          <li><a>Shows</a></li>
+        </a>
     </ul>
   </div>
 
   <div class="d3">
     <ul>
-      <form action="pesquisa.php" method="post">
-        <button>
-          <a href="#">
-            <input type="hidden" name="peb">
-            <li><img src="images/danca.svg" alt="dance"></li>
-            <li><a>Pubs e Baladas</a></li>
-          </a>
-        </button>
-      </form>
-      </a>
+        <a href="pesquisa.php?estrutura=4">
+          <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
+          <li><a>Pubs e Baladas</a></li>
+        </a>
     </ul>
   </div>
 </div>
@@ -282,7 +271,7 @@
 <!-- RANK CONTENT -->
   <section class="rank-content">
     <div class="ourservicesrank">
-      <span>SENHORES DA BALADA</span>
+      <span>Sempre DiRolê</span>
     </div>
     <div class="divrank-content">
       <div class="d3rank">

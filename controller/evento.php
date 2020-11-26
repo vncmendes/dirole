@@ -69,6 +69,58 @@ if (array_key_exists("cadastrarEvento", $_POST)) {
 
 }
 
+if (array_key_exists('alterarEvento', $_POST)) {
+	$validate = false;
+
+	$nome = $_POST['nome'];
+	$data = $_POST['data'];
+	$horainicial = $_POST['horai'];
+	$horafinal = $_POST['horaf'];
+	$local = $_POST['localizacao'];
+	$descricao = $_POST['descricao'];
+	$gv = $_POST['gv'];
+	$ingresso = $_POST['ingresso'];
+	$categoria = $_POST['categoria'];
+	$estrutura = $_POST['estrutura'];
+	$arquivo = $_FILES['arquivo']['name'];
+	$arquivo_temp = $_FILES['arquivo']['tmp_name'];
+	$tamanho_arquivo = $_FILES['arquivo']['size'];
+	$tipo_arquivo = $_FILES['arquivo']['type'];
+
+
+	if ($nome == "" || $data == "" || $horainicial == "" || $horafinal == "" || $local == "" || $descricao == "" || $ingresso == "" || $categoria == "" || $estrutura == "") {
+		echo "Preencha todos os campos";
+		header("Location: adiciona-evento.php");
+	} 
+	else {
+		$validate = true;
+	}
+
+	// $usuario = new Usuario(); está no escopo global de usuario.
+	$evento->setNome($nome);
+	$evento->setData($data);
+	$evento->setHorai($horainicial);
+	$evento->setHoraf($horafinal);
+	$evento->setLocal($local);
+	$evento->setDescricao($descricao);
+	$evento->setGv($gv);
+	$evento->setIngresso($ingresso);
+	$evento->setCategoria($categoria);
+	$evento->setEstrutura($estrutura);
+	$evento->setArquivo($arquivo);
+	echo 'chamando a função de alterar'.'<br>';;
+	$eventos->alteraEvent($evento);
+
+
+	if ($validate == true) {
+		echo "O evento foi alterado com sucesso !";
+		header("Location: ../view/lista-evento.php");
+	} else {
+		echo "Evento não alterado, tente novamente !";
+		header("Location: ../view/lista-evento.php");
+	}
+}
+
 if (array_key_exists("remover", $_POST)) {
 
 	$id = $_POST['idE'];

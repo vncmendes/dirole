@@ -836,7 +836,7 @@ div img.eventphoro {
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 5%;
-    box-shadow: 6px 6px 15px 1px black;
+    /* box-shadow: 1px 1px 1px 1px black; */
     /* background-image: url(../images/fundo10.jpg); */
   }
 

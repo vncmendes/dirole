@@ -7,73 +7,90 @@
 </style>
 
 <section class="eventcategories">
-  <span style="padding: 2% 0 2% 2%">Categorias</span>
+  <span style="">Categorias & Estruturas</span>
   <div class="eventcategories-content">
     <div class="eventcard-categories">
       <ul>
-        <li><img src="images/felicidades.svg" alt="icon"></li>
-        <li>
-          <h2>Cervejeiro</h2>
-        </li>
+          <a href="pesquisa.php?categoria=8">
+          <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
+            <li><a>Eletrônica</a></li>
+          </a>
       </ul>
     </div>
     <div class="eventcard-categories">
-      <ul>
-        <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
-        <li>
-          <h2>Shows</h2>
-        </li>
-      </ul>
+      <div class="eventcard-categories">
+        <ul>
+            <a href="pesquisa.php?categoria=11">
+            <li><img src="images/garfo.svg" alt="icon"></li>
+              <li><a>Gastronômico</a></li>
+            </a>
+        </ul>
+      </div>
     </div>
     <div class="eventcard-categories">
-      <ul>
-        <li><img src="images/garfo.svg" alt="icon"></li>
-        <li>
-          <h2>Gastronômico</h2>
-        </li>
-      </ul>
+      <div class="eventcard-categories">
+        <ul>
+            <a href="pesquisa.php?categoria=12">
+            <li><img src="images/presente.svg" alt="icon"></li>
+              <li><a>Infantil</a></li>
+            </a>
+        </ul>
+      </div>
     </div>
     <div class="eventcard-categories">
-      <ul>
-        <li><img src="images/danca.svg" alt="dance"></li>
-        <li>
-          <h2>Pubs e Baladas</h2>
-        </li>
-      </ul>
+      <div class="eventcard-categories">
+        <ul>
+            <a href="pesquisa.php?categoria=3">
+            <li><img src="images/felicidades.svg" alt="icon"></li>
+              <li><a>Cervejeiro</a></li>
+            </a>
+        </ul>
+      </div>
     </div>
   </div>
+
+<!-- //ESTRUTURA -->
+
   <div class="eventcategories-content">
     <div class="eventcard-categories">
-      <ul>
-        <li><img src="images/felicidades.svg" alt="icon"></li>
-        <li>
-          <h2>Cultural</h2>
-        </li>
-      </ul>
+        <div class="eventcard-categories">
+          <ul>
+              <a href="pesquisa.php?estrutura=5">
+              <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
+                <li><a>Festival</a></li>
+              </a>
+          </ul>
+        </div>
     </div>
     <div class="eventcard-categories">
-      <ul>
-        <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
-        <li>
-          <h2>Esportivo</h2>
-        </li>
-      </ul>
+        <div class="eventcard-categories">
+          <ul>
+              <a href="pesquisa.php?estrutura=7">
+              <li><img src="images/garfo.svg" alt="icon"></li>
+                <li><a>Privado</a></li>
+              </a>
+          </ul>
+        </div>
     </div>
     <div class="eventcard-categories">
-      <ul>
-        <li><img src="images/garfo.svg" alt="icon"></li>
-        <li>
-          <h2>Teatral</h2>
-        </li>
-      </ul>
+        <div class="eventcard-categories">
+          <ul>
+              <a href="pesquisa.php?estrutura=1">
+              <li><img src="images/presente.svg" alt="icon"></li>
+                <li><a>Open Air</a></li>
+              </a>
+          </ul>
+        </div>
     </div>
     <div class="eventcard-categories">
-      <ul>
-        <li><img src="images/danca.svg" alt="dance"></li>
-        <li>
-          <h2>Infantil</h2>
-        </li>
-      </ul>
+        <div class="eventcard-categories">
+          <ul>
+              <a href="pesquisa.php?estrutura=8">
+              <li><img src="images/danca.svg" alt="icon"></li>
+                <li><a>Balada</a></li>
+              </a>
+          </ul>
+        </div>
     </div>
   </div>
 </section>

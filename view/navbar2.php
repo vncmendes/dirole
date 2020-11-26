@@ -63,8 +63,9 @@
         </a>
       <?php } ?>
 
-      <form style="margin: 0"; method="POST" action="pesquisa.php">
-        <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
+      <form method="GET" action="pesquisa.php?pesquisa">
+          <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
+          <input type="hidden" name="id">
       </form>
       <?php if(isset($_SESSION['logado'])) { ?>
         <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
