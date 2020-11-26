@@ -195,43 +195,34 @@
     </span>
   </div>
 </div>
+
 <div class="divsecond-content">
   <div class="d3">
     <ul>
-      <form action="pesquisa.php" method="post">
-        <button>
-          <a href="#">
-            <input type="hidden" name="cervejeiro">
+          <a href="pesquisa.php?categoria=3">
             <li><img src="images/felicidades.svg" alt="icon"></li>
             <li><a>Cervejeiro</a></li>
           </a>
-        </button>
-      </form>
     </ul>
   </div>
 
   <div class="d3">
     <ul>
-      <form action="pesquisa.php" method="post">
-        <button>
-          <a href="#">
-            <input type="hidden" name="shows">
+          <a href="pesquisa.php?categoria=11">
             <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
-            <li><a>Shows</a></li>
+            <li><a>Gastronômico</a></li>
           </a>
-        </button>
-      </form>
     </ul>
   </div>
 
   <div class="d3">
     <ul>
-      <form action="pesquisa.php" method="post">
+      <form action="pesquisa.php?categoria" method="post">
         <button>
           <a href="#">
             <input type="hidden" name="gastro">
             <li><img src="images/garfo.svg" alt="icon"></li>
-            <li><a>Gastronômico</a></li>
+            <li><a>Shows</a></li>
           </a>
         </button>
       </form>

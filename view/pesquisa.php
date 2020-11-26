@@ -27,7 +27,7 @@
 
             if(isset($_POST['pesquisar'])) {
                 $search = $_POST['pesquisar'];
-                $sqlEvento = "SELECT * FROM EVENTOS WHERE nome LIKE '%$search%' LIMIT 6";
+                $sqlEvento = "SELECT * FROM eventos WHERE nome LIKE '%$search%' LIMIT 6";
                 $result = mysqli_query($conn, $sqlEvento); ?>
             
                 <section class="eventcards">
@@ -64,9 +64,9 @@
         <?php } ?>
 
     <?php
-        if(isset($_POST['cervejeiro'])) {
-                $search = '3';
-                $sqlEvento = "SELECT * FROM EVENTOS E, REGISTRA_EVENTOCATEGORIA REC WHERE E.ID = REC.IDEVENTO AND REC.IDCATEGORIA = '$search'";
+        if(isset($_GET['categoria'])) {
+                $search = $_GET['categoria'];
+                $sqlEvento = "select * from eventos e, registra_eventocategoria rec where e.id = rec.idevento and rec.idcategoria = '$search'";
                 $result = mysqli_query($conn, $sqlEvento); ?>
             
                 <section class="eventcards">

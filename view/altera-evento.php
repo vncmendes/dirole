@@ -8,8 +8,17 @@
     $evento = $eventos->find($id);
     $categorias = $categoria->selectAll($id);
     $estruturas = $estrutura->selectAll($id);
+
     $vetEventoCategoria = $eventos->listaEventoCategoria($id);
+    foreach ($vetEventoCategoria as $key => $value) {
+      $vetUsadas[] = $value->idcategoria;
+    }
+
     $vetEventoEstrutura = $eventos->listaEventoEstrutura($id);
+    foreach ($vetEventoEstrutura as $key => $value) {
+      $vetEstUsadas[] = $value->idestrutura;
+    }
+    
   // var_dump($vetEventoCategoria);
 ?>
 
@@ -78,7 +87,8 @@
                     <tr>
                       <td class="byeBorder" id="ce">Categoria<br>
                         <?php foreach ($categorias as $categoria) :
-                          if (in_array($categoria->id, $vetEventoCategoria)) {
+
+                          if (in_array($categoria->id, $vetUsadas)) {
                             $checked = "checked";
                           }
                           else {
@@ -92,7 +102,7 @@
 
                       <td class="byeBorder">Estrutura<br>
                         <?php foreach ($estruturas as $estrutura) :
-                        if (in_array($estrutura->id, $vetEventoEstrutura)) {
+                        if (in_array($estrutura->id, $vetEstUsadas)) {
                             $checked = "checked";
                           }
                           else {
