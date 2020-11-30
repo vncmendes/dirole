@@ -25,16 +25,16 @@
 <!-- HEADER -->
   <header id="main-header">
     <div class="content1">
-      <nav>
+      <nav class="navlink">
         <ul>
           <li>
             <a href="eventos.php" class="nodecore navlinks">Eventos</a>
           </li>
           <li>
-            <a href="#" class="nodecore navlinks">Quem Somos</a>
+            <a href="#somos" class="nodecore navlinks">Quem Somos</a>
           </li>
           <li>
-            <a href="#" class="nodecore navlinks">O que fazemos?</a>
+            <a href="#faleconosco" class="nodecore navlinks">Fale Conosco</a>
           </li>
         </ul>
       </nav>
@@ -179,8 +179,8 @@
 </section>
 <!-- CARDS EVENTS FIM -->
 
-<section class="second-content">
-  <div class="box-content1">
+<section id="somos" class="second-content">
+  <div  class="box-content1">
     <div class="ourservices">
       <span></span>
     </div>
@@ -195,62 +195,62 @@
       <span>Com informações mais detalhadas e a possibilidade da venda dos ingressos pela plataforma conseguimos maximizar o valor gerado para ambos;
       </span>
     </div>
-  <div class="title2">
-    <span>e com isso se cria uma melhor experiência aos usuários e colaboradores envolvidos.
-    </span>
+    <div class="title2">
+      <span>e com isso se cria uma melhor experiência aos usuários e colaboradores envolvidos.
+      </span>
+    </div>
   </div>
-</div>
 
-<div class="divsecond-content">
-  <div class="d3">
-    <ul>
-          <a href="pesquisa.php?categoria=3">
-            <li><img src="images/felicidades.svg" alt="icon"></li>
-            <li><a>Cervejeiro</a></li>
+  <div class="divsecond-content">
+    <div class="d3">
+      <ul>
+            <a href="pesquisa.php?categoria=3">
+              <li><img src="images/felicidades.svg" alt="icon"></li>
+              <li><a>Cervejeiro</a></li>
+            </a>
+      </ul>
+    </div>
+
+    <div class="d3">
+      <ul>
+            <a href="pesquisa.php?categoria=11">
+              <li><img src="images/garfo.svg" alt="icon"></li>
+              <li><a>Gastronômico</a></li>
+            </a>
+      </ul>
+    </div>
+
+    <div class="d3">
+      <ul>
+          <a href="pesquisa.php?estrutura=10">
+            <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
+            <li><a>Shows</a></li>
           </a>
-    </ul>
-  </div>
+      </ul>
+    </div>
 
-  <div class="d3">
-    <ul>
-          <a href="pesquisa.php?categoria=11">
-            <li><img src="images/garfo.svg" alt="icon"></li>
-            <li><a>Gastronômico</a></li>
+    <div class="d3">
+      <ul>
+          <a href="pesquisa.php?estrutura=4">
+            <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
+            <li><a>Pubs e Baladas</a></li>
           </a>
-    </ul>
+      </ul>
+    </div>
   </div>
 
   <div class="d3">
     <ul>
-        <a href="pesquisa.php?estrutura=10">
-          <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
-          <li><a>Shows</a></li>
-        </a>
+      <a href="#">
+        <li><img class="clientpresent" src="images/presente.svg" alt="present"></li>
+        <li><a>Bônus Clientes Ativos</a></li>
+      </a>
     </ul>
   </div>
-
-  <div class="d3">
-    <ul>
-        <a href="pesquisa.php?estrutura=4">
-          <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
-          <li><a>Pubs e Baladas</a></li>
-        </a>
-    </ul>
-  </div>
-</div>
-
-<div class="d3">
-  <ul>
-    <a href="#">
-      <li><img class="clientpresent" src="images/presente.svg" alt="present"></li>
-      <li><a>Bônus Clientes Ativos</a></li>
-    </a>
-  </ul>
-</div>
 </section>
 
 <!-- CONTATO -->
-<section class="third-content">
+<section id="faleconosco" class="third-content">
   <div class="divcontact-content">
     <div class="d4">
       <h2>FALE CONOSCO</h2>

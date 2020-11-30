@@ -155,7 +155,7 @@
                                             <div class="col">
                                                 <form method="POST" action="perfil.php" class="form-group" name="emailRespo">
                                                     <p class="py-0"> Email do Responsável:</p>
-                                                    <input type="email" name="emailResponsavel" class="form-control py-2" value="<?php echo $usuario_retorno->email_responsavel; ?>" >
+                                                    <input type="email" name="emailResponsavel" class="form-control py-2" placeholder="Menor de 18? Insira o email do responsável." value="<?php echo $usuario_retorno->email_responsavel; ?>" >
                                                     <input type="hidden" name="id_usuario" class="form-control" value="<?php echo $id_usuario; ?>">
                                                     <button type="submit" class="btn btn-warning my-2" name="emailRespo">Alterar</button>
                                                 </form>

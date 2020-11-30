@@ -64,13 +64,13 @@ if (array_key_exists("cadastrarEvento", $_POST)) {
 		// $eventoCadastradoOK = 1;
 		// $_SESSION['eventoCadastradoOK'] = $eventoCadastradoOK;
 		echo "Evento adicionado com sucesso";
-		header("Location: ../view/lista-evento.php");
+		// header("Location: ../view/lista-evento.php");
 	} else {
 		// session_start();
 		// $eventoCadastradoErro = 0;
 		// $_SESSION['eventoCadastradoErro'] = $eventoCadastradoErro;
 		echo "Evento não adicionado";
-		header("Location: ../view/lista-evento.php");
+		// header("Location: ../view/lista-evento.php");
 	}
 	//header("Location: ../view/index.php");
 

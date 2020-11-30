@@ -52,99 +52,138 @@
 </head>
 <body>
     
-<header id="main1-header">
-    <div class="content2">
-        <nav>
-            <ul>
-                <li><a href="eventos.php" class="nodecore1 navlinks1">Eventos</a></li>
-                <?php if (isset($nav)) { echo $nav; }; ?>
-                <!-- <li><a href="#" class="nodecore1 navlinks1">Tickets e Pontos</a></li> -->
-                <!-- <li><a href="perfilP.php" class="nodecore1 navlinks1">Perfil</a> se já estou no perfil não precisa.</li> -->
-            </ul>
-        </nav>
+    <header id="main1-header">
+        <div class="content2">
+            <nav>
+                <ul>
+                    <li><a href="eventos.php" class="nodecore1 navlinks1">Eventos</a></li>
+                    <?php if (isset($nav)) { echo $nav; }; ?>
+                    <!-- <li><a href="#" class="nodecore1 navlinks1">Tickets e Pontos</a></li> -->
+                    <!-- <li><a href="perfilP.php" class="nodecore1 navlinks1">Perfil</a> se já estou no perfil não precisa.</li> -->
+                </ul>
+            </nav>
 
-        <!-- <img class="navicons" src="images/logo.svg" alt="" /> -->
-        <div>
-            <h1><a class="dirole1" href="index.php">DiRolê</a></h1>
-        </div>
+            <!-- <img class="navicons" src="images/logo.svg" alt="" /> -->
+            <div>
+                <h1><a class="dirole1" href="index.php">DiRolê</a></h1>
+            </div>
 
-        <div class="side1">
-            <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1) { ?>
-                <a href="perfilP.php">
-                    <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
-                </a>
-                <?php } ?>
-                <form style="margin: 0"; method="POST" action="pesquisa.php">
-                    <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
-                </form>
-            <?php if(isset($_SESSION['logado'])) { ?>
-                <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
-                <?php } ?>
+            <div class="side1">
+                <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1) { ?>
+                    <a href="perfilP.php">
+                        <img class="avatarlogo1" src="<?php echo $_SESSION['foto']; ?>">
+                    </a>
+                    <?php } ?>
+                    <form style="margin: 0"; method="POST" action="pesquisa.php">
+                        <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
+                    </form>
+                <?php if(isset($_SESSION['logado'])) { ?>
+                    <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
+                    <?php } ?>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
+
     <section class="containerMaster py-3">
         <main class="heightFixo">
            <div class="container-fluid">
                <div class="row my-2">
                    <div class="col">
                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-sm-4 px-2 py-2">
-                                    <div class="container text-center">
-                                        <h4 class="mx-5 text-center">Altere sua foto de perfil.</h4>
-                                        <p><img src="<?php echo $_SESSION['foto']; ?>" alt="imagem de perfil"  class="img-fluid imagem-responsiva rounded-circle border border-dark mx-3 my-2" width="80%"></p>
-                                        <br><br>
-                                        <form class="formularioUpload form-group my-2 my-lg-0 ml-auto" enctype="multipart/form-data" method="POST" id="formularioUploadP" name="formulario" action="perfilP.php">
-                                            <input class="form-control my-2" type="file" name="foto" required="required">
-                                            <button id="upload" class="btn btn-secondary form-control btn-sm my-2 my-sm-0" name="upload" type="submit">Enviar</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 px-2 py-2">
+                            <div class="row perfildiv2">
+                                <div class="perfil">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                <h4 class="mx-5 text-center">Alteração dos dados cadastrais</h4>
+                                                <h4 class="mx-5 text-center py-3">Alteração dos dados cadastrais</h4>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                        <?php //foreach ($provider->select($id_provider) as $key => $value) {  ?>
-                                              <form class="form-group" method="POST" name="editarNomePerfil" action="perfilP.php">
-                                                <input class="form-control my-2" type="text" name="nome" value="<?php echo $provider_retorno->nome; ?>">
-                                                <input class="form-control my-2" type="text" name="sobrenome" id="sobrenome" maxlength="15" value="<?php echo $provider_retorno->sobrenome; ?>">
-                                                <input class="form-control mr-sm-2 my-1" type="hidden" name="id_provider" value="<?php echo $id_provider; ?>" />
-                                                <button type="submit" class="btn btn-danger" name="alterarPerfilP">Alterar</button>
-                                                
-                                              </form>
-                                              <hr>
-                                              <button id="editarSenha" class="btn btn-warning">Editar Senha</button>
-                                              <div id="formAlterarSenhaP" style="display: none;">
-                                                <form class="form-group" method="POST" name="alterarSenhaP" action="perfilP.php">
-                                                <input class="form-control my-2" type="password" name="senhaAntiga" placeholder="Digite a senha antiga" required="required" autocomplete="current-password">
-                                                <input class="form-control my-2" type="password" name="novaSenha" id="senha" placeholder="Digite a nova senha" required="required" minlength="6" onkeypress="validarTamanhoSenha()" autocomplete="new-password">
-                                                <div id="divx"></div>
-                                                <input class="form-control my-2" type="password" 
-                                                name="confirmaNovaSenha" id="confirmaSenha" placeholder="Confirme a nova senha" required="required" minlength="6" oninput="validarSenha('senha','confirmaSenha')" autocomplete="new-password">
-                                                <div id="divy"></div>
-                                                <input class="form-control mr-sm-2 my-1" type="hidden" name="id_provider" value="<?php echo $id_provider; ?>" />
-                                                <button type="submit" class="btn btn-danger" name="alterarSenhaP">Concluir Alteração da Senha</button>
+                                                <form class="form-group" method="POST" name="editarNomePerfil" action="perfilP.php">
+                                                    <input class="form-control my-2" type="text" name="nome" value="<?php echo $provider_retorno->nome; ?>">
+                                                    <input class="form-control my-2" type="text" name="sobrenome" id="sobrenome" maxlength="15" value="<?php echo $provider_retorno->sobrenome; ?>">
+                                                    <input class="form-control mr-sm-2 my-1" type="hidden" name="id_provider" value="<?php echo $id_provider; ?>" />
+                                                    <button type="submit" class="btn btn-danger" name="alterarPerfilP">Alterar</button>
                                                 </form>
-                                               </div> 
+                                                <hr>
+                                                <button id="editarSenha" class="btn btn-warning">Editar Senha</button>
+                                                <div id="formAlterarSenhaP" style="display: none;">
+                                                    <form class="form-group" method="POST" name="alterarSenhaP" action="perfilP.php">
+                                                    <input class="form-control my-2" type="password" name="senhaAntiga" placeholder="Digite a senha antiga" required="required" autocomplete="current-password">
+                                                    <input class="form-control my-2" type="password" name="novaSenha" id="senha" placeholder="Digite a nova senha" required="required" minlength="6" onkeypress="validarTamanhoSenha()" autocomplete="new-password">
+                                                    <div id="divx"></div>
+                                                    <input class="form-control my-2" type="password" 
+                                                    name="confirmaNovaSenha" id="confirmaSenha" placeholder="Confirme a nova senha" required="required" minlength="6" oninput="validarSenha('senha','confirmaSenha')" autocomplete="new-password">
+                                                    <div id="divy"></div>
+                                                    <input class="form-control mr-sm-2 my-1" type="hidden" name="id_provider" value="<?php echo $id_provider; ?>" />
+                                                    <button type="submit" class="btn btn-danger" name="alterarSenhaP">Concluir Alteração da Senha</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div> 
                                         <hr>
                                         <div class="row py-2">
                                             <div class="col">
                                                 <form method="POST" action="perfilP.php" class="form-group" name="emailRespo">
-                                                    <p class="py-0"> Email do Responsável:</p>
-                                                    <input type="email" name="emailResponsavel" class="form-control py-2" value="<?php echo $provider_retorno->email_responsavel; ?>" >
+                                                    <p class="py-0"> Email Alternativo:</p>
+                                                    <input type="email" name="emailResponsavel" class="form-control py-2" placeholder="Email alternativo para contato." value="<?php echo $provider_retorno->email_responsavel; ?>" >
                                                     <input type="hidden" name="id_provider" class="form-control" value="<?php echo $id_provider; ?>">
                                                     <button type="submit" class="btn btn-warning my-2" name="emailRespo">Alterar</button>
                                                 </form>
                                             </div>
                                         </div>      
+                                    </div>
+                                    <div class="container">
+                                        <div class="container text-center">
+                                            <h4 class="mx-5 text-center">Altere sua foto de perfil.</h4>
+                                            <p><img src="<?php echo $_SESSION['foto']; ?>" alt="imagem de perfil"  class="img-fluid imagem-responsiva rounded-circle border border-dark mx-3 my-2" width="25%"></p>
+                                            <br><br>
+                                            <form class="formularioUpload form-group my-2 my-lg-0 ml-auto" enctype="multipart/form-data" method="POST" id="formularioUploadP" name="formulario" action="perfilP.php">
+                                                <input class="form-control my-2" type="file" name="foto" required="required">
+                                                <button id="upload" class="btn btn-secondary form-control btn-sm my-2 my-sm-0" name="upload" type="submit">Enviar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="reminderJS">
+                                    <div class="jumbotron jumbotron-fluid">
+                                        <div class="container">
+                                            <h1 class="display-3">Agendamento de Tarefas</h1>
+                                            <p class="lead">Não esqueça suas atividades.</p>
+                                        </div>	
+	                                </div>
+
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div id="titular-new-reminder">
+                                                    <h3><i class="fa fa-plus-square"></i>Novo Lembrete</h3>
+                                                </div>
+                                                <br>
+                                                <div class="form-group text-center">
+                                                    <textarea class="form-control" rows="5" id="texto"></textarea>	
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <button type="button" class="btn btn-success form-control" id="buttonSave"><i class="fa fa-save" aria-hidden="true"></i>Save</button>	
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <button type="button" class="btn btn-danger form-control" id="buttonDelete"><i class="fa fa-times" aria-hidden="true"></i>Delete</button>	
+                                                        </div>
+                                                    </div>
+                                                        
+                                                </div>
+                                                <div id="error"></div>
+                                            </div>
+                                                <div class="col-md-6">
+                                                    <div id="titular-tarefas">
+                                                        <h3><i class="fa fa-exclamation-circle"></i>Pendentes</h3>
+                                                    </div>
+                                                    <div id="lembretes"></div>
+                                                </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +205,7 @@
     </script>
     <script type="text/javascript">
         /*########################################################*/
-    $('#formularioUploadP').submit(function(event){
+    $('#formularioUploadP').submit(function(event) {
         event.preventDefault();   
         var formData = new FormData(this);
         //formData = $(this).serialize();
@@ -249,9 +288,14 @@
                     footer: ''
                 });
             </script>
-        <?php
-        }
-        ?>
-    
-<!-- |||||||||||||||||||||  fooooooooooter   ||||||||||||||||||||||||       -->
-<?php include"footer.php"; ?>
+        <?php } ?>
+
+        <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/functions.js"></script> -->
+	<!-- end -->
+
+<?php require_once 'footer.php'; ?>

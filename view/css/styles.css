@@ -1114,3 +1114,60 @@ div img.eventphoro {
     padding: 1rem;
     min-height: 80vh;
   }
+
+  .perfil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* border: 1px solid whitesmoke; */
+    box-shadow: 2px 2px 50px 5px rgba(0, 0, 0, 0.5);
+  }
+  .perfil div {
+    margin-bottom: 2%;
+  }
+  .perfildiv2 {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  /* //estilos do reminderJS */
+  /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+  .reminderJS {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    box-shadow: 2px 2px 50px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .jumbotron-fluid {
+    background: #F4F4F4;
+  }
+  
+  #titular-new-reminder {
+    color: #41f497;
+  }
+  
+  #titular-tarefas {
+    color: #41f497;
+  }
+  
+  textarea {
+    border: 1px solid #41dff4;
+  }
+  
+  .lembrete {
+    padding: 0.5em;
+    background-color: #41dff4;
+    color: white;
+  }
+  
+  #buttonSave {
+    cursor: pointer;
+  }
+  
+  #buttonSave, .fa-window-close {
+    cursor: pointer;
+  }
+  
+  /* @@@@@@@@@@@@@@@@@@@@@@@@@@ */
+  /* end estilos reminderJS */
