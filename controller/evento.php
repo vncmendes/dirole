@@ -38,7 +38,7 @@ if (array_key_exists("cadastrarEvento", $_POST)) {
 
 	if ($nome == "" || $data == "" || $horainicial == "" || $horafinal == "" || $local == "" || $descricao == "" || $ingresso == "" || $categoria == "" || $estrutura == "") {
 		echo "Preencha todos os campos";
-		header("Location: adiciona-evento.php");
+		header("Location: ../view/adiciona-evento.php");
 	} else {
 		$validate = true;
 	}
@@ -60,9 +60,17 @@ if (array_key_exists("cadastrarEvento", $_POST)) {
 
 
 	if ($validate == true) {
+		// session_start();
+		// $eventoCadastradoOK = 1;
+		// $_SESSION['eventoCadastradoOK'] = $eventoCadastradoOK;
 		echo "Evento adicionado com sucesso";
+		header("Location: ../view/lista-evento.php");
 	} else {
+		// session_start();
+		// $eventoCadastradoErro = 0;
+		// $_SESSION['eventoCadastradoErro'] = $eventoCadastradoErro;
 		echo "Evento não adicionado";
+		header("Location: ../view/lista-evento.php");
 	}
 	//header("Location: ../view/index.php");
 
@@ -90,10 +98,11 @@ if (array_key_exists('alterarEvento', $_POST)) {
 
 	if ($nome == "" || $data == "" || $horainicial == "" || $horafinal == "" || $local == "" || $descricao == "" || $ingresso == "" || $categoria == "" || $estrutura == "") {
 		echo "Preencha todos os campos";
-		header("Location: adiciona-evento.php");
+		header("Location: ../view/lista-evento.php");
 	} 
 	else {
 		$validate = true;
+		$_SESSION['eventoAlteradoOK'] = 1;
 	}
 
 	// $usuario = new Usuario(); está no escopo global de usuario.
@@ -108,15 +117,19 @@ if (array_key_exists('alterarEvento', $_POST)) {
 	$evento->setCategoria($categoria);
 	$evento->setEstrutura($estrutura);
 	$evento->setArquivo($arquivo);
-	echo 'chamando a função de alterar'.'<br>';;
 	$eventos->alteraEvent($evento);
 
-
 	if ($validate == true) {
-		echo "O evento foi alterado com sucesso !";
+		// session_start();
+		// $alteraEventoOK = 1;
+		// $_SESSION['alteraEventoOK'] = $alteraEventoOK;
+		echo "Evento adicionado com sucesso";
 		header("Location: ../view/lista-evento.php");
 	} else {
-		echo "Evento não alterado, tente novamente !";
+		// session_start();
+		// $alteraErroEvento = 0;
+		// $_SESSION['alteraErroEvento'] = $alteraErroEvento;
+		echo "Evento não adicionado";
 		header("Location: ../view/lista-evento.php");
 	}
 }

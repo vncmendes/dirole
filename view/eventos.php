@@ -159,14 +159,14 @@
   </section>
 
   <?php
-    require_once 'eventsecond-content.php'
+    require_once 'eventsecond-content.php';
   ?>
 
 <script src="js/functions.js"></script>
 
   <?php
-  require_once '../controller/usuario.php' ?>
-  <?php require_once 'footer.php' ?>
+  require_once '../controller/usuario.php'; ?>
+  <?php require_once 'footer.php'; ?>
 </body>
 
 </html>

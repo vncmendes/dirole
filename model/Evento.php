@@ -84,7 +84,6 @@ class Evento extends Crud {
             }
         }
         public function alteraEvent(Evento $evento) {
-            echo 'entrei'."<br>";
             try {
             $nome = $evento->getNome();
             $data = $evento->getData();
@@ -97,7 +96,6 @@ class Evento extends Crud {
             $categoria = $evento->getCategoria();
             $estrutura = $evento->getEstrutura();
             $arquivo = $evento->getArquivo();
-            echo '2'."<br>";
 
             $id = "select * from eventos order by id desc";
             $stmtId = Banco::prepare($id);
@@ -106,7 +104,6 @@ class Evento extends Crud {
             $idzao=$resultId[0]->id;
 
             $sql = "update eventos set nome=:nome, data=:data, horainicial=:horai, horafinal=:horaf, localizacao=:local, descricao=:descricao, gv=:gv, ingresso=:ingresso, arquivo=:arquivo where eventos.id = '".$idzao."' ";
-            echo '3'."<br>";
 
             $stmt = Banco::prepare($sql);
             $stmt->bindParam(':nome', $nome);
@@ -118,23 +115,16 @@ class Evento extends Crud {
             $stmt->bindParam(':gv', $gv);
             $stmt->bindParam(':ingresso', $ingresso);
             $stmt->bindParam(':arquivo', $arquivo);
-            echo '4'."<br>";
 
             $varExcluiCat = "delete from registra_eventocategoria where registra_eventocategoria.idevento = '".$idzao."' ";
             $rCat = Banco::prepare($varExcluiCat);
             $rCat->execute();
 
-            echo '5'."<br>";
-
             $varExcluiEst = "delete from registra_eventoestrutura where registra_eventoestrutura.idevento = '".$idzao."' ";
             $rEst = Banco::prepare($varExcluiEst);
             $rEst->execute();
 
-            echo 'to vindo até aqui'."<br>";
-
             if($stmt->execute()) {
-                echo 'to no execute depois dps delete'."<br>";
-        
                 $sqlId = "select * from eventos order by id desc";
 
                 $stmt12 = Banco::prepare($sqlId);
@@ -150,7 +140,6 @@ class Evento extends Crud {
                     $result2->execute();
         
                 }
-                echo 'passei o primeiro for'."<br>";
         
                 foreach ($estrutura as $codigo) {
                     $sql3= "insert into registra_eventoestrutura (idestrutura, idevento) values (:idestrutura, :idevento)";
@@ -159,8 +148,6 @@ class Evento extends Crud {
                     $result4->bindParam(':idevento', $idevento);
                     $result4->execute();
                 }
-                echo 'passei o 2'."<br>";
-        
             }
          }
                 catch (Exception $e) {

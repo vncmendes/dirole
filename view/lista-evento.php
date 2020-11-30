@@ -156,6 +156,34 @@
 			<?php endforeach ?>
 		</section>
 
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.5/sweetalert2.all.min.js"></script> -->
+    
+		<!-- < ?php
+//   	session_start();
+    if (isset($_SESSION['alteraErroEvento']) && $_SESSION['alteraErroEvento'] == 0) {
+    ?>
+    	<script type="text/javascript">
+            swal({
+                type: 'error',
+                title: 'Alteração Erro',
+                text: 'O Evento NÃO foi Alterado !',
+                footer: 'Tente Novamente !'
+            });
+        </script>
+    < ?php
+    }
+    if (isset($_SESSION['alteraEventoOK']) && $_SESSION['alteraEventoOK'] == 1) {
+    ?>
+       <script type="text/javascript">
+            swal({
+                type: 'sucess',
+                title: 'Alteração OK !',
+                text: 'O Evento foi Alterado com Sucesso !',
+                footer: 'Bora pro Rolê !!'
+            });
+        </script> 
+	< ?php } ?> -->
+		
 		<?php require_once 'footer.php' ?>	
 
 	</body>
