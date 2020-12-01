@@ -31,6 +31,7 @@ if (array_key_exists("cadastrarEvento", $_POST)) {
 	$ingresso = $_POST['ingresso'];
 	$categoria = $_POST['categoria'];
 	$estrutura = $_POST['estrutura'];
+	$id_provider = $_SESSION['id_provider'];
 	$arquivo = $_FILES['arquivo']['name'];
 	$arquivo_temp = $_FILES['arquivo']['tmp_name'];
 	$tamanho_arquivo = $_FILES['arquivo']['size'];
@@ -55,6 +56,7 @@ if (array_key_exists("cadastrarEvento", $_POST)) {
 	$evento->setCategoria($categoria);
 	$evento->setEstrutura($estrutura);
 	$evento->setArquivo($arquivo);
+	$evento->setId_provider($id_provider);
 
 	$eventos->insertEvent($evento);
 

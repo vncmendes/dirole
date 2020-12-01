@@ -142,23 +142,17 @@ $estruturas = $estrutura->selectAll();
 
 							<tr>
 								<td class="byeBorder" id="ce">Categoria<br>
-
 									<?php foreach ($categorias as $categoria) : ?>
 										<input type="checkbox" name="categoria[]" value="<?= $categoria->id ?>"><?= $categoria->nome ?><br>
 									<?php endforeach; ?>
 								</td>
-								<td class="byeBorder">
-
-								</td>
+								<td class="byeBorder"></td>
 
 								<td class="byeBorder">Estrutura<br>
-
 									<?php foreach ($estruturas as $estrutura) : ?>
 										<input type="checkbox" name="estrutura[]" value="<?= $estrutura->id ?>"><?= $estrutura->nome ?><br>
 									<?php endforeach; ?>
 								</td>
-
-
 							</tr>
 							<td class="byeBorder">Foto:</td>
 							<td class="byeBorder"><input type="file" name="arquivo"></td>
@@ -208,5 +202,4 @@ $estruturas = $estrutura->selectAll();
 	<?php require_once '../controller/evento.php';
 	require_once 'footer.php'; ?>
 </body>
-
 </html>

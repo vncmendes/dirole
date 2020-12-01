@@ -16,6 +16,7 @@ class Evento extends Crud {
     private $categoria;
     private $estrutura;
     private $arquivo;
+    private $id_provider;
     
     public function update($id_usuario) {}
 
@@ -33,13 +34,14 @@ class Evento extends Crud {
     $descricao = $evento->getDescricao();
     $gv = $evento->getGv();
     $ingresso = $evento->getIngresso();
+    $arquivo = $evento->getArquivo();
+    $id_provider = $evento->getId_provider();
     $categoria = $evento->getCategoria();
     $estrutura = $evento->getEstrutura();
-    $arquivo = $evento->getArquivo();
 
-    // $sql = "INSERT INTO $this->$table (nome, data, horainicial, horafinal, localizacao, descricao, gv, ingresso, arquivo) VALUES (:nome, :data, :horai, :horaf, :local, :descricao, :gv, :ingresso, :arquivo)";
+    // $sql = "INSERT INTO $this->$table (nome, data, horainicial, horafinal, localizacao, descricao, gv, ingresso, arquivo, id_provider) VALUES (:nome, :data, :horai, :horaf, :local, :descricao, :gv, :ingresso, :arquivo, :id_provider)";
 
-    $sql = "insert into eventos (nome, data, horainicial, horafinal, localizacao, descricao, gv, ingresso, arquivo) values (:nome, :data, :horai, :horaf, :local, :descricao, :gv, :ingresso, :arquivo)";
+    $sql = "insert into eventos (nome, data, horainicial, horafinal, localizacao, descricao, gv, ingresso, arquivo, id_provider) values (:nome, :data, :horai, :horaf, :local, :descricao, :gv, :ingresso, :arquivo, :id_provider)";
 
     $stmt = Banco::prepare($sql);
     $stmt->bindParam(':nome', $nome);
@@ -51,6 +53,7 @@ class Evento extends Crud {
     $stmt->bindParam(':gv', $gv);
     $stmt->bindParam(':ingresso', $ingresso);
     $stmt->bindParam(':arquivo', $arquivo);
+    $stmt->bindParam(':id_provider', $id_provider);
 
     if($stmt->execute()) {
 
@@ -281,17 +284,20 @@ class Evento extends Crud {
     public function getEstrutura() {
         return $this->estrutura;
     }
-
     public function setEstrutura($estrutura) {
         $this->estrutura = $estrutura;
     }
-
     public function getArquivo() {
         return $this->arquivo;
     }
-
     public function setArquivo($arquivo) {
         $this->arquivo = $arquivo;
+    }
+    public function getId_provider() {
+        return $this->id_provider;
+    }
+    public function setId_provider($id_provider) {
+        $this->id_provider = $id_provider;
     }
 }
 ?>

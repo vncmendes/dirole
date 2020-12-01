@@ -124,7 +124,7 @@ function deletarLembrete() {
 			}
 			var lembretesTemporario = [];
 			for (var i = 0; i < lembretesRecuperados.length; i++) {
-				if (lembretesRecuperados[i].id !=-1) {
+				if (lembretesRecuperados[i].id != -1) {
 					lembretesTemporario.push(lembretesRecuperados[i]);
 				}
 			}
@@ -181,7 +181,7 @@ function criandoLembrete() { //createRecordatorio
 	//var dos tempos
 	var referencia = new Date();
 	var id = referencia.getTime();
-	var data = referencia.toLocaleDateString(); //ver se fica com () ou não, se é função ou não.
+	var data = referencia.toLocaleDateString(); //ver se fica com () ou não, se é função ou não. toLocaleDateString();
 	var texto = conteudoTextArea;
 
 	//json = objeto javascript, tipo de retorno de dados.
@@ -190,6 +190,7 @@ function criandoLembrete() { //createRecordatorio
 	//function para ver se existe o lembrete
 	checkLembrete(lembrete); //comprovarRecordatorio
 	document.getElementById("texto").value = "";
+
 }
 
 function lembreteValido(lembretesExistentes) { //recordatorioValido ---- aqui ele bota no plural cuidar
@@ -221,16 +222,22 @@ function checkLembrete(lembrete) { //comprovarRecordatorio
 
 // recuperar lembretes
 function selecionarLembrete() {
-	var lembretes = document.getElementsByClassName("lembretes"); // erro aqui.
+	console.log('1');
+	var lembretes = document.getElementsByClassName("lembrete");
+	console.log('2');
+	 // erro aqui. talvez seja getElementById();
 	for (var i = 0; i < lembretes.length; i++) {
+		console.log('3');
 		document.getElementById(lembretes[i].id).onclick = function(e) {
 			e.stopPropagation();
-			//casi tebga lembrete
+			//caso tenha lembrete
 			if (lembretesSelecionados.indexOf(this.id) == -1) {
+				console.log('4');
 				this.style.backgroundColor = "red";
 				lembretesSelecionados.push(this.id);
 			}
 			else {
+				console.log('5');
 				this.style.backgroundColor = "#41dff4";
 				for (var j = 0; j < lembretesSelecionados.length; j++) {
 					if(lembretesSelecionados[j] == this.id) {
@@ -238,13 +245,17 @@ function selecionarLembrete() {
 					}
 				}
 			}
+			console.log('6');
 			var lembreteTemporario = [];
-			for (var k = 0 ; k < lembretesSelecionados; k++) {
+			console.log(lembreteTemporario);
+			for (var k = 0; k < lembretesSelecionados.length; k++) {
 				if (lembretesSelecionados[k] != 0) {
 					lembreteTemporario.push(lembretesSelecionados[k]);
 				}
 			}
+			
 			lembretesSelecionados = lembreteTemporario;
+			console.log(lembretesSelecionados);
 		};
 	}
 }
@@ -252,7 +263,7 @@ function selecionarLembrete() {
 // salvar lembrete
 function salvarLembretes(lembretes) {
 	var lembretesJSON = JSON.stringify(lembretes);
-	localStorage.setItem("lembretes", lembretesJSON); // no código fica setItem("re]", lembretesJSON);
+	localStorage.setItem("lembretes", lembretesJSON);
 }
 
 //exibir itens
@@ -284,7 +295,7 @@ function formatarLembrete(lembrete) {
 	html += '<small><i class="fa fa-calendar-alt" aria-hidden="true"></i>' + lembrete.data + '</small>';
 	html += '</div>';
 	html += '<div class="col-6 text-right">';
-	html += '<small><i class="fa fa-window-close" aria-hidden="true"></i></small>';
+	// html += '<small><i class="fa fa-window-close" aria-hidden="true"></i></small>';
 	html += '</div>';
 	html += '</div>';
 	html += '<br>';
@@ -300,12 +311,12 @@ function formatarLembrete(lembrete) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-	console.log('bombo !');
+	console.log('rodando OK !');
 	document.getElementById("buttonSave").onclick = criandoLembrete;
-	console.log('até aqui vem?');
 	document.getElementById("buttonDelete").onclick = deletarLembrete;
 	mostrarLembretes();
 	selecionarLembrete();
+
 });
 
 // end functions reminderJS
