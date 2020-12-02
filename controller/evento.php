@@ -1,5 +1,4 @@
 <?php
-
 require_once '../view/head.php';
 require_once "../model/Evento.php";
 require_once "../model/Categoria.php";
@@ -57,31 +56,25 @@ if (array_key_exists("cadastrarEvento", $_POST)) {
 	$evento->setEstrutura($estrutura);
 	$evento->setArquivo($arquivo);
 	$evento->setId_provider($id_provider);
-
 	$eventos->insertEvent($evento);
-
 
 	if ($validate == true) {
 		// session_start();
-		// $eventoCadastradoOK = 1;
-		// $_SESSION['eventoCadastradoOK'] = $eventoCadastradoOK;
-		echo "Evento adicionado com sucesso";
-		// header("Location: ../view/lista-evento.php");
+		$eventoCadastradoOK = 1;
+		$_SESSION['eventoCadastradoOK'] = $eventoCadastradoOK;
+		@header("Location: ../view/lista-evento.php");
 	} else {
 		// session_start();
-		// $eventoCadastradoErro = 0;
-		// $_SESSION['eventoCadastradoErro'] = $eventoCadastradoErro;
-		echo "Evento não adicionado";
-		// header("Location: ../view/lista-evento.php");
+		$eventoCadastradoErro = 0;
+		$_SESSION['eventoCadastradoErro'] = $eventoCadastradoErro;
+		header("Location: ../view/lista-evento.php");
 	}
-	//header("Location: ../view/index.php");
-
-
 }
 
 if (array_key_exists('alterarEvento', $_POST)) {
 	$validate = false;
 
+	$id = $_POST['id'];
 	$nome = $_POST['nome'];
 	$data = $_POST['data'];
 	$horainicial = $_POST['horai'];
@@ -101,13 +94,13 @@ if (array_key_exists('alterarEvento', $_POST)) {
 	if ($nome == "" || $data == "" || $horainicial == "" || $horafinal == "" || $local == "" || $descricao == "" || $ingresso == "" || $categoria == "" || $estrutura == "") {
 		echo "Preencha todos os campos";
 		header("Location: ../view/lista-evento.php");
-	} 
-	else {
+	} else {
 		$validate = true;
 		$_SESSION['eventoAlteradoOK'] = 1;
 	}
 
 	// $usuario = new Usuario(); está no escopo global de usuario.
+	$evento->setId($id);
 	$evento->setNome($nome);
 	$evento->setData($data);
 	$evento->setHorai($horainicial);
@@ -122,16 +115,14 @@ if (array_key_exists('alterarEvento', $_POST)) {
 	$eventos->alteraEvent($evento);
 
 	if ($validate == true) {
-		// session_start();
-		// $alteraEventoOK = 1;
-		// $_SESSION['alteraEventoOK'] = $alteraEventoOK;
-		echo "Evento adicionado com sucesso";
+		session_start();
+		$alteraEventoOK = 1;
+		$_SESSION['alteraEventoOK'] = $alteraEventoOK;
 		header("Location: ../view/lista-evento.php");
 	} else {
-		// session_start();
-		// $alteraErroEvento = 0;
-		// $_SESSION['alteraErroEvento'] = $alteraErroEvento;
-		echo "Evento não adicionado";
+		session_start();
+		$alteraErroEvento = 0;
+		$_SESSION['alteraErroEvento'] = $alteraErroEvento;
 		header("Location: ../view/lista-evento.php");
 	}
 }

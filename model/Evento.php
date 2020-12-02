@@ -1,7 +1,8 @@
-<?php 
+<?php
 include_once 'Crud.php';
 
-class Evento extends Crud {
+class Evento extends Crud
+{
 
     protected $table = "eventos";
     private $id;
@@ -17,77 +18,80 @@ class Evento extends Crud {
     private $estrutura;
     private $arquivo;
     private $id_provider;
-    
-    public function update($id_usuario) {}
 
-    public function insert() {}
-
-    public function insertEvent(Evento $evento) {
-
-    try {
-
-    $nome = $evento->getNome();
-    $data = $evento->getData();
-    $horai = $evento->getHorai();
-    $horaf = $evento->getHoraf();
-    $local = $evento->getLocal();
-    $descricao = $evento->getDescricao();
-    $gv = $evento->getGv();
-    $ingresso = $evento->getIngresso();
-    $arquivo = $evento->getArquivo();
-    $id_provider = $evento->getId_provider();
-    $categoria = $evento->getCategoria();
-    $estrutura = $evento->getEstrutura();
-
-    // $sql = "INSERT INTO $this->$table (nome, data, horainicial, horafinal, localizacao, descricao, gv, ingresso, arquivo, id_provider) VALUES (:nome, :data, :horai, :horaf, :local, :descricao, :gv, :ingresso, :arquivo, :id_provider)";
-
-    $sql = "insert into eventos (nome, data, horainicial, horafinal, localizacao, descricao, gv, ingresso, arquivo, id_provider) values (:nome, :data, :horai, :horaf, :local, :descricao, :gv, :ingresso, :arquivo, :id_provider)";
-
-    $stmt = Banco::prepare($sql);
-    $stmt->bindParam(':nome', $nome);
-    $stmt->bindParam(':data', $data);
-    $stmt->bindParam(':horai', $horai);
-    $stmt->bindParam(':horaf', $horaf);
-    $stmt->bindParam(':local', $local);
-    $stmt->bindParam(':descricao', $descricao);
-    $stmt->bindParam(':gv', $gv);
-    $stmt->bindParam(':ingresso', $ingresso);
-    $stmt->bindParam(':arquivo', $arquivo);
-    $stmt->bindParam(':id_provider', $id_provider);
-
-    if($stmt->execute()) {
-
-        $sqlId = "select * from eventos order by id desc";
-        $stmt12 = Banco::prepare($sqlId);
-        $stmt12->execute();
-        $linhas=$stmt12->fetchAll();
-        $idevento=$linhas[0]->id;
-
-        foreach ($categoria as $codigo) {
-            $sql2= "insert into registra_eventocategoria (idcategoria, idevento) values (:idcategoria, :idevento)";
-            $result2 = Banco::prepare($sql2);
-            $result2->bindParam(':idcategoria', $codigo);
-            $result2->bindParam(':idevento', $idevento);
-            $result2->execute();
-
-        }
-
-        foreach ($estrutura as $codigo) {
-            $sql3= "insert into registra_eventoestrutura (idestrutura, idevento) values (:idestrutura, :idevento)";
-            $result4 = Banco::prepare($sql3);
-            $result4->bindParam(':idestrutura', $codigo);
-            $result4->bindParam(':idevento', $idevento);
-            $result4->execute();
-        }
-
+    public function update($id_usuario)
+    {
     }
- }
-        catch (Exception $e) {
-            print $e->getMessage();	
+
+    public function insert()
+    {
+    }
+
+    public function insertEvent(Evento $evento)
+    {
+
+        try {
+
+            $nome = $evento->getNome();
+            $data = $evento->getData();
+            $horai = $evento->getHorai();
+            $horaf = $evento->getHoraf();
+            $local = $evento->getLocal();
+            $descricao = $evento->getDescricao();
+            $gv = $evento->getGv();
+            $ingresso = $evento->getIngresso();
+            $arquivo = $evento->getArquivo();
+            $id_provider = $evento->getId_provider();
+            $categoria = $evento->getCategoria();
+            $estrutura = $evento->getEstrutura();
+
+            // $sql = "INSERT INTO $this->$table (nome, data, horainicial, horafinal, localizacao, descricao, gv, ingresso, arquivo, id_provider) VALUES (:nome, :data, :horai, :horaf, :local, :descricao, :gv, :ingresso, :arquivo, :id_provider)";
+
+            $sql = "insert into eventos (nome, data, horainicial, horafinal, localizacao, descricao, gv, ingresso, arquivo, id_provider) values (:nome, :data, :horai, :horaf, :local, :descricao, :gv, :ingresso, :arquivo, :id_provider)";
+
+            $stmt = Banco::prepare($sql);
+            $stmt->bindParam(':nome', $nome);
+            $stmt->bindParam(':data', $data);
+            $stmt->bindParam(':horai', $horai);
+            $stmt->bindParam(':horaf', $horaf);
+            $stmt->bindParam(':local', $local);
+            $stmt->bindParam(':descricao', $descricao);
+            $stmt->bindParam(':gv', $gv);
+            $stmt->bindParam(':ingresso', $ingresso);
+            $stmt->bindParam(':arquivo', $arquivo);
+            $stmt->bindParam(':id_provider', $id_provider);
+
+            if ($stmt->execute()) {
+
+                $sqlId = "select * from eventos order by id desc";
+                $stmt12 = Banco::prepare($sqlId);
+                $stmt12->execute();
+                $linhas = $stmt12->fetchAll();
+                $idevento = $linhas[0]->id;
+
+                foreach ($categoria as $codigo) {
+                    $sql2 = "insert into registra_eventocategoria (idcategoria, idevento) values (:idcategoria, :idevento)";
+                    $result2 = Banco::prepare($sql2);
+                    $result2->bindParam(':idcategoria', $codigo);
+                    $result2->bindParam(':idevento', $idevento);
+                    $result2->execute();
+                }
+
+                foreach ($estrutura as $codigo) {
+                    $sql3 = "insert into registra_eventoestrutura (idestrutura, idevento) values (:idestrutura, :idevento)";
+                    $result4 = Banco::prepare($sql3);
+                    $result4->bindParam(':idestrutura', $codigo);
+                    $result4->bindParam(':idevento', $idevento);
+                    $result4->execute();
+                }
             }
+        } catch (Exception $e) {
+            print $e->getMessage();
         }
-        public function alteraEvent(Evento $evento) {
-            try {
+    }
+    public function alteraEvent(Evento $evento)
+    {
+        try {
             $nome = $evento->getNome();
             $data = $evento->getData();
             $horai = $evento->getHorai();
@@ -100,13 +104,9 @@ class Evento extends Crud {
             $estrutura = $evento->getEstrutura();
             $arquivo = $evento->getArquivo();
 
-            $id = "select * from eventos order by id desc";
-            $stmtId = Banco::prepare($id);
-            $stmtId->execute();
-            $resultId=$stmtId->fetchAll();
-            $idzao=$resultId[0]->id;
+            $id = $evento->getId();
 
-            $sql = "update eventos set nome=:nome, data=:data, horainicial=:horai, horafinal=:horaf, localizacao=:local, descricao=:descricao, gv=:gv, ingresso=:ingresso, arquivo=:arquivo where eventos.id = '".$idzao."' ";
+            $sql = "update eventos set nome=:nome, data=:data, horainicial=:horai, horafinal=:horaf, localizacao=:local, descricao=:descricao, gv=:gv, ingresso=:ingresso, arquivo=:arquivo where eventos.id = '" . $id . "' ";
 
             $stmt = Banco::prepare($sql);
             $stmt->bindParam(':nome', $nome);
@@ -119,185 +119,206 @@ class Evento extends Crud {
             $stmt->bindParam(':ingresso', $ingresso);
             $stmt->bindParam(':arquivo', $arquivo);
 
-            $varExcluiCat = "delete from registra_eventocategoria where registra_eventocategoria.idevento = '".$idzao."' ";
+            $varExcluiCat = "delete from registra_eventocategoria where registra_eventocategoria.idevento = '" . $id . "' ";
             $rCat = Banco::prepare($varExcluiCat);
             $rCat->execute();
 
-            $varExcluiEst = "delete from registra_eventoestrutura where registra_eventoestrutura.idevento = '".$idzao."' ";
+            $varExcluiEst = "delete from registra_eventoestrutura where registra_eventoestrutura.idevento = '" . $id . "' ";
             $rEst = Banco::prepare($varExcluiEst);
             $rEst->execute();
 
-            if($stmt->execute()) {
-                $sqlId = "select * from eventos order by id desc";
-
-                $stmt12 = Banco::prepare($sqlId);
-                $stmt12->execute();
-                $linhas=$stmt12->fetchAll();
-                $idevento=$linhas[0]->id;
-        
+            if ($stmt->execute()) {
                 foreach ($categoria as $codigo) {
-                    $sql2= "insert into registra_eventocategoria (idcategoria, idevento) values (:idcategoria, :idevento)";
+                    $sql2 = "insert into registra_eventocategoria (idcategoria, idevento) values (:idcategoria, :idevento)";
                     $result2 = Banco::prepare($sql2);
                     $result2->bindParam(':idcategoria', $codigo);
-                    $result2->bindParam(':idevento', $idevento);
+                    $result2->bindParam(':idevento', $id);
                     $result2->execute();
-        
                 }
-        
+
                 foreach ($estrutura as $codigo) {
-                    $sql3= "insert into registra_eventoestrutura (idestrutura, idevento) values (:idestrutura, :idevento)";
+                    $sql3 = "insert into registra_eventoestrutura (idestrutura, idevento) values (:idestrutura, :idevento)";
                     $result4 = Banco::prepare($sql3);
                     $result4->bindParam(':idestrutura', $codigo);
-                    $result4->bindParam(':idevento', $idevento);
+                    $result4->bindParam(':idevento', $id);
                     $result4->execute();
                 }
             }
-         }
-                catch (Exception $e) {
-                    print $e->getMessage();	
-                    }
-                }
+        } catch (Exception $e) {
+            print $e->getMessage();
+        }
+    }
 
-    public function selectAllLimited(){
+    public function selectAllLimited()
+    {
         $sql  = "SELECT * FROM $this->table limit 8";
         $stmt = Banco::prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public function selectAllPagination($inicio, $quantidade_pages){
+    public function selectAllPagination($inicio, $quantidade_pages)
+    {
         $sql  = "SELECT * FROM $this->table limit $inicio, $quantidade_pages";
         $stmt = Banco::prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public function selectAllWithIdProv() {
+    public function selectAllWithIdProv()
+    {
         $sql  = "SELECT eventos.nome, id, localizacao, ingresso, horainicial, horafinal, gv, estacionamento, descricao, data, arquivo FROM eventos, provider WHERE eventos.id_provider = provider.id_provider";
         $stmt = Banco::prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public function listaEventoCategoria($idevento) {
+    public function listaEventoCategoria($idevento)
+    {
 
-    $registra_eventocategorias = array();
-    $sql = "select * from registra_eventocategoria join categoria on registra_eventocategoria.idcategoria = categoria.id where idevento = :idevento";
-    $stmt = Banco::prepare($sql);
-    $stmt->bindParam(':idevento', $idevento, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetchAll();
+        $registra_eventocategorias = array();
+        $sql = "select * from registra_eventocategoria join categoria on registra_eventocategoria.idcategoria = categoria.id where idevento = :idevento";
+        $stmt = Banco::prepare($sql);
+        $stmt->bindParam(':idevento', $idevento, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
-    public function listaEventoEstrutura($idevento) {
-        
-    $registra_eventoestruturas = array();
-    $sql = "select * from registra_eventoestrutura join estrutura on registra_eventoestrutura.idestrutura = estrutura.id where idevento = :idevento";
-    $stmt = Banco::prepare($sql);
-    $stmt->bindParam(':idevento', $idevento, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetchAll();
+    public function listaEventoEstrutura($idevento)
+    {
+
+        $registra_eventoestruturas = array();
+        $sql = "select * from registra_eventoestrutura join estrutura on registra_eventoestrutura.idestrutura = estrutura.id where idevento = :idevento";
+        $stmt = Banco::prepare($sql);
+        $stmt->bindParam(':idevento', $idevento, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
- //% ~~ GETTER AND SETTERS ~~ %//
+    //% ~~ GETTER AND SETTERS ~~ %//
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function getNome() {
+    public function getNome()
+    {
         return $this->nome;
     }
 
-    public function setNome($nome) {
+    public function setNome($nome)
+    {
         $this->nome = $nome;
     }
 
-    public function getData() {
+    public function getData()
+    {
         return $this->data;
     }
 
-    public function setData($data) {
+    public function setData($data)
+    {
         $this->data = $data;
     }
 
-    public function getHorai() {
+    public function getHorai()
+    {
         return $this->horai;
     }
 
-    public function setHorai($horai) {
+    public function setHorai($horai)
+    {
         $this->horai = $horai;
     }
 
-    public function getHoraf() {
+    public function getHoraf()
+    {
         return $this->horaf;
     }
 
-    public function setHoraf($horaf) {
+    public function setHoraf($horaf)
+    {
         $this->horaf = $horaf;
     }
 
-    public function getLocal() {
+    public function getLocal()
+    {
         return $this->local;
     }
 
-    public function setLocal($local) {
+    public function setLocal($local)
+    {
         $this->local = $local;
     }
 
-    public function getDescricao() {
+    public function getDescricao()
+    {
         return $this->descricao;
     }
 
-    public function setDescricao($descricao) {
+    public function setDescricao($descricao)
+    {
         $this->descricao = $descricao;
     }
 
-    public function getGv() {
+    public function getGv()
+    {
         return $this->gv;
     }
 
-    public function setGv($gv) {
+    public function setGv($gv)
+    {
         $this->gv = $gv;
     }
 
-    public function getIngresso() {
+    public function getIngresso()
+    {
         return $this->ingresso;
     }
 
-    public function setIngresso($ingresso) {
+    public function setIngresso($ingresso)
+    {
         $this->ingresso = $ingresso;
     }
 
-    public function getCategoria() {
+    public function getCategoria()
+    {
         return $this->categoria;
     }
 
-    public function setCategoria($categoria) {
+    public function setCategoria($categoria)
+    {
         $this->categoria = $categoria;
     }
 
-    public function getEstrutura() {
+    public function getEstrutura()
+    {
         return $this->estrutura;
     }
-    public function setEstrutura($estrutura) {
+    public function setEstrutura($estrutura)
+    {
         $this->estrutura = $estrutura;
     }
-    public function getArquivo() {
+    public function getArquivo()
+    {
         return $this->arquivo;
     }
-    public function setArquivo($arquivo) {
+    public function setArquivo($arquivo)
+    {
         $this->arquivo = $arquivo;
     }
-    public function getId_provider() {
+    public function getId_provider()
+    {
         return $this->id_provider;
     }
-    public function setId_provider($id_provider) {
+    public function setId_provider($id_provider)
+    {
         $this->id_provider = $id_provider;
     }
 }
-?>
