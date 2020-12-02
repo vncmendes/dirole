@@ -105,7 +105,7 @@ class Evento extends Crud
             $arquivo = $evento->getArquivo();
 
             $id = $evento->getId();
-
+            
             $sql = "update eventos set nome=:nome, data=:data, horainicial=:horai, horafinal=:horaf, localizacao=:local, descricao=:descricao, gv=:gv, ingresso=:ingresso, arquivo=:arquivo where eventos.id = '" . $id . "' ";
 
             $stmt = Banco::prepare($sql);

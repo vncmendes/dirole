@@ -38,18 +38,18 @@
             <div class="singleMainBox">
                 <div class="cardimage">
                             <!-- <li><img src="/images/< ?= $evento->arquivo ?>"></li> // mais ou menos certo -->
-                            <li style="list-style: none;"><img src="images/01.jpg" alt=""></li>
+                            <li style="list-style: none;"><img src="images/<?= $evento->arquivo?>" alt=""></li>
                 </div>
                 <div class="singleCard">
                     <ul>
                         <div class="singleInfos"> 
-                            <li>Nome do Evento: <?=$evento->nome?></li>
-                            <li>Data: <?=$evento->data?></li>
-                            <li>Hora Inicial: <?=$evento->horainicial?></li>
-                            <li>Hora Final: <?=$evento->horafinal?></li>
-                            <li>Localização: <?=$evento->localizacao?></li>
-                            <li>Descrição: <?=$evento->descricao?></li>
-                            <li>Ingresso: <?=$evento->ingresso?></li>
+                            <li><b>Nome</b>: <?=$evento->nome?></li>
+                            <li><b>Data</b>: <?=$evento->data?></li>
+                            <li><b>Hora Inicial</b>: <?=$evento->horainicial?></li>
+                            <li><b>Hora Final</b>: <?=$evento->horafinal?></li>
+                            <li><b>Localização</b>: <?=$evento->localizacao?></li>
+                            <li><b>Descrição</b>: <?=$evento->descricao?></li>
+                            <li><b>Ingresso</b>: <?=$evento->ingresso?></li>
                             <?php   
                                 if($evento->gv == 0)  {       
                                     $sim="";
@@ -59,13 +59,12 @@
                                     $sim="checked";
                                     $nao="";
                                     } 
-                            ?>
-                                    <li>Guarda-Volumes</li>
-                                    <li><input  type="radio" value="1"  name="gv"<?=$sim?>>Sim</li>
-                                    <li><input type="radio" value="0"  name="gv"<?=$nao?>>Não</li>
+                                ?>
+                                    <li><b>Guarda-Volumes</b></li>
+                                    <li><input  type="radio" value="1"  name="gv"<?=$sim?>>Sim <input type="radio" value="0"  name="gv"<?=$nao?>>Não</li>
                                 
                                     <div class="singleEstCat">
-                                        <li>Categoria<br>
+                                        <li><b>Categorias</b><br>
                                             <?php foreach ($categorias as $categoria) :
                                                 if (in_array($categoria->id, $vetUsadas)) {
                                                     $checked = $categoria->nome . "<br>";
@@ -76,7 +75,7 @@
                                                 <?=$checked?>
                                             <?php endforeach; ?>
                                         </li> 
-                                        <li>Estrutura<br>
+                                        <li><b>Estrutura</b><br>
                                                 <?php foreach ($estruturas as $estrutura) :
                                                 if (in_array($estrutura->id, $vetEstUsadas)) {
                                                     $checked = $estrutura->nome . "<br>";
@@ -89,8 +88,11 @@
                                         </li>
                                     </div>  
                         </div>
+                                    <div style="display: flex; justify-content: center; padding-top: 5%;">
+                                        <button style="float: center;" class="btn btn-danger">Comprar</button>
+                                    </div>
                     </ul>
-             </div>
+                </div>
             </div>
         </div>
     </section>

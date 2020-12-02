@@ -140,7 +140,6 @@ function deletarLembrete() {
 			mostrarLembretes();
 			selecionarLembrete();
 		}
-
 	}
 }
 
@@ -311,7 +310,6 @@ function formatarLembrete(lembrete) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-	console.log('rodando OK !');
 	document.getElementById("buttonSave").onclick = criandoLembrete;
 	document.getElementById("buttonDelete").onclick = deletarLembrete;
 	mostrarLembretes();

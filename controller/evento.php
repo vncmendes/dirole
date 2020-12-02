@@ -38,6 +38,7 @@ if (array_key_exists("cadastrarEvento", $_POST)) {
 
 	if ($nome == "" || $data == "" || $horainicial == "" || $horafinal == "" || $local == "" || $descricao == "" || $ingresso == "" || $categoria == "" || $estrutura == "") {
 		echo "Preencha todos os campos";
+		$validate = false;
 		header("Location: ../view/adiciona-evento.php");
 	} else {
 		$validate = true;

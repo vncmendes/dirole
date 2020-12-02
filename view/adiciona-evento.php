@@ -92,68 +92,69 @@ $estruturas = $estrutura->selectAll();
 
 
 	<div class="principal">
-		<div class="container py-5">
+		<div style="max-width: 800px" class="container py-5">
 			<div class="row">
 				<div class="col-12 border bg-light">
 					<font face="DancingScript" class="py-2 display-4">Adicionando Evento</font>
 					<div class="conteudo flex-container bg-light" class="col-12">
 
 						<form action="" method="POST" name="formReg" id="formId" enctype="multipart/form-data">
-							<table class="table mx-5 py-5">
-								<tr>
-									<td class="byeBorder">Nome do Evento:</td>
-									<td class="byeBorder"><input class="form-control" type="text" name="nome"></td>
+							<table class="mx-5 py-5">
+								<tr class="mx-5 py-5">
+									<td class="byeBorder py-1"><b>Nome do Evento</b>:</td>
+									<td class="byeBorder py-1"><input class="form-control" type="text" name="nome"></td>
+								</tr>
+								<tr class="mx-5 py-5">
+									<td class="byeBorder py-1"><b>Data</b>:</td>
+									<td class="byeBorder py-1"><input class="form-control" type="date" max="2999-12-31" name="data"></td>
 								</tr>
 								<tr>
-									<td class="byeBorder">Data:</td>
-									<td class="byeBorder"><input class="form-control" type="date" name="data"></td>
+									<td class="byeBorder py-1"><b>Hora Inicial</b>:</td>
+									<td class="byeBorder py-1"><input class="form-control" type="time" name="horai"></td>
 								</tr>
 								<tr>
-									<td class="byeBorder">Hora Inicial:</td>
-									<td class="byeBorder"><input class="form-control" type="time" name="horai"></td>
+									<td class="byeBorder py-1"><b>Hora Final</b>:</td>
+									<td class="byeBorder py-1"><input class="form-control" type="time" name="horaf"></td>
 								</tr>
 								<tr>
-									<td class="byeBorder">Hora Final:</td>
-									<td class="byeBorder"><input class="form-control" type="time" name="horaf"></td>
+									<td class="byeBorder py-1"><b>Localização</b>:</td>
+									<td class="byeBorder py-1"><input class="form-control" type="text" name="localizacao"></td>
 								</tr>
 								<tr>
-									<td class="byeBorder">Localização:</td>
-									<td class="byeBorder"><input class="form-control" type="text" name="localizacao"></td>
+									<td class="byeBorder py-1"><b>Descrição</b>:</td>
+									<td class="byeBorder py-1"> <textarea class="form-control" name="descricao"></textarea></td>
 								</tr>
 								<tr>
-									<td class="byeBorder">Descrição:</td>
-									<td class="byeBorder"> <textarea class="form-control" name="descricao"></textarea></td>
+									<td class="byeBorder py-2"><b>Guarda-Volumes</b></td>
+									<td class="byeBorder py-2"><input type="radio" value="1" name="gv">Sim <input type="radio" value="0" name="gv" checked>Não</td>
 								</tr>
 								<tr>
-									<td class="byeBorder">Guarda-Volumes</td>
-									<td class="byeBorder"><input type="radio" value="1" name="gv">Sim</td>
-									<td class="byeBorder"><input type="radio" value="0" name="gv" checked>Não</td>
-								</tr>
-								<tr>
-									<td class="byeBorder">Ingresso:</td>
+									<td class="byeBorder py-1"><b>Ingresso</b>:</td>
 									<td class="byeBorder"><input class="form-control" type="number" name="ingresso"></td>
 								</tr>
 
 								<tr>
-									<td class="byeBorder" id="ce">Categoria<br>
+									<td class="byeBorder py-1" id="ce"><b>Categoria</b><br>
 										<?php foreach ($categorias as $categoria) : ?>
 											<input type="checkbox" name="categoria[]" value="<?= $categoria->id ?>"><?= $categoria->nome ?><br>
 										<?php endforeach; ?>
 									</td>
-									<td class="byeBorder"></td>
+									<td class="byeBorder py-1"></td>
 
-									<td class="byeBorder">Estrutura<br>
+									<td class="byeBorder py-1"><b>Estrutura</b><br>
 										<?php foreach ($estruturas as $estrutura) : ?>
 											<input type="checkbox" name="estrutura[]" value="<?= $estrutura->id ?>"><?= $estrutura->nome ?><br>
 										<?php endforeach; ?>
 									</td>
 								</tr>
-								<td class="byeBorder">Foto:</td>
-								<td class="byeBorder"><input type="file" name="arquivo"></td>
+								<tr>
+									<td class="byeBorder py-1"><b>Foto:</td>
+									<td class="byeBorder py-1"><input type="file" name="arquivo"></td>
+								</tr>
 
 								<input type="hidden" name="max_file_size" value="200000">
-								<td class="byeBorder"><input class="btn btn-success" type="submit" name="cadastrarEvento" value="Submeter"></td>
-								<td class="byeBorder"><a class="btn btn-primary" href="index.php">Voltar</a></td>
+								<td class="byeBorder py-3"><input class="btn btn-success" type="submit" name="cadastrarEvento" value="Submeter"></td>
+								<td class="byeBorder py-3"><a class="btn btn-primary" href="index.php">Voltar</a></td>
 
 
 							</table>

@@ -18,6 +18,11 @@
               <a href='lista-usuario.php' class='nodecore1 navlinks1'>Lista Usuários</a>
           </li>
         <?php } ?>
+        <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1) { ?>
+          <li>
+              <a href="lista-evento.php" class="nodecore1 navlinks1">Meus Eventos</a>
+          </li>
+        <?php } ?>
         <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 0) { ?>
           <li>
             <a href="perfil.php" class="nodecore1 navlinks1">Perfil</a>
@@ -63,7 +68,7 @@
         </a>
       <?php } ?>
 
-      <form method="GET" action="pesquisa.php?pesquisa">
+      <form style="margin: 0"; method="GET" action="pesquisa.php?pesquisa">
           <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
           <input type="hidden" name="id">
       </form>

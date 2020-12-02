@@ -102,7 +102,7 @@ if (isset($_SESSION['logado']) && $_SESSION['nivel'] == 1000) {
 						<ul>
 							<div class="cardimage">
 								<!-- <li><img src="/images/< ?= $evento->arquivo ?>"></li> // mais ou menos certo -->
-								<li><img src="images/01.jpg" alt=""></li>
+								<li><img src="images/<?= $evento->arquivo?>" alt=""></li>
 							</div>
 
 							<div class="cardinfoMy">
@@ -144,7 +144,11 @@ if (isset($_SESSION['logado']) && $_SESSION['nivel'] == 1000) {
 										</form>
 									</li>
 									<li style="padding: 3% 5% 0 0">
-										<span href="index.php" class="btn btn-dark">Voltar</span>
+										<form action="index.php">
+											<button class="btn btn-dark" action="index.php" type="submit">Voltar</button>
+											<!-- <a href="view/index.php" class="btn btn-dark">Voltar</a> -->
+											<!-- <span href="view/index.php" class="btn btn-dark">Voltar</span> -->
+										</form>
 									</li>
 								</div>
 							</div>

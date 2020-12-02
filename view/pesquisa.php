@@ -74,13 +74,13 @@
                    <?php while($resultEventos = mysqli_fetch_array($result)) { ?>
                         <div class="cards">
                             <form action="evento.php" method="post">
-                                <input type="hidden" name="id" value="<?= $resultEventos['id'] ?>">
+                                <input type="hidden" name="id" value="<?= $resultEventos['id']?>">
                                 <button class="" type="hidden" name="ver">
                                 <a href="#">
                                     <ul>
                                         <div class="cardimage">
                                             <!-- <li><img src="/images/< ?= $evento->arquivo ?>"></li> // mais ou menos certo -->
-                                            <li><img src="images/01.jpg" alt=""></li>
+                                            <li><img src="images/<?=$resultEventos['arquivo']?>" alt=""></li>
                                         </div>
                                         <div class="cardinfo">
                                             <li>
@@ -119,7 +119,7 @@
                                     <ul>
                                         <div class="cardimage">
                                             <!-- <li><img src="/images/< ?= $evento->arquivo ?>"></li> // mais ou menos certo -->
-                                            <li><img src="images/01.jpg" alt=""></li>
+                                            <li><img src="images/<?=$resultEventos['arquivo']?>" alt=""></li>
                                         </div>
                                         <div class="cardinfo">
                                             <li>
@@ -141,10 +141,20 @@
                 </section> 
         <?php } ?>
 
-        <?php if(array_key_exists("estaSemana", $_GET)) {
-            $searchS = $_GET['estaSemana'];
-            if($searchS == 'semana') {
+        <?php if(array_key_exists("semana", $_GET)) {
+            $searchS = $_GET['semana'];
+            if($searchS == 1) {
                 $sqlEventoS = "SELECT * FROM eventos WHERE data BETWEEN CURDATE() and CURDATE() + 7";
+            }
+            elseif ($searchS == 2) {
+                $sqlEventoS = "SELECT * FROM eventos WHERE data BETWEEN CURDATE() and CURDATE() + 14";
+            }
+            elseif ($searchS == 3) {
+                $sqlEventoS = "SELECT * FROM eventos WHERE data BETWEEN CURDATE() and CURDATE() + 21";
+            }
+            elseif ($searchS == 4) {
+                $sqlEventoS = "SELECT * FROM eventos WHERE data BETWEEN CURDATE() and CURDATE() + 28";
+            }
                 $resultS = mysqli_query($conn, $sqlEventoS); ?>
         
                 <section class="eventcards">
@@ -152,13 +162,13 @@
                    <?php while($resultEventosS = mysqli_fetch_array($resultS)) { ?>
                         <div class="cards">
                             <form action="evento.php" method="post">
-                                <input type="hidden" name="id" value="< ?= $resultEventosS['id'] ?>">
+                                <input type="hidden" name="id" value="<?= $resultEventosS['id'] ?>">
                                 <button class="" type="hidden" name="ver">
                                 <a href="#">
                                     <ul>
                                         <div class="cardimage">
-                                            <li><img src="/images/< ?= $evento->arquivo ?>"></li>
-                                            <li><img src="images/01.jpg" alt=""></li>
+                                            <li><img src="images/<?= $resultEventosS['arquivo'] ?>"></li>
+                                            <!-- <li><img src="images/01.jpg" alt=""></li> -->
                                         </div>
                                         <div class="cardinfo">
                                             <li>
@@ -179,23 +189,7 @@
                     <?php } ?>
                 </section> 
             <?php } ?>
-        <?php } ?>
-
-         <!-- < ?php if(array_key_exists("categorias", $_GET)) {
-            $searchC = $_GET['categorias'];
-            if($searchC == 1) {
-                $sqlEventoC = "SELECT EVENTOS.NOME FROM EVENTOS, registra_eventocategoria rec, CATEGORIA c where EVENTOS.id = rec.idevento and c.nome like '%$searchC%'";
-                $resultC = mysqli_query($conn, $sqlEventoC); ?>
-        
-                <section class="eventcards">
-                    <div class="eventcardscontent">
-                    colocar as divs com os nomes das categorias e as imagens para linkar lá -->
-                <!-- < /section> 
-            < ?php } ?>
-        < ?php } ?> -->
-        
         <?php require_once 'footer.php'; ?>
-        
     </body>
 </html>
 

@@ -93,4 +93,47 @@
         </div>
     </div>
   </div>
+
+  <span style="">Semanas, Mês</span>
+  <div class="eventcategories-content">
+    <div class="eventcard-categories">
+      <ul>
+          <a href="pesquisa.php?semana=1">
+          <li><img src="images/fogos-de-artificio.svg" alt="icon"></li>
+            <li><a>Esta Semana</a></li>
+          </a>
+      </ul>
+    </div>
+    <div class="eventcard-categories">
+      <div class="eventcard-categories">
+        <ul>
+            <a href="pesquisa.php?semana=2">
+            <li><img src="images/garfo.svg" alt="icon"></li>
+              <li><a>Próxima Semana</a></li>
+            </a>
+        </ul>
+      </div>
+    </div>
+    <div class="eventcard-categories">
+      <div class="eventcard-categories">
+        <ul>
+            <a href="pesquisa.php?semana=3">
+            <li><img src="images/presente.svg" alt="icon"></li>
+              <li><a>Três Semanas</a></li>
+            </a>
+        </ul>
+      </div>
+    </div>
+    <div class="eventcard-categories">
+      <div class="eventcard-categories">
+        <ul>
+            <a href="pesquisa.php?semana=4">
+            <li><img src="images/felicidades.svg" alt="icon"></li>
+              <li><a>Um Mês</a></li>
+            </a>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </section>
