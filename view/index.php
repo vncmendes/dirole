@@ -258,14 +258,18 @@ $todosEventos = $eventos->selectAllLimited();
         <h2>FALE CONOSCO</h2>
       </div>
       <div class="contact-form">
-        <form class="form1" action="#" name="form">
+        <form class="form1" method="POST" action="contato.php" name="form">
           <fieldset>
             <label for="name"></label>
             <input type="text" name="name" pattern=".{3,}" placeholder="DIGITE SEU NOME" required>
+
             <label for="email"></label>
             <input type="text" name="email" placeholder="DIGITE SEU E-MAIL" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-            <label for="name"></label>
-            <textarea name="mesage" id="mesage" placeholder="ESCREVA UMA MENSAGEM" required></textarea>
+
+            <label for="subject"></label>
+            <input type="text" name="subject" pattern=".{3,}" placeholder="DIGITE O ASSUNTO" required>
+
+            <textarea name="msg" id="mesage" placeholder="ESCREVA UMA MENSAGEM" required></textarea>
             <label for="button"></label>
             <button name="btn" type="submit">Enviar</button>
           </fieldset>

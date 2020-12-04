@@ -91,15 +91,21 @@
               $cadastroSucesso = 1;
               $_SESSION['cadastroSucesso'] = $cadastroSucesso;
 
-            }else{
-                session_start();
+            }
+            else{
+                @session_start();
                 $emailErroMsg = 1;
                 $_SESSION['emailErroMsg'] = $emailErroMsg;
+                // 
+                
             }
-          }else{ // senhas diferentes
+            session_destroy();
+          }
+          else { // senhas diferentes
             $cadastroErroMsg = 1;
             $_SESSION['cadastroErroMsg'] = $cadastroErroMsg;
-          }         
+          }
+          session_destroy();
         }
 
         //######################################################################################
@@ -232,19 +238,20 @@
           $para = $email;
 
           if ($obj_retorno) {
-            $mail = new PHPMailer\PHPMailer\PHPMailer();
+            $mail = new PHPMailer\PHPMailer\PHPMailer(); // ver se isso está
             $mail->CharSet = 'UTF-8';
             $mail->Encoding = 'base64';
-            $mail->IsSMTP(); // enable SMTP
+            $mail->IsSMTP(); //enable SMTP
+            // var_dump ($mail->IsSMTP());
 
-            $mail->SMTPDebug = 0; // debugging: 1 = errors and messages, 2 = messages only
+            $mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
             $mail->SMTPAuth = true; // authentication enabled
             $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
             $mail->Host = "smtp.gmail.com";
             $mail->Port = 465; // or 587
             $mail->IsHTML(true);
-            $mail->Username = "viniciussmendes@gmail.com";
-            $mail->Password = "";
+            $mail->Username = "diroleventos@gmail.com";
+            $mail->Password = "981817dirole";
             $mail->SetFrom($para);
             $mail->Subject = "Recuperação de Senha";
             $mail->Body = "A sua nova senha é ". $senha;
@@ -252,13 +259,15 @@
 
             if (!$mail->Send()) {
               echo "Mailer Error: " . $mail->ErrorInfo;
-            } else {
+            } 
+            else {
               $usuario->setSenha($senha);
               $usuario->setEmail($email);
               $usuario->recuperarSenha($email, $senha);
               echo "<script>alert('Sucesso, agora verifique usa caixa do email');</script>";
               }
-          } else {
+          } 
+          else {
             echo "<script>alert('Email inválido');</script>";
             header("location: recuperarsenha.php");
           }

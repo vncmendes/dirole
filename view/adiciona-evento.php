@@ -156,11 +156,9 @@ $estruturas = $estrutura->selectAll();
 								<td class="byeBorder py-3"><input class="btn btn-success" type="submit" name="cadastrarEvento" value="Submeter"></td>
 								<td class="byeBorder py-3"><a class="btn btn-primary" href="index.php">Voltar</a></td>
 
-
 							</table>
 						</form>
 					</div>
-
 				</div>
 			</div>
 		</div>

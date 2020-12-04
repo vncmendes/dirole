@@ -88,15 +88,19 @@
               $cadastroSucesso = 1;
               $_SESSION['cadastroSucesso'] = $cadastroSucesso;
 
-            }else{
+            }
+            else {
                 session_start();
                 $emailErroMsg = 1;
                 $_SESSION['emailErroMsg'] = $emailErroMsg;
             }
-          }else{ // senhas diferentes
+            session_destroy();
+          }
+          else { // senhas diferentes
             $cadastroErroMsg = 1;
             $_SESSION['cadastroErroMsg'] = $cadastroErroMsg;
-          }         
+          }
+          session_destroy();      
         }
 
         //######################################################################################
