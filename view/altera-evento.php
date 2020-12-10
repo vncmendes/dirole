@@ -80,8 +80,12 @@ foreach ($vetEventoEstrutura as $key => $value) {
                   <td class="byeBorder"><input type="radio" value="0" name="gv" <?= $nao ?>>Não</td>
                 </tr>
                 <tr>
+									<td class="byeBorder py-2">Quantidade</td>
+									<td class="byeBorder py-2"><input class="form-control" type="text" name="qtd" value="<?=$evento->qtd ?>"></td>
+								</tr>
+                <tr>
                   <td class="byeBorder">Ingresso:</td>
-                  <td class="byeBorder"><input class="form-control" type="number" name="ingresso" value="<?= $evento->ingresso ?>"></td>
+                  <td class="byeBorder"><input class="form-control" type="text" name="ingresso" value="<?= $evento->ingresso ?>"></td>
                 </tr>
                 <tr>
                   <td class="byeBorder" id="ce">Categoria<br>

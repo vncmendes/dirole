@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once "../model/Evento.php";
-require_once "../model/EventoDAO.php";
 require_once '../controller/evento.php';
 require_once '../controller/usuario.php';
 require_once '../controller/provider.php';

@@ -160,7 +160,10 @@
                                                     <button type="submit" class="btn btn-warning my-2" name="emailRespo">Alterar</button>
                                                 </form>
                                             </div>
-                                        </div>      
+                                        </div>  
+                                        <!-- <div class="container">
+                                            <input value="< ?= echo $usuario_retorno->qtd_comp; ?>">
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>

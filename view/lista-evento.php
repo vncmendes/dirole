@@ -106,22 +106,29 @@ if (isset($_SESSION['logado']) && $_SESSION['nivel'] == 1000) {
 							</div>
 
 							<div class="cardinfoMy">
-								<li>Produtor: <?= $_SESSION['nome'] ?>
-								<li>Nome: <?= $evento->nome ?></li>
-								<li>Data: <?= $evento->data ?></li>
-								<li>Hora Inicial: <?= $evento->horainicial ?></li>
-								<li>Hora Final: <?= $evento->horafinal ?></li>
-								<li>Localizacão: <?= $evento->localizacao ?></li>
-								<li>Descrição: <?= $evento->descricao ?></li>
-								<li>Guarda-Volumes: <?= $evento->gv ?></li>
-								<li>Ingresso: <?= $evento->ingresso ?></li>
-								<li>Categoria:
+								<li><b>Produtor</b>: <?= $_SESSION['nome'] ?>
+								<li><b>Nome</b>: <?= $evento->nome ?></li>
+								<li><b>Data</b>: <?= $evento->data ?></li>
+								<li><b>Hora Inicial</b>: <?= $evento->horainicial ?></li>
+								<li><b>Hora Final</b>: <?= $evento->horafinal ?></li>
+								<li><b>Localizacão</b>: <?= $evento->localizacao ?></li>
+								<li><b>Descrição</b>: <?= $evento->descricao ?></li>
+								<!-- <li>Guarda-Volumes: < ?= if $evento->gv == '1' ? "Sim" : "Não" ?></li> -->
+								<?php if (($evento->gv) == 1) { ?>
+									<li><b>Guarda-Volumes</b>: <?= "Sim"?> </li>
+								<?php } 
+									else { ?>
+										<li><b>Guarda-Volumes</b>: <?= "Não"?> </li>
+								<?php } ?>
+								<!-- <li>Guarda-Volumes: < ?= $evento->gv ?></li> -->
+								<li><b>Valor</b>: <?= $evento->ingresso . " Reais" ?></li>
+								<li><b>Categoria</b>:
 									<?php
 									foreach ($registra_eventocategoria as $categoria) :
 										echo $categoria->nome ?>
 									<?php endforeach; ?>
 								</li>
-								<li>Estrutura:
+								<li><b>Estrutura</b>:
 									<?php
 									foreach ($registra_eventoestrutura as $estrutura) :
 										echo $estrutura->nome ?>

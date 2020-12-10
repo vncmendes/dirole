@@ -1120,7 +1120,8 @@ div img.eventphoro {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* border: 1px solid whitesmoke; */
+    width: 30%;
+    /* flex-wrap: ; */
     box-shadow: 2px 2px 50px 5px rgba(0, 0, 0, 0.5);
   }
   .perfil div {
@@ -1137,6 +1138,7 @@ div img.eventphoro {
     display: flex;
     flex-direction: column;
     justify-content: end;
+    width: 50%;
     box-shadow: 2px 2px 50px 2px rgba(0, 0, 0, 0.5);
   }
 

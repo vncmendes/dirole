@@ -129,8 +129,12 @@ $estruturas = $estrutura->selectAll();
 									<td class="byeBorder py-2"><input type="radio" value="1" name="gv">Sim <input type="radio" value="0" name="gv" checked>Não</td>
 								</tr>
 								<tr>
-									<td class="byeBorder py-1"><b>Ingresso</b>:</td>
-									<td class="byeBorder"><input class="form-control" type="number" name="ingresso"></td>
+									<td class="byeBorder py-2"><b>Quantidade</b></td>
+									<td class="byeBorder py-2"><input class="form-control" type="text" name="qtd"></td>
+								</tr>
+								<tr>
+									<td class="byeBorder py-1"><b>Valor</b>:</td>
+									<td class="byeBorder"><input class="form-control" type="text" name="ingresso"></td>
 								</tr>
 
 								<tr>

@@ -1,18 +1,13 @@
 <?php
-require_once '../view/head.php';
+// require_once '../view/head.php'; não faz sentido em um controller
 require_once "../model/Evento.php";
 require_once "../model/Categoria.php";
 require_once "../model/Estrutura.php";
-// require_once "../model/EventoDAO.php";
-// require_once "../model/CategoriaDAO.php";
-// require_once "../model/EstruturaDAO.php";
-// $eventoDAO = new EventoDAO();
+
 $eventos = new Evento();
 $evento = new Evento(); //objeto para uso exclusivo da alteração - não sei se tá certo.
 $categoria = new Categoria();
 $estrutura = new Estrutura();
-// $categoriaDAO = new CategoriaDAO();
-// $estruturaDAO = new EstruturaDAO();
 
 //<-- CONTROADOR ONDE É RECEBIDOA AS INFORMAÇÕES DE CADASTRO -->
 
@@ -27,6 +22,7 @@ if (array_key_exists("cadastrarEvento", $_POST)) {
 	$local = $_POST['localizacao'];
 	$descricao = $_POST['descricao'];
 	$gv = $_POST['gv'];
+	$qtd = $_POST['qtd'];
 	$ingresso = $_POST['ingresso'];
 	$categoria = $_POST['categoria'];
 	$estrutura = $_POST['estrutura'];
@@ -36,7 +32,7 @@ if (array_key_exists("cadastrarEvento", $_POST)) {
 	$tamanho_arquivo = $_FILES['arquivo']['size'];
 	$tipo_arquivo = $_FILES['arquivo']['type'];
 
-	if ($nome == "" || $data == "" || $horainicial == "" || $horafinal == "" || $local == "" || $descricao == "" || $ingresso == "" || $categoria == "" || $estrutura == "") {
+	if ($nome == "" || $data == "" || $horainicial == "" || $horafinal == "" || $local == "" || $descricao == "" || $ingresso == "" || $categoria == "" || $estrutura == "" || $qtd == "") {
 		echo "Preencha todos os campos";
 		$validate = false;
 		header("Location: ../view/adiciona-evento.php");
@@ -52,6 +48,7 @@ if (array_key_exists("cadastrarEvento", $_POST)) {
 	$evento->setLocal($local);
 	$evento->setDescricao($descricao);
 	$evento->setGv($gv);
+	$evento->setQtd($qtd);
 	$evento->setIngresso($ingresso);
 	$evento->setCategoria($categoria);
 	$evento->setEstrutura($estrutura);
@@ -83,6 +80,7 @@ if (array_key_exists('alterarEvento', $_POST)) {
 	$local = $_POST['localizacao'];
 	$descricao = $_POST['descricao'];
 	$gv = $_POST['gv'];
+	$qtd = $_POST['qtd'];
 	$ingresso = $_POST['ingresso'];
 	$categoria = $_POST['categoria'];
 	$estrutura = $_POST['estrutura'];
@@ -92,7 +90,7 @@ if (array_key_exists('alterarEvento', $_POST)) {
 	$tipo_arquivo = $_FILES['arquivo']['type'];
 
 
-	if ($nome == "" || $data == "" || $horainicial == "" || $horafinal == "" || $local == "" || $descricao == "" || $ingresso == "" || $categoria == "" || $estrutura == "") {
+	if ($nome == "" || $data == "" || $horainicial == "" || $horafinal == "" || $local == "" || $descricao == "" || $ingresso == "" || $categoria == "" || $estrutura == "" || $qtd == "") {
 		echo "Preencha todos os campos";
 		header("Location: ../view/lista-evento.php");
 	} else {
@@ -109,6 +107,7 @@ if (array_key_exists('alterarEvento', $_POST)) {
 	$evento->setLocal($local);
 	$evento->setDescricao($descricao);
 	$evento->setGv($gv);
+	$evento->setQtd($qtd);
 	$evento->setIngresso($ingresso);
 	$evento->setCategoria($categoria);
 	$evento->setEstrutura($estrutura);

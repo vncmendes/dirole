@@ -13,6 +13,7 @@ class Evento extends Crud
     private $local;
     private $descricao;
     private $gv;
+    private $qtd;
     private $ingresso;
     private $categoria;
     private $estrutura;
@@ -39,6 +40,7 @@ class Evento extends Crud
             $local = $evento->getLocal();
             $descricao = $evento->getDescricao();
             $gv = $evento->getGv();
+            $qtd = $evento->getQtd();
             $ingresso = $evento->getIngresso();
             $arquivo = $evento->getArquivo();
             $id_provider = $evento->getId_provider();
@@ -47,7 +49,7 @@ class Evento extends Crud
 
             // $sql = "INSERT INTO $this->$table (nome, data, horainicial, horafinal, localizacao, descricao, gv, ingresso, arquivo, id_provider) VALUES (:nome, :data, :horai, :horaf, :local, :descricao, :gv, :ingresso, :arquivo, :id_provider)";
 
-            $sql = "insert into eventos (nome, data, horainicial, horafinal, localizacao, descricao, gv, ingresso, arquivo, id_provider) values (:nome, :data, :horai, :horaf, :local, :descricao, :gv, :ingresso, :arquivo, :id_provider)";
+            $sql = "insert into eventos (nome, data, horainicial, horafinal, localizacao, descricao, gv, qtd, ingresso, arquivo, id_provider) values (:nome, :data, :horai, :horaf, :local, :descricao, :gv, :qtd, :ingresso, :arquivo, :id_provider)";
 
             $stmt = Banco::prepare($sql);
             $stmt->bindParam(':nome', $nome);
@@ -57,6 +59,7 @@ class Evento extends Crud
             $stmt->bindParam(':local', $local);
             $stmt->bindParam(':descricao', $descricao);
             $stmt->bindParam(':gv', $gv);
+            $stmt->bindParam(':qtd', $qtd);
             $stmt->bindParam(':ingresso', $ingresso);
             $stmt->bindParam(':arquivo', $arquivo);
             $stmt->bindParam(':id_provider', $id_provider);
@@ -99,14 +102,17 @@ class Evento extends Crud
             $local = $evento->getLocal();
             $descricao = $evento->getDescricao();
             $gv = $evento->getGv();
+            $qtd = $evento->getQtd();
             $ingresso = $evento->getIngresso();
             $categoria = $evento->getCategoria();
             $estrutura = $evento->getEstrutura();
             $arquivo = $evento->getArquivo();
-
+            // if (empty($arquivo)) {
+            //     $arquivo = $evento->setArquivo($arquivo); tentetiva de fazer ele setar a foto que já estava, qunado o campo não for preenchido.
+            // }
             $id = $evento->getId();
             
-            $sql = "update eventos set nome=:nome, data=:data, horainicial=:horai, horafinal=:horaf, localizacao=:local, descricao=:descricao, gv=:gv, ingresso=:ingresso, arquivo=:arquivo where eventos.id = '" . $id . "' ";
+            $sql = "update eventos set nome=:nome, data=:data, horainicial=:horai, horafinal=:horaf, localizacao=:local, descricao=:descricao, gv=:gv, qtd=:qtd, ingresso=:ingresso, arquivo=:arquivo where eventos.id = '" . $id . "' ";
 
             $stmt = Banco::prepare($sql);
             $stmt->bindParam(':nome', $nome);
@@ -116,6 +122,7 @@ class Evento extends Crud
             $stmt->bindParam(':local', $local);
             $stmt->bindParam(':descricao', $descricao);
             $stmt->bindParam(':gv', $gv);
+            $stmt->bindParam(':qtd', $qtd);
             $stmt->bindParam(':ingresso', $ingresso);
             $stmt->bindParam(':arquivo', $arquivo);
 
@@ -193,6 +200,25 @@ class Evento extends Crud
         $stmt->bindParam(':idevento', $idevento, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    public function executaCompra($idevento, $idcomprador) {
+        $sql = "INSERT into compra (idevento, idusuario) values ($idevento, $idcomprador)";
+        $stmt = Banco::prepare($sql);
+        $stmt->bindParam(':idevento', $idevento, PDO::PARAM_INT);
+        $stmt->bindParam(':idusuario', $idcomprador, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $sqlEvento = "UPDATE eventos set qtd = qtd - 1 where eventos.id = $idevento";
+        $stmtEvent = Banco::prepare($sqlEvento);
+        $stmtEvent->execute();
+
+        $sqlUsuario = "UPDATE usuarios set qtd_comp = qtd_comp + 1 where usuarios.id_usuario = $idcomprador";
+        $stmtUser = Banco::prepare($sqlUsuario);
+        $stmtUser->execute();
+
+        echo "NAO ESQUECER DE FAZER A PAGINA DE CONFIRMAÇÃO DA COMPRA ! OU NÃO !";
+
     }
 
     //% ~~ GETTER AND SETTERS ~~ %//
@@ -275,6 +301,17 @@ class Evento extends Crud
     public function setGv($gv)
     {
         $this->gv = $gv;
+    }
+
+
+    public function getQtd()
+    {
+        return $this->qtd;
+    }
+
+    public function setQtd($qtd)
+    {
+        $this->qtd = $qtd;
     }
 
     public function getIngresso()

@@ -49,7 +49,7 @@
                             <li><b>Hora Final</b>: <?=$evento->horafinal?></li>
                             <li><b>Localização</b>: <?=$evento->localizacao?></li>
                             <li><b>Descrição</b>: <?=$evento->descricao?></li>
-                            <li><b>Ingresso</b>: <?=$evento->ingresso?></li>
+                            <li><b>Valor</b>: <?=$evento->ingresso . " Reais"?></li>
                             <?php   
                                 if($evento->gv == 0)  {       
                                     $sim="";
@@ -89,7 +89,10 @@
                                     </div>  
                         </div>
                                     <div style="display: flex; justify-content: center; padding-top: 5%;">
-                                        <button style="float: center;" class="btn btn-danger">Comprar</button>
+                                        <form action="compra.php" method="POST">
+                                            <input type="hidden" name="id" value="<?= $evento->id?>">
+                                            <button type="submit" name="comprar" style="float: center;" class="btn btn-danger">Comprar</button>
+                                        </form>
                                     </div>
                     </ul>
                 </div>
