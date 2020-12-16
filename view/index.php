@@ -166,7 +166,8 @@ $todosEventos = $eventos->selectAllLimited();
                       <span class="eventname"> <?= $evento->nome ?> </span>
                     </li>
                     <li>
-                      <span class="eventdate"> <?= $evento->data ?> </span>
+                      <?php $dataOK = date_create($evento->data) ?>
+                      <span class="eventdate"> <?= date_format($dataOK, "d/m/Y") ?></span>
                     </li>
                     <li>
                       <span class="eventlocation"> <?= $evento->localizacao ?> </span>

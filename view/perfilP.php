@@ -135,13 +135,16 @@
                                         </div>      
                                     </div>
                                     <div class="container">
-                                        <div class="container text-center">
+                                        <a href="relatorio-provider.php" style="display:flex; justify-content:center; margin-bottom: 2%;" class="btn btn-danger">Gerar Relatório</a>
+                                    </div>
+                                    <div class="container">
+                                        <div class="container text-center" style="margin-bottom: 2%;>
                                             <h4 class="mx-5 text-center">Altere sua foto de perfil.</h4>
                                             <p><img src="<?php echo $_SESSION['foto']; ?>" alt="imagem de perfil"  class="img-fluid imagem-responsiva rounded-circle border border-dark mx-3 my-2" width="25%"></p>
                                             <br><br>
                                             <form class="formularioUpload form-group my-2 my-lg-0 ml-auto" enctype="multipart/form-data" method="POST" id="formularioUploadP" name="formulario" action="perfilP.php">
                                                 <input class="form-control my-2" type="file" name="foto" required="required">
-                                                <button id="upload" class="btn btn-secondary form-control btn-sm my-2 my-sm-0" name="upload" type="submit">Enviar</button>
+                                                <button id="upload" style="margin-bottom: 2%" class="btn btn-secondary form-control btn-sm my-2 my-sm-0" name="upload" type="submit">Enviar</button>
                                             </form>
                                         </div>
                                     </div>
@@ -193,6 +196,8 @@
            </div>
         </main>
     </section>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.5/sweetalert2.all.min.js"></script>
 
     <script>
         $(document).ready(function(){

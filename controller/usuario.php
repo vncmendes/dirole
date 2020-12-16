@@ -12,7 +12,7 @@ $adm = new Adm();
 ########################################################################################
 ######### inserir email responsável  ###################################################
 ########################################################################################
-// if (isset($_POST['emailRespo'])) {
+
 if (array_key_exists("emailRespo", $_POST)) {
   $email_responsavel = $_POST['emailResponsavel'];
   $id_usuario = $_POST['id_usuario'];
@@ -23,7 +23,7 @@ if (array_key_exists("emailRespo", $_POST)) {
 //######################################################################################
 // Alterar Senha ===============================================================
 //######################################################################################
-// if (isset($_POST['alterarSenha'])) {
+
 if (array_key_exists("alterarSenha", $_POST)) {
   if (!empty($_POST['senhaAntiga']) && !empty($_POST['novaSenha']) && !empty($_POST['confirmaNovaSenha'])) {
     if (isset($_POST['novaSenha']) >= 6 && isset($_POST['confirmaNovaSenha']) >= 6) {
@@ -69,7 +69,7 @@ if (array_key_exists("alterarSenha", $_POST)) {
 //######################################################################################
 // cadastrar usuario ===============================================================
 //######################################################################################
-// if (isset($_POST['cadastrar'])) {
+
 if (array_key_exists("cadastrar", $_POST)) {
   $nome = trim(strtoupper($_POST['nome']));
   $email = trim($_POST['email']);
@@ -110,6 +110,7 @@ if (array_key_exists("cadastrar", $_POST)) {
 //######################################################################################
 // editar usuario ===================================================================
 //######################################################################################
+
 if (isset($_GET['flag']) && $_GET['flag'] == 'editar') {
   //echo $_POST['sobrenome'];die;
   $id_usuario = $_POST['id_usuario'];
@@ -133,7 +134,7 @@ if (isset($_GET['flag']) && $_GET['flag'] == 'editar') {
 //######################################################################################
 // alterar perfil usuário
 //######################################################################################
-// antes era assim: if(isset($_POST['alterarPerfil'])) {}
+
 if (array_key_exists("alterarPerfil", $_POST)) {
   $nome = trim(strtoupper($_POST['nome']));
   $sobrenome = $_POST['sobrenome'];
@@ -165,6 +166,7 @@ if (isset($_POST['flag']) && $_POST['flag'] == 'excluir') {
 //######################################################################################
 // logar usuario ======================================================================
 //######################################################################################
+
 if (array_key_exists("logar", $_POST)) {
   $email = $_POST['email'];
   $senha = $_POST['senha'];
@@ -188,14 +190,10 @@ if (array_key_exists("logar", $_POST)) {
   }
 }
 
-// mostrar rank usuario geral =========================================
-//$obj_retorno  = $usuario->mostrarRank();
-// $foto = $obj_retorno->foto;
-//   $rank = $obj_retorno->rank;
 //######################################################################################
 // sair usuario ========================================================================
 //######################################################################################
-// if (isset($_POST['sair'])) {
+
 if (array_key_exists("sair", $_POST)) {
 
   header("location: logout.php");
@@ -203,6 +201,7 @@ if (array_key_exists("sair", $_POST)) {
 //######################################################################################  
 ///// UPLOAD DE IMAGEM DE PERFIL =======================================================
 //######################################################################################
+
 $msg = false;
 if (isset($_GET['flag']) && $_GET['flag'] == 'upload') {
   session_start();

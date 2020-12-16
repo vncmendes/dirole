@@ -3,7 +3,7 @@
     session_start();
     require_once'../controller/usuario.php';
     require_once'../controller/provider.php';
-    // require_once'../controller/controlador5.php';
+
       if(!isset ($_SESSION['logado']))
       {
         session_destroy();
@@ -93,77 +93,70 @@
         </div>
     </div>
     </header>
-       
-    <section class="containerMaster py-5">
+
+    <section class="containerMaster py-3">
         <main class="heightFixo">
            <div class="container-fluid">
                <div class="row my-2">
                    <div class="col">
                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-sm-4 px-2 py-2">
-                                    <div class="container text-center">
-                                        <h4 class="mx-5 text-center">Altere sua foto de perfil.</h4>
-                                        <p><img src="<?php echo $_SESSION['foto']; ?>" alt="imagem de perfil"  class="img-fluid imagem-responsiva rounded-circle border border-dark mx-3 my-2" width="80%"></p>
-                                        <br><br>
-                                        <form class="formularioUpload form-group my-2 my-lg-0 ml-auto" enctype="multipart/form-data" method="POST" id="formularioUpload" name="formulario" action="perfil.php">
-                                            <input class="form-control my-2" type="file" name="foto" required="required">
-                                            <button id="upload" class="btn btn-secondary form-control btn-sm my-2 my-sm-0" name="upload" type="submit">Enviar</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 px-2 py-2">
+                            <div class="row perfildiv2">
+                                <div class="perfil">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
-                                                <h4 class="mx-5 text-center">Alteração dos dados cadastrais</h4>
+                                                <h4 class="mx-5 text-center py-3">Alteração dos dados cadastrais</h4>
                                             </div>
                                         </div>
-                                       <!-- <div class="row">
-                                            <div class="col">
-                                                <p>Nivel de usuário: <?php //echo $_SESSION['nivel']; ?> </p>
-                                            </div>
-                                        </div>-->
                                         <div class="row">
                                             <div class="col">
-                                        <!-- < ?php //foreach ($usuario->select($id_usuario) as $key => $value) {  ?> -->
-                                              <form class="form-group" method="POST" name="editarNomePerfil" action="perfil.php">
-                                                <input class="form-control my-2" type="text" name="nome" value="<?php echo $usuario_retorno->nome; ?>">
-                                                <input class="form-control my-2" type="text" name="sobrenome" id="sobrenome" maxlength="15" value="<?php echo $usuario_retorno->sobrenome; ?>">
-                                                <input class="form-control mr-sm-2 my-1" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>" />
-                                                <button type="submit" class="btn btn-danger" name="alterarPerfil">Alterar</button>
-                                             <!--   <button class="btn btn-danger open-modal  " data-target="#modalExcluir" data-toggle="modal" data-id="<?php echo $value->id_usuario; ?>" type="button" name="excluir">Excluir</button> -->
-                                              </form>
-                                              <hr>
-                                              <button id="editarSenha" class="btn btn-warning">Editar Senha</button>
-                                              <div id="formAlterarSenha" style="display: none;">
-                                                <form class="form-group" method="POST" name="alterarSenha" action="perfil.php">
-                                                <input class="form-control my-2" type="password" name="senhaAntiga" placeholder="Digite a senha antiga" required="required" autocomplete="current-password">
-                                                <input class="form-control my-2" type="password" name="novaSenha" id="senha" placeholder="Digite a nova senha" required="required" minlength="6" onkeypress="validarTamanhoSenha()" autocomplete="new-password">
-                                                <div id="divx"></div>
-                                                <input class="form-control my-2" type="password" 
-                                                name="confirmaNovaSenha" id="confirmaSenha" placeholder="Confirme a nova senha" required="required" minlength="6" oninput="validarSenha('senha','confirmaSenha')" autocomplete="new-password">
-                                                <div id="divy"></div>
-                                                <input class="form-control mr-sm-2 my-1" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>" />
-                                                <button type="submit" class="btn btn-danger" name="alterarSenha">Concluir Alteração da Senha</button>
+                                                <form class="form-group" method="POST" name="editarNomePerfil" action="perfil.php">
+                                                    <input class="form-control my-2" type="text" name="nome" value="<?php echo $usuario_retorno->nome; ?>">
+                                                    <input class="form-control my-2" type="text" name="sobrenome" id="sobrenome" maxlength="15" value="<?php echo $usuario_retorno->sobrenome; ?>">
+                                                    <input class="form-control mr-sm-2 my-1" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>" />
+                                                    <button type="submit" class="btn btn-danger" name="alterarPerfil">Alterar</button>
                                                 </form>
-                                               </div>
+                                                <hr>
+                                                <button id="editarSenha" class="btn btn-warning">Editar Senha</button>
+                                                <div id="formAlterarSenha" style="display: none;">
+                                                    <form class="form-group" method="POST" name="alterarSenha" action="perfil.php">
+                                                    <input class="form-control my-2" type="password" name="senhaAntiga" placeholder="Digite a senha antiga" required="required" autocomplete="current-password">
+                                                    <input class="form-control my-2" type="password" name="novaSenha" id="senha" placeholder="Digite a nova senha" required="required" minlength="6" onkeypress="validarTamanhoSenha()" autocomplete="new-password">
+                                                    <div id="divx"></div>
+                                                    <input class="form-control my-2" type="password" 
+                                                    name="confirmaNovaSenha" id="confirmaSenha" placeholder="Confirme a nova senha" required="required" minlength="6" oninput="validarSenha('senha','confirmaSenha')" autocomplete="new-password">
+                                                    <div id="divy"></div>
+                                                    <input class="form-control mr-sm-2 my-1" type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>" />
+                                                    <button type="submit" class="btn btn-danger" name="alterarSenha">Concluir Alteração da Senha</button>
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </div> 
                                         <hr>
                                         <div class="row py-2">
                                             <div class="col">
                                                 <form method="POST" action="perfil.php" class="form-group" name="emailRespo">
-                                                    <p class="py-0"> Email do Responsável:</p>
-                                                    <input type="email" name="emailResponsavel" class="form-control py-2" placeholder="Menor de 18? Insira o email do responsável." value="<?php echo $usuario_retorno->email_responsavel; ?>" >
+                                                    <p class="py-0"> Email Alternativo:</p>
+                                                    <input type="email" name="emailResponsavel" class="form-control py-2" placeholder="Email alternativo para contato." value="<?php echo $usuario_retorno->email_responsavel; ?>" >
                                                     <input type="hidden" name="id_usuario" class="form-control" value="<?php echo $id_usuario; ?>">
                                                     <button type="submit" class="btn btn-warning my-2" name="emailRespo">Alterar</button>
                                                 </form>
                                             </div>
-                                        </div>  
-                                        <!-- <div class="container">
-                                            <input value="< ?= echo $usuario_retorno->qtd_comp; ?>">
-                                        </div>-->
+                                        </div>      
+                                    </div>
+                                    <div class="container">
+                                        <a href="relatorio-usuario.php" style="display:flex; justify-content:center; margin-bottom: 2%;" class="btn btn-danger">Gerar Relatório</a>
+                                    </div>
+                                    <div class="container">
+                                        <div class="container text-center" style="margin-bottom: 2%;">
+                                            <h4 class="mx-5 text-center">Altere sua foto de perfil.</h4>
+                                            <p><img src="<?php echo $_SESSION['foto']; ?>" alt="imagem de perfil"  class="img-fluid imagem-responsiva rounded-circle border border-dark mx-3 my-2" width="25%"></p>
+                                            <br><br>
+                                            <form class="formularioUpload form-group my-2 my-lg-0 ml-auto" enctype="multipart/form-data" method="POST" id="formularioUpload" name="formulario" action="perfil.php">
+                                                <input class="form-control my-2" type="file" name="foto" required="required">
+                                                <button id="upload" class="btn btn-secondary form-control btn-sm my-2 my-sm-0" name="upload" type="submit">Enviar</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -174,6 +167,8 @@
         </main>
     </section>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.5/sweetalert2.all.min.js"></script>
+
     <script>
         $(document).ready(function(){
           $("#editarSenha").click(function(){
@@ -183,7 +178,7 @@
           });
         });
     </script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -215,7 +210,7 @@
                 }
             }
         });
-    </script>
+    </script> -->
     <script type="text/javascript">
         /*########################################################*/
     $('#formularioUpload').submit(function(event){
@@ -239,6 +234,7 @@
                         footer: ''
                     });
                     document.location.reload(true);
+                    //este reload não deixa a msg aparecer.
                     }, 
             error: function(data){
                     alert("Formato inválido! Use PNG ou JPG");
@@ -307,5 +303,5 @@
     
 <!-- |||||||||||||||||||||  fooooooooooter   ||||||||||||||||||||||||       -->
 
-    <?php include"footer.php"; ?>
+    <?php require_once 'footer.php'; ?>
 </html>

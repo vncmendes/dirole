@@ -1124,9 +1124,9 @@ div img.eventphoro {
     /* flex-wrap: ; */
     box-shadow: 2px 2px 50px 5px rgba(0, 0, 0, 0.5);
   }
-  .perfil div {
+  /* .perfil div {
     margin-bottom: 2%;
-  }
+  } */
   .perfildiv2 {
     display: flex;
     justify-content: space-evenly;

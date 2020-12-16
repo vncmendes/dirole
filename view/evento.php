@@ -44,9 +44,12 @@
                     <ul>
                         <div class="singleInfos"> 
                             <li><b>Nome</b>: <?=$evento->nome?></li>
-                            <li><b>Data</b>: <?=$evento->data?></li>
-                            <li><b>Hora Inicial</b>: <?=$evento->horainicial?></li>
-                            <li><b>Hora Final</b>: <?=$evento->horafinal?></li>
+                            <?php $dataOK = date_create($evento->data) ?>
+                            <li><b>Data</b>: <?=date_format($dataOK, "d/m/Y")?></li>
+                            <?php $horaIOK = date_create($evento->horainicial) ?>
+                            <li><b>Hora Inicial</b>: <?= date_format($horaIOK, "H:i")?></li>
+                            <?php $horaFOK = date_create($evento->horafinal) ?>
+                            <li><b>Hora Final</b>: <?=date_format($horaFOK, "H:i")?></li>
                             <li><b>Localização</b>: <?=$evento->localizacao?></li>
                             <li><b>Descrição</b>: <?=$evento->descricao?></li>
                             <li><b>Valor</b>: <?=$evento->ingresso . " Reais"?></li>
