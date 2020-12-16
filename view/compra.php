@@ -30,10 +30,11 @@
                     <ul>
                         <div class="singleInfos"> 
                             <li><b>Nome</b>: <?=$evento->nome?></li>
-                            <li><b>Data</b>: <?=$evento->data?></li>
+                            <?php $dataOK = date_create($evento->data) ?>
+                            <li><b>Data</b>: <?=date_format($dataOK, "d/m/Y")?></li>
                             <li><b>Localização</b>: <?=$evento->localizacao?></li>
                             <li><b>Descrição</b>: <?=$evento->descricao?></li>
-                            <li><b>Valor</b>: <?=$evento->ingresso . " Reais";?></li><br>
+                            <li><b>Valor</b>: <?=$evento->ingresso . " R$";?></li><br>
                             <li class="text-center"><b>Quantidade</b>: <?=$evento->qtd ?></li>
                         </div>
 

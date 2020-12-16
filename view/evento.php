@@ -52,7 +52,7 @@
                             <li><b>Hora Final</b>: <?=date_format($horaFOK, "H:i")?></li>
                             <li><b>Localização</b>: <?=$evento->localizacao?></li>
                             <li><b>Descrição</b>: <?=$evento->descricao?></li>
-                            <li><b>Valor</b>: <?=$evento->ingresso . " Reais"?></li>
+                            <li><b>Valor</b>: <?=$evento->ingresso . " R$"?></li>
                             <?php   
                                 if($evento->gv == 0)  {       
                                     $sim="";
