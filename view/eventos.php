@@ -145,7 +145,8 @@ $todosEventos = $eventos->selectAll();
                       <span class="eventname"> <?= $evento->nome ?> </span>
                     </li>
                     <li>
-                      <span class="eventdate"> <?= $evento->data ?> </span>
+                      <?php $dataOK = date_create($evento->data) ?>
+                      <li><b>Data</b>: <?=date_format($dataOK, "d/m/Y")?></li>
                     </li>
                     <li>
                       <span class="eventlocation"> <?= $evento->localizacao ?> </span>
@@ -157,7 +158,7 @@ $todosEventos = $eventos->selectAll();
           </form>
         </div>
       <?php endforeach ?>
-  </section>
+    </section>
 
   <?php
   require_once 'eventsecond-content.php';

@@ -9,13 +9,10 @@ require_once "../controller/provider.php";
 require_once "../model/Evento.php";
 require_once "../controller/evento.php";
 
-require_once "../model/Compra.php";
-
 require_once "../model/fpdf182/fpdf.php";
 
 //ESTANCIANDO // SE TIVER O CONTROLLER NÃO PRECISA POIS JÁ ESTÁ ESTANCIADO LÁ
 $objCompra = new Evento();
-$objNovaCompra = new Compra();
 
 //Inicia O documento PDF com orientação P - Retrato (Picture) OU L - Paisagem (Landscape)
 $pdf = new FPDF("P");
@@ -39,10 +36,12 @@ DEFAULT: O valor padrão é I.
 
 $tipo_pdf = "I";
 
- foreach($objNovaCompra->selectAll() as $retCompra) {
+ foreach($objCompra->selectAll() as $retCompra) {
     $pdf->SetFont($fonte, $estilo, 15);
-    $pdf->Cell(190, 10, $retCompra->comprador, $border, 1, $alinhamentoC);
- }
+    $pdf->Cell(190, 10, $retCompra->nome, $border, 1, $alinhamentoC);
+    $pdf->Cell(190, 10, $retCompra->descricao, $border, 1, $alinhamentoC);
+    $pdf->Cell(190, 10, $retCompra->ingresso, $border, 1, $alinhamentoC);
+}
 
 // foreach($objMn->querySelectMenu() as $rstMn){
 // 	$pdf->SetY("50");

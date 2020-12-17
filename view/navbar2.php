@@ -5,7 +5,7 @@
         <li>
           <a href="eventos.php" class="nodecore1 navlinks1">Eventos</a>
         </li>
-        <?php if(isset($_SESSION['logado'])) { ?>
+        <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1) { ?>
           <li>
             <a href="adiciona-evento.php" class="nodecore1 navlinks1">Add Evento</a>
           </li>
@@ -33,12 +33,12 @@
           <li>
             <a href="perfilAdm.php" class="nodecore1 navlinks1">Perfil</a>
           </li>
-        <?php } 
+        <?php }  ?>
 
-              else { ?>
-                <li>
-                  <a href="perfilP.php" class="nodecore1 navlinks1">Perfil</a>
-                </li>
+        <?php if(isset($_SESSION['logado']) && $_SESSION['nivel'] == 1) { ?>
+          <li>
+            <a href="perfilP.php" class="nodecore1 navlinks1">Perfil</a>
+          </li>
         <?php } ?>
       </ul>
     </nav>
@@ -72,9 +72,11 @@
           <input type="text" name="pesquisar" onKeyPress="return goSearch(this, event)" placeholder="Procurar Evento" />
           <input type="hidden" name="id">
       </form>
+
       <?php if(isset($_SESSION['logado'])) { ?>
         <a href="logout.php" class="nodecore1 navlinks1">Sair</a>
       <?php } ?>
+      
     </div>
   </div>
 </header>
