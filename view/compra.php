@@ -41,6 +41,7 @@
                         <form action="../controller/compra.php" method="POST">
                             <div style="display: flex; justify-content: center; padding-top: 5%;">
                                 <?php
+                                if (isset($_SESSION['logado'])) {
                                     $qtd_evento = $evento->qtd;
                                     if($qtd_evento <= 0) { ?>
                                     <button  style="float: center;" class="btn btn-warning" disabled>Ingressos Insuficientes</button>
@@ -48,7 +49,8 @@
                                if ($evento->qtd > 0) { ?>
                                     <input type="hidden" name="id" value="<?= $evento->id?>">
                                     <button type="submit" name="finalizarCompra" style="float: center;" class="btn btn-danger">Finalizar Compra</button>
-                              <?php } ?>
+                              <?php } 
+                                } ?>
                             </div>
                         </form>
                     </ul>

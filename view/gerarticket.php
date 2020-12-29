@@ -9,10 +9,14 @@ require_once "../controller/provider.php";
 require_once "../model/Evento.php";
 require_once "../controller/evento.php";
 
+require_once "../model/Compra.php";
+require_once "../controller/compra.php";
+
 require_once "../model/fpdf182/fpdf.php";
 
 //ESTANCIANDO // SE TIVER O CONTROLLER NÃO PRECISA POIS JÁ ESTÁ ESTANCIADO LÁ
-$objCompra = new Evento();
+$objNovaCompra = new Compra();
+$idusuario = $_SESSION['id_usuario'];
 
 //Inicia O documento PDF com orientação P - Retrato (Picture) OU L - Paisagem (Landscape)
 $pdf = new FPDF("P");
@@ -20,7 +24,7 @@ $pdf->AddPage();
 //NOME DO ARQUIVO AO SER GERADO ou GERA O NOME DO ARQUIVO COM O LOCAL A SER SALVO
 $arquivo = "relatorio-geral.pdf";
 //DEFININDO FORMATACOES DO PDF
-$fonte = "Arial";
+$fonte = "Helvetica";
 $estilo = "B";
 $border = 1;
 $alinhamentoL = "L";
@@ -35,12 +39,30 @@ DEFAULT: O valor padrão é I.
 */
 
 $tipo_pdf = "I";
+$nomeEvento = "Evento: ";
+$nomeComprador = "Nome: ";
+$nomeValor = "Valor: ";
+$nomeData = "Data: ";
 
- foreach($objCompra->selectAll() as $retCompra) {
+ foreach($objNovaCompra->getUltima($idusuario) as $retCompra) {
+    $pdf->Image('images/'.'ticket1.jpg', 5, 5, 60);
+    $pdf->SetFont($fonte, $estilo, 12);
+    $pdf->Cell(100, 10, $objNovaCompra->tratarCaracter("Informações do Ingresso", 1), "T, L, R", 1, $alinhamentoC);
+    foreach($objNovaCompra->getCompra($idusuario) as $retCompra) {
     $pdf->SetFont($fonte, $estilo, 15);
-    $pdf->Cell(190, 10, $retCompra->nome, $border, 1, $alinhamentoC);
-    $pdf->Cell(190, 10, $retCompra->descricao, $border, 1, $alinhamentoC);
-    $pdf->Cell(190, 10, $retCompra->ingresso, $border, 1, $alinhamentoC);
+    $pdf->Cell(50, 10, $nomeEvento, "T, L", 0, $alinhamentoC);
+    $pdf->Cell(50, 10, $retCompra->evento, "T, R, B", 1, $alinhamentoC);
+
+    $pdf->Cell(50, 10, $nomeComprador, "T, L", 0, $alinhamentoC);
+    $pdf->Cell(50, 10, $retCompra->comprador, "R", 1, $alinhamentoC);
+    
+    $pdf->Cell(50, 10, $nomeValor, "L", 0, $alinhamentoC);
+    $pdf->Cell(50, 10, $retCompra->valor . " R$", "R", 1, $alinhamentoC);
+
+    $pdf->Cell(50, 10, $nomeData, "L, B", 0, $alinhamentoC);
+    $pdf->Cell(50, 10, $retCompra->datacompra, "B, R", 1, $alinhamentoC);
+    }
+    // $pdf->Cell(190, 10, $retCompra, $border, 1, $alinhamentoC);
 }
 
 // foreach($objMn->querySelectMenu() as $rstMn){

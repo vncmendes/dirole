@@ -5,10 +5,10 @@ require_once '../controller/evento.php';
 require_once '../controller/usuario.php';
 require_once '../controller/provider.php';
 
-if (!isset($_SESSION['logado'])) {
-  session_destroy();
-  @header("location: index.php");
-}
+// if (!isset($_SESSION['logado'])) {
+//   session_destroy();
+//   @header("location: index.php");
+// }
 
 if (isset($_SESSION['logado']) && $_SESSION['nivel'] == 0) {
   $nav = "<li>

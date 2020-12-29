@@ -24,37 +24,71 @@ class Compra extends Crud
   {
   }
 
+  public function getNomeEvento($idusuario) {
+    $sql = "SELECT evento from compra where idusuario = $idusuario";
+    $stmt = Banco::prepare($sql);
+    $stmt->bindParam(':idusuario', $idusuario, PDO::PARAM_INT);
+    $stmt->execute();
+  }
+
+  public function getCompraUser($idusuario) {
+    $sql = "SELECT count(id) from compra where idusuario = $idusuario";
+    $stmt = Banco::prepare($sql);
+    $stmt->bindParam(':idusuario', $idusuario, PDO::PARAM_INT);
+    $stmt->execute();
+  }
+
+  public function getCompra($idusuario) {
+    $sql  = "SELECT max(idevento), evento, datacompra, comprador, valor FROM $this->table WHERE idusuario = :idusuario";
+    // $sql  = "SELECT evento, datacompra, comprador FROM $this->table WHERE idusuario = :idusuario";
+		$stmt = Banco::prepare($sql);
+		$stmt->bindParam(':idusuario', $idusuario, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetchAll();
+  }
+
+  public function getUltima($idusuario) {
+    $sql  = "SELECT max(idevento) FROM $this->table WHERE idusuario = :idusuario";
+    // $sql  = "SELECT evento, datacompra, comprador FROM $this->table WHERE idusuario = :idusuario";
+		$stmt = Banco::prepare($sql);
+		$stmt->bindParam(':idusuario', $idusuario, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetchAll();
+  }
+
   public function executaCompra($idevento, $idcomprador)
   {
 
     $PDO = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
+
     $sqlComprador = $PDO->query("SELECT nome FROM usuarios where id_usuario = $idcomprador");
     $stmtNC = $sqlComprador->fetch(PDO::FETCH_ASSOC);
     $retNC = $stmtNC['nome'];
 
-    $sqlEvento = $PDO->query("SELECT nome FROM eventos where id = $idevento");
+    $sqlEvento = $PDO->query("SELECT nome, ingresso FROM eventos where id = $idevento");
     $stmtNE = $sqlEvento->fetch(PDO::FETCH_ASSOC);
     $retNE = $stmtNE['nome'];
+    $retV = $stmtNE['ingresso'];
 
     $sqlDataHoje = $PDO->query("SELECT CURDATE()");
     $stmtDH = $sqlDataHoje->fetch(PDO::FETCH_ASSOC);
     $retDH = $stmtDH['CURDATE()'];
-    var_dump($stmtDH);
 
-    $sql = "INSERT into compra (idevento, idusuario, comprador, evento, datacompra) values (:idevento, :idusuario, :retNC, :retNE, :retDH)";
+    $sql = "INSERT into compra (idevento, idusuario, comprador, evento, valor, datacompra) values (:idevento, :idusuario, :retNC, :retNE, :retV, :retDH)";
     // $sql = "INSERT into compra (idevento, idusuario) values ($idevento, $idcomprador)";
     $stmt = Banco::prepare($sql);
     $stmt->bindParam(':idevento', $idevento, PDO::PARAM_INT);
     $stmt->bindParam(':idusuario', $idcomprador, PDO::PARAM_INT);
     $stmt->bindParam(':retNC', $retNC, PDO::PARAM_STR);
     $stmt->bindParam(':retNE', $retNE, PDO::PARAM_STR);
+    $stmt->bindParam(':retV', $retV, PDO::PARAM_INT);
     $stmt->bindParam(':retDH', $retDH, PDO::PARAM_STR);
     $stmt->execute();
 
-    $sqlTodasCompras = $PDO->query("select * from compra");
-    $stmtTC = $sqlTodasCompras->fetchAll(PDO::FETCH_ASSOC);
+    // $sqlTodasCompras = $PDO->query("select * from compra");
+    // $stmtTC = $sqlTodasCompras->fetchAll(PDO::FETCH_ASSOC);
 
-    $sqlComprador = $PDO->query("SELECT nome FROM usuarios where id_usuario = $idcomprador");
+    // $sqlComprador = $PDO->query("SELECT nome FROM usuarios where id_usuario = $idcomprador");
 
     $sqlEvento = "UPDATE eventos set qtd = qtd - 1 where eventos.id = $idevento";
     $stmtEvent = Banco::prepare($sqlEvento);
@@ -65,6 +99,8 @@ class Compra extends Crud
     $stmtUser->execute();
     header("Location: ../view/compraefetuada.php");
   }
+
+
 
   public function getId()
   {
