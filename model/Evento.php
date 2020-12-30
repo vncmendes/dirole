@@ -20,16 +20,13 @@ class Evento extends Crud
     private $arquivo;
     private $id_provider;
 
-    public function update($id_usuario)
-    {
+    public function update($id_usuario) {
     }
 
-    public function insert()
-    {
+    public function insert() {
     }
 
-    public function insertEvent(Evento $evento)
-    {
+    public function insertEvent(Evento $evento) {
 
         try {
 
@@ -92,8 +89,7 @@ class Evento extends Crud
             print $e->getMessage();
         }
     }
-    public function alteraEvent(Evento $evento)
-    {
+    public function alteraEvent(Evento $evento) {
         try {
             $nome = $evento->getNome();
             $data = $evento->getData();
@@ -156,33 +152,28 @@ class Evento extends Crud
         }
     }
 
-    public function selectAllLimited()
-    {
+    public function selectAllLimited() {
         $sql  = "SELECT * FROM $this->table limit 8";
         $stmt = Banco::prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public function selectAllPagination($inicio, $quantidade_pages)
-    {
+    public function selectAllPagination($inicio, $quantidade_pages) {
         $sql  = "SELECT * FROM $this->table limit $inicio, $quantidade_pages";
         $stmt = Banco::prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public function selectAllWithIdProv()
-    {
+    public function selectAllWithIdProv() {
         $sql  = "SELECT eventos.nome, id, localizacao, ingresso, horainicial, horafinal, gv, estacionamento, descricao, data, arquivo FROM eventos, provider WHERE eventos.id_provider = provider.id_provider";
         $stmt = Banco::prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public function listaEventoCategoria($idevento)
-    {
-
+    public function listaEventoCategoria($idevento) {
         $registra_eventocategorias = array();
         $sql = "select * from registra_eventocategoria join categoria on registra_eventocategoria.idcategoria = categoria.id where idevento = :idevento";
         $stmt = Banco::prepare($sql);
@@ -191,9 +182,7 @@ class Evento extends Crud
         return $stmt->fetchAll();
     }
 
-    public function listaEventoEstrutura($idevento)
-    {
-
+    public function listaEventoEstrutura($idevento) {
         $registra_eventoestruturas = array();
         $sql = "select * from registra_eventoestrutura join estrutura on registra_eventoestrutura.idestrutura = estrutura.id where idevento = :idevento";
         $stmt = Banco::prepare($sql);

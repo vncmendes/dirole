@@ -13,7 +13,7 @@ class Provider extends Crud {
     private $nivel;
     private $rank;
     private $cpf;
-	  private $email_responsavel;
+    private $email_responsavel;
 
     public function updateEmailRes($id_provider) {
 
@@ -40,6 +40,7 @@ class Provider extends Crud {
         
         return $stmt->execute();
     }
+
     public function alteraSenha($id_provider){
         $sql = "UPDATE $this->table 
         SET senha=:senha 
@@ -84,10 +85,7 @@ class Provider extends Crud {
         $stmt->bindParam(':id_provider', $id_provider);
         return $stmt->execute();
     }
-    /**
-    *   
-    *   @return boolean
-    */
+    
     public function logar($email, $senha){
         // monta o sql
         $sql= "SELECT * FROM $this->table WHERE email = :email AND senha = :senha ";
@@ -104,6 +102,7 @@ class Provider extends Crud {
             return false;
         }
     }
+
     public function buscaFoto($id_provider){
         $sql= "SELECT * FROM $this->table WHERE id_provider = :id_provider";
         $stmt = Banco::prepare($sql);
@@ -111,6 +110,7 @@ class Provider extends Crud {
         $stmt->execute();
         return $stmt->fetch();
     }
+
     public function verificaSenha($id_provider){
         $sql= "SELECT * FROM $this->table WHERE id_provider = :id_provider";
         $stmt = Banco::prepare($sql);
@@ -131,7 +131,8 @@ class Provider extends Crud {
         $stmt = Banco::prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
-    } 
+    }
+
     public function recuperarSenha($email, $senha){
         $sql = "UPDATE $this->table 
         SET senha = :senha 
@@ -140,6 +141,14 @@ class Provider extends Crud {
         $stmt->bindParam(':senha', $this->senha);
         $stmt->bindParam(':email', $email);
         return $stmt->execute();
+    }
+
+    public function getEventos($id_provider) {
+        $sql  = "SELECT eventos.*, DATE_FORMAT(data, '%d/%m/%Y') data FROM eventos WHERE id_provider = :id_provider";
+        $stmt = Banco::prepare($sql);
+        $stmt->bindParam(':id_provider', $id_provider, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
   public function getTable() {

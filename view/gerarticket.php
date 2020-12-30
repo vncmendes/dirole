@@ -51,7 +51,7 @@ $nomeData = "Data: ";
     foreach($objNovaCompra->getCompra($idusuario) as $retCompra) {
     $pdf->SetFont($fonte, $estilo, 15);
     $pdf->Cell(50, 10, $nomeEvento, "T, L", 0, $alinhamentoC);
-    $pdf->Cell(50, 10, $retCompra->evento, "T, R, B", 1, $alinhamentoC);
+    $pdf->Cell(50, 10, $objNovaCompra->tratarCaracter($retCompra->evento, 1), "T, R, B", 1, $alinhamentoC);
 
     $pdf->Cell(50, 10, $nomeComprador, "T, L", 0, $alinhamentoC);
     $pdf->Cell(50, 10, $retCompra->comprador, "R", 1, $alinhamentoC);

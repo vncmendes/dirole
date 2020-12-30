@@ -25,21 +25,46 @@ class Compra extends Crud
   }
 
   public function getNomeEvento($idusuario) {
-    $sql = "SELECT evento from compra where idusuario = $idusuario";
+    $sql = "SELECT evento from $this->table where idusuario = $idusuario";
     $stmt = Banco::prepare($sql);
     $stmt->bindParam(':idusuario', $idusuario, PDO::PARAM_INT);
     $stmt->execute();
+    return $stmt->fetchAll();
+  }
+
+  public function getInfosCompraUser($idusuario) {
+    $sql = "SELECT compra.*, DATE_FORMAT(datacompra, '%d/%m/%Y') datacompra FROM $this->table WHERE idusuario = $idusuario";
+    $stmt = Banco::prepare($sql);
+    $stmt->bindParam(':idusuario', $idusuario, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll();
+  }
+
+  public function getQtdsUser($idusuario) {
+    $sql = "SELECT count(id) qtd, sum(valor) valor FROM $this->table WHERE idusuario = $idusuario";
+    $stmt = Banco::prepare($sql);
+    $stmt->bindParam(':idusuario', $idusuario, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll();
+  }
+  public function getQtdsProv($idProvider) {
+    $sql = "SELECT count(id) qtd, sum(valor) valor FROM $this->table WHERE idusuario = $idProvider";
+    $stmt = Banco::prepare($sql);
+    $stmt->bindParam(':idusuario', $idusuario, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll();
   }
 
   public function getCompraUser($idusuario) {
-    $sql = "SELECT count(id) from compra where idusuario = $idusuario";
+    $sql = "SELECT count(id) from $this->table where idusuario = $idusuario";
     $stmt = Banco::prepare($sql);
     $stmt->bindParam(':idusuario', $idusuario, PDO::PARAM_INT);
     $stmt->execute();
+    return $stmt->fetch();
   }
 
   public function getCompra($idusuario) {
-    $sql  = "SELECT max(idevento), evento, datacompra, comprador, valor FROM $this->table WHERE idusuario = :idusuario";
+    $sql  = "SELECT max(idevento), evento, DATE_FORMAT(datacompra, '%d/%m/%Y') datacompra, comprador, valor FROM $this->table WHERE idusuario = :idusuario";
     // $sql  = "SELECT evento, datacompra, comprador FROM $this->table WHERE idusuario = :idusuario";
 		$stmt = Banco::prepare($sql);
 		$stmt->bindParam(':idusuario', $idusuario, PDO::PARAM_INT);

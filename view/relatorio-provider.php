@@ -10,20 +10,21 @@ require_once "../model/Evento.php";
 require_once "../controller/evento.php";
 
 require_once "../model/Compra.php";
+require_once "../controller/compra.php";
 
 require_once "../model/fpdf182/fpdf.php";
 
 //ESTANCIANDO // SE TIVER O CONTROLLER NÃO PRECISA POIS JÁ ESTÁ ESTANCIADO LÁ
-$objCompra = new Evento();
-$objNovaCompra = new Compra();
+$objEvento = new Provider();
+$idProvider = $_SESSION['id_provider'];
 
 //Inicia O documento PDF com orientação P - Retrato (Picture) OU L - Paisagem (Landscape)
 $pdf = new FPDF("P");
 $pdf->AddPage();
 //NOME DO ARQUIVO AO SER GERADO ou GERA O NOME DO ARQUIVO COM O LOCAL A SER SALVO
-$arquivo = "relatorio-geral.pdf";
+$arquivo = "relatorio-provider.pdf";
 //DEFININDO FORMATACOES DO PDF
-$fonte = "Arial";
+$fonte = "Helvetica";
 $estilo = "B";
 $border = 1;
 $alinhamentoL = "L";
@@ -38,11 +39,41 @@ DEFAULT: O valor padrão é I.
 */
 
 $tipo_pdf = "I";
+$nomeEvento = "Evento: ";
+$nomeComprador = "Nome: ";
+$nomeValor = "Valor: ";
+$nomeData = "Data: ";
+$nomeQtd = "Quantidade: ";
 
- foreach($objNovaCompra->selectAll() as $retCompra) {
-    $pdf->SetFont($fonte, $estilo, 15);
-    $pdf->Cell(190, 10, $retCompra->comprador, $border, 1, $alinhamentoC);
- }
+$n = 0;
+$total = "SELECT count(id) qtdTotal FROM eventos where id_provider = $idProvider";
+
+ foreach($objEvento->getEventos($idProvider) as $retCompra) {
+   
+   $n = $n + 1;
+   if ($total != $n) {
+   $pdf->SetFont($fonte, $estilo, 15);
+   $pdf->Cell(190, 10, $objEvento->tratarCaracter($retCompra->nome, 1), "T, R, L", 1, $alinhamentoC);
+   
+   $pdf->Cell(95, 10, $nomeData, "L, B", 0, $alinhamentoC);
+   $pdf->Cell(95, 10, $retCompra->data, "R, B", 1, $alinhamentoC);
+   }
+   else {
+      $pdf->SetFont($fonte, $estilo, 15);
+      $pdf->Cell(190, 10, $objEvento->tratarCaracter($retCompra->nome, 1), "T, R, L", 1, $alinhamentoC);
+      $pdf->Cell(95, 10, $nomeData, "L", 0, $alinhamentoC);
+      $pdf->Cell(95, 10, $retCompra->data, "R", 1, $alinhamentoC);
+   }
+   
+   // if ($total != $n) {
+   //    $pdf->Cell(95, 10, $nomeQtd, "L, B", 0, $alinhamentoC);
+   //    $pdf->Cell(95, 10, $retCompra->qtd, "R, B", 1, $alinhamentoC);
+   // }
+   // else {
+   //    $pdf->Cell(95, 10, $nomeValor, "L", 0, $alinhamentoC);
+   //    $pdf->Cell(95, 10, $retCompra->valor, "R", 1, $alinhamentoC);
+   // }
+}
 
 // foreach($objMn->querySelectMenu() as $rstMn){
 // 	$pdf->SetY("50");
