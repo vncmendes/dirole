@@ -92,19 +92,19 @@ if (array_key_exists("cadastrar", $_POST)) {
       $usuario->insert();
       $cadastroSucesso = 1;
       $_SESSION['cadastroSucesso'] = $cadastroSucesso;
-    } else {
+    } 
+    else {
       @session_start();
       $emailErroMsg = 1;
       $_SESSION['emailErroMsg'] = $emailErroMsg;
-      // 
-
     }
-    session_destroy();
-  } else { // senhas diferentes
+    // session_destroy();
+  } 
+  else { // senhas diferentes
     $cadastroErroMsg = 1;
     $_SESSION['cadastroErroMsg'] = $cadastroErroMsg;
   }
-  session_destroy();
+  // session_destroy();
 }
 
 //######################################################################################

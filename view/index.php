@@ -84,7 +84,7 @@ $todosEventos = $eventos->selectAllLimited();
             <div class="dropdown-menu mydropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item mydrop-item" href="#" onclick="modalLogin()">Baladeira</a>
               <a class="dropdown-item mydrop-item" href="#" onclick="modalLoginP()">Produtor</a>
-              <a class="dropdown-item mydrop-item" href="#" onclick="modalLoginAdm()">Adm</a>
+              <!-- <a class="dropdown-item mydrop-item" href="#" onclick="modalLoginAdm()">Adm</a> -->
             </div>
           <?php } ?>
           </div>
@@ -346,6 +346,7 @@ $todosEventos = $eventos->selectAllLimited();
       });
     </script>
   <?php
+  session_destroy();
   }
   if (isset($_SESSION['cadastroSucesso']) && $_SESSION['cadastroSucesso'] == 1) {
   ?>
@@ -358,6 +359,7 @@ $todosEventos = $eventos->selectAllLimited();
       });
     </script>
   <?php
+  session_destroy();
   }
   if (isset($_SESSION['loginErroMsg']) && $_SESSION['loginErroMsg'] == 1) {
   ?>
@@ -370,6 +372,7 @@ $todosEventos = $eventos->selectAllLimited();
       });
     </script>
   <?php
+  session_destroy();
   }
   if (isset($_SESSION['cadastroErroMsg']) && $_SESSION['cadastroErroMsg'] == 1) {
   ?>
@@ -382,6 +385,7 @@ $todosEventos = $eventos->selectAllLimited();
       });
     </script>
   <?php
+  session_destroy();
   }
   ?>
   </script>
